@@ -72,7 +72,8 @@ flowchart TD
 
 ### 2.1 4+1 视图经典拓扑关系图（四象限矩阵架构）
 
-![UML 4+1 视图经典拓扑架构图](assets/uml-4+1-view.svg)
+![UML 4+1 视图经典拓扑架构图](./assets/uml-4-1-view.svg)
+
 
 
 
