@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 660" width="100%" height="660">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 660" width="100%" height="660">
   <defs>
     <!-- 阴影滤镜 -->
     <filter id="cardShadow" x="-6%" y="-6%" width="112%" height="112%" filterUnits="userSpaceOnUse">
@@ -27,7 +27,7 @@
   </defs>
 
   <style>
-    .card-title { font-size: 16px; font-weight: 700; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Microsoft YaHei", sans-serif; }
+    .card-title { font-size: 15.5px; font-weight: 700; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Microsoft YaHei", sans-serif; }
     .card-tag { font-size: 12px; font-weight: 600; font-family: -apple-system, BlinkMacSystemFont, sans-serif; }
     .card-body { font-size: 13px; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #334155; }
     .card-key { font-weight: 600; fill: #0f172a; }
@@ -39,19 +39,19 @@
   </style>
 
   <!-- 画布底色 -->
-  <rect width="960" height="660" rx="12" fill="#ffffff" />
+  <rect width="980" height="660" rx="12" fill="#ffffff" />
 
   <!-- ════════════ 1. 外围四大工程视图卡片 ════════════ -->
 
   <!-- 左上：逻辑视图 (Logical View) -->
   <g transform="translate(30, 30)" filter="url(#cardShadow)">
-    <rect width="360" height="215" rx="10" fill="#f0f9ff" stroke="#0284c7" stroke-width="1.8" />
-    <rect x="0" y="0" width="360" height="38" rx="10" fill="#0284c7" />
-    <rect x="0" y="24" width="360" height="14" fill="#0284c7" />
+    <rect width="370" height="215" rx="10" fill="#f0f9ff" stroke="#0284c7" stroke-width="1.8" />
+    <rect x="0" y="0" width="370" height="38" rx="10" fill="#0284c7" />
+    <rect x="0" y="24" width="370" height="14" fill="#0284c7" />
     <!-- 标题栏 -->
-    <text x="16" y="25" class="card-title" fill="#ffffff">📐 逻辑视图 (Logical View)</text>
-    <rect x="270" y="9" width="76" height="20" rx="4" fill="#e0f2fe" />
-    <text x="308" y="23" class="card-tag" fill="#0369a1" text-anchor="middle">设计视图</text>
+    <text x="16" y="25" class="card-title" fill="#ffffff">📐 逻辑视图 (Logical)</text>
+    <rect x="280" y="9" width="76" height="20" rx="4" fill="#e0f2fe" />
+    <text x="318" y="23" class="card-tag" fill="#0369a1" text-anchor="middle">设计视图</text>
     <!-- 卡片正文 -->
     <text x="16" y="65" class="card-body">
       <tspan class="card-key">👤 面向角色：</tspan><tspan fill="#0369a1" font-weight="600">系统分析 / 设计人员</tspan>
@@ -65,21 +65,21 @@
     <text x="16" y="155" class="card-body">
       <tspan class="card-key">📊 对应核心图：</tspan>类图、对象图、状态图
     </text>
-    <line x1="16" y1="172" x2="344" y2="172" stroke="#bae6fd" stroke-width="1" stroke-dasharray="3 3" />
+    <line x1="16" y1="172" x2="354" y2="172" stroke="#bae6fd" stroke-width="1" stroke-dasharray="3 3" />
     <text x="16" y="194" class="card-body" font-size="12" fill="#0284c7">
       💡 考题眼：定义系统功能结构与静态设计模型
     </text>
   </g>
 
   <!-- 右上：实现视图 (Implementation View) -->
-  <g transform="translate(570, 30)" filter="url(#cardShadow)">
-    <rect width="360" height="215" rx="10" fill="#ecfdf5" stroke="#059669" stroke-width="1.8" />
-    <rect x="0" y="0" width="360" height="38" rx="10" fill="#059669" />
-    <rect x="0" y="24" width="360" height="14" fill="#059669" />
-    <!-- 标题栏 -->
-    <text x="16" y="25" class="card-title" fill="#ffffff">📦 实现视图 (Implementation View)</text>
-    <rect x="270" y="9" width="76" height="20" rx="4" fill="#d1fae5" />
-    <text x="308" y="23" class="card-tag" fill="#047857" text-anchor="middle">开发视图</text>
+  <g transform="translate(580, 30)" filter="url(#cardShadow)">
+    <rect width="370" height="215" rx="10" fill="#ecfdf5" stroke="#059669" stroke-width="1.8" />
+    <rect x="0" y="0" width="370" height="38" rx="10" fill="#059669" />
+    <rect x="0" y="24" width="370" height="14" fill="#059669" />
+    <!-- 标题栏：优化字号与标题间距，杜绝重叠 -->
+    <text x="16" y="25" class="card-title" fill="#ffffff">📦 实现视图 (Implementation)</text>
+    <rect x="280" y="9" width="76" height="20" rx="4" fill="#d1fae5" />
+    <text x="318" y="23" class="card-tag" fill="#047857" text-anchor="middle">开发视图</text>
     <!-- 卡片正文 -->
     <text x="16" y="65" class="card-body">
       <tspan class="card-key">👤 面向角色：</tspan><tspan fill="#047857" font-weight="600">程序员 / 软件开发人员</tspan>
@@ -93,7 +93,7 @@
     <text x="16" y="155" class="card-body">
       <tspan class="card-key">📊 对应核心图：</tspan>构件图 (组件图)、包图
     </text>
-    <line x1="16" y1="172" x2="344" y2="172" stroke="#a7f3d0" stroke-width="1" stroke-dasharray="3 3" />
+    <line x1="16" y1="172" x2="354" y2="172" stroke="#a7f3d0" stroke-width="1" stroke-dasharray="3 3" />
     <text x="16" y="194" class="card-body" font-size="12" fill="#059669">
       💡 考题眼：关注独立构建打包的代码物理构件
     </text>
@@ -101,13 +101,13 @@
 
   <!-- 左下：进程视图 (Process View) -->
   <g transform="translate(30, 415)" filter="url(#cardShadow)">
-    <rect width="360" height="215" rx="10" fill="#faf5ff" stroke="#7c3aed" stroke-width="1.8" />
-    <rect x="0" y="0" width="360" height="38" rx="10" fill="#7c3aed" />
-    <rect x="0" y="24" width="360" height="14" fill="#7c3aed" />
+    <rect width="370" height="215" rx="10" fill="#faf5ff" stroke="#7c3aed" stroke-width="1.8" />
+    <rect x="0" y="0" width="370" height="38" rx="10" fill="#7c3aed" />
+    <rect x="0" y="24" width="370" height="14" fill="#7c3aed" />
     <!-- 标题栏 -->
-    <text x="16" y="25" class="card-title" fill="#ffffff">⚡ 进程视图 (Process View)</text>
-    <rect x="270" y="9" width="76" height="20" rx="4" fill="#ede9fe" />
-    <text x="308" y="23" class="card-tag" fill="#6d28d9" text-anchor="middle">并发视图</text>
+    <text x="16" y="25" class="card-title" fill="#ffffff">⚡ 进程视图 (Process)</text>
+    <rect x="280" y="9" width="76" height="20" rx="4" fill="#ede9fe" />
+    <text x="318" y="23" class="card-tag" fill="#6d28d9" text-anchor="middle">并发视图</text>
     <!-- 卡片正文 -->
     <text x="16" y="65" class="card-body">
       <tspan class="card-key">👤 面向角色：</tspan><tspan fill="#6d28d9" font-weight="600">系统集成人员</tspan>
@@ -121,21 +121,21 @@
     <text x="16" y="155" class="card-body">
       <tspan class="card-key">📊 对应核心图：</tspan>活动图、顺序图、通信图
     </text>
-    <line x1="16" y1="172" x2="344" y2="172" stroke="#ddd6fe" stroke-width="1" stroke-dasharray="3 3" />
+    <line x1="16" y1="172" x2="354" y2="172" stroke="#ddd6fe" stroke-width="1" stroke-dasharray="3 3" />
     <text x="16" y="194" class="card-body" font-size="12" fill="#7c3aed">
       💡 考题眼：逻辑视图的一次动态并发执行实例
     </text>
   </g>
 
   <!-- 右下：部署视图 (Deployment View) -->
-  <g transform="translate(570, 415)" filter="url(#cardShadow)">
-    <rect width="360" height="215" rx="10" fill="#f8fafc" stroke="#475569" stroke-width="1.8" />
-    <rect x="0" y="0" width="360" height="38" rx="10" fill="#475569" />
-    <rect x="0" y="24" width="360" height="14" fill="#475569" />
+  <g transform="translate(580, 415)" filter="url(#cardShadow)">
+    <rect width="370" height="215" rx="10" fill="#f8fafc" stroke="#475569" stroke-width="1.8" />
+    <rect x="0" y="0" width="370" height="38" rx="10" fill="#475569" />
+    <rect x="0" y="24" width="370" height="14" fill="#475569" />
     <!-- 标题栏 -->
-    <text x="16" y="25" class="card-title" fill="#ffffff">🖥️ 部署视图 (Deployment View)</text>
-    <rect x="270" y="9" width="76" height="20" rx="4" fill="#e2e8f0" />
-    <text x="308" y="23" class="card-tag" fill="#334155" text-anchor="middle">物理视图</text>
+    <text x="16" y="25" class="card-title" fill="#ffffff">🖥️ 部署视图 (Deployment)</text>
+    <rect x="280" y="9" width="76" height="20" rx="4" fill="#e2e8f0" />
+    <text x="318" y="23" class="card-tag" fill="#334155" text-anchor="middle">物理视图</text>
     <!-- 卡片正文 -->
     <text x="16" y="65" class="card-body">
       <tspan class="card-key">👤 面向角色：</tspan><tspan fill="#334155" font-weight="600">系统 / 网络工程师</tspan>
@@ -149,7 +149,7 @@
     <text x="16" y="155" class="card-body">
       <tspan class="card-key">📊 对应核心图：</tspan>部署图 (3D 透视立方体)
     </text>
-    <line x1="16" y1="172" x2="344" y2="172" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="3 3" />
+    <line x1="16" y1="172" x2="354" y2="172" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="3 3" />
     <text x="16" y="194" class="card-body" font-size="12" fill="#475569">
       💡 考题眼：将软件构件分配映射到物理计算节点
     </text>
@@ -160,43 +160,43 @@
 
   <!-- 上横向：逻辑 ➔ 实现 -->
   <g>
-    <line x1="395" y1="135" x2="560" y2="135" stroke="#0284c7" stroke-width="2.5" stroke-dasharray="none" marker-end="url(#arrowBlue)" />
-    <rect x="420" y="115" width="115" height="22" rx="4" fill="#ffffff" stroke="#bae6fd" stroke-width="1" />
-    <text x="477" y="130" class="flow-label" fill="#0369a1">映射为源代码</text>
+    <line x1="405" y1="135" x2="570" y2="135" stroke="#0284c7" stroke-width="2.5" marker-end="url(#arrowBlue)" />
+    <rect x="430" y="115" width="115" height="22" rx="4" fill="#ffffff" stroke="#bae6fd" stroke-width="1" />
+    <text x="487" y="130" class="flow-label" fill="#0369a1">映射为源代码</text>
   </g>
 
   <!-- 下横向：进程 ➔ 部署 -->
   <g>
-    <line x1="395" y1="520" x2="560" y2="520" stroke="#7c3aed" stroke-width="2.5" stroke-dasharray="none" marker-end="url(#arrowPurple)" />
-    <rect x="410" y="500" width="135" height="22" rx="4" fill="#ffffff" stroke="#ddd6fe" stroke-width="1" />
-    <text x="477" y="515" class="flow-label" fill="#6d28d9">分布式网络通信协同</text>
+    <line x1="405" y1="520" x2="570" y2="520" stroke="#7c3aed" stroke-width="2.5" marker-end="url(#arrowPurple)" />
+    <rect x="420" y="500" width="135" height="22" rx="4" fill="#ffffff" stroke="#ddd6fe" stroke-width="1" />
+    <text x="487" y="515" class="flow-label" fill="#6d28d9">分布式网络通信协同</text>
   </g>
 
   <!-- 左纵向：逻辑 ➔ 进程 -->
   <g>
-    <line x1="210" y1="250" x2="210" y2="405" stroke="#2563eb" stroke-width="2.5" stroke-dasharray="none" marker-end="url(#arrowBlue)" />
-    <rect x="135" y="320" width="150" height="22" rx="4" fill="#ffffff" stroke="#bfdbfe" stroke-width="1" />
-    <text x="210" y="335" class="flow-label" fill="#1d4ed8">运行时并发执行实例</text>
+    <line x1="215" y1="250" x2="215" y2="405" stroke="#2563eb" stroke-width="2.5" marker-end="url(#arrowBlue)" />
+    <rect x="140" y="320" width="150" height="22" rx="4" fill="#ffffff" stroke="#bfdbfe" stroke-width="1" />
+    <text x="215" y="335" class="flow-label" fill="#1d4ed8">运行时并发执行实例</text>
   </g>
 
   <!-- 右纵向：实现 ➔ 部署 -->
   <g>
-    <line x1="750" y1="250" x2="750" y2="405" stroke="#059669" stroke-width="2.5" stroke-dasharray="none" marker-end="url(#arrowGreen)" />
-    <rect x="685" y="320" width="130" height="22" rx="4" fill="#ffffff" stroke="#a7f3d0" stroke-width="1" />
-    <text x="750" y="335" class="flow-label" fill="#047857">物理节点部署运行</text>
+    <line x1="765" y1="250" x2="765" y2="405" stroke="#059669" stroke-width="2.5" marker-end="url(#arrowGreen)" />
+    <rect x="700" y="320" width="130" height="22" rx="4" fill="#ffffff" stroke="#a7f3d0" stroke-width="1" />
+    <text x="765" y="335" class="flow-label" fill="#047857">物理节点部署运行</text>
   </g>
 
 
   <!-- ════════════ 3. 几何中心枢纽：用例视图 (Use-Case View) ════════════ -->
 
   <!-- 中心辐射虚线箭头到四大象限 -->
-  <line x1="420" y1="290" x2="350" y2="245" stroke="#d97706" stroke-width="1.8" stroke-dasharray="4 4" marker-end="url(#arrowAmber)" />
-  <line x1="540" y1="290" x2="610" y2="245" stroke="#d97706" stroke-width="1.8" stroke-dasharray="4 4" marker-end="url(#arrowAmber)" />
-  <line x1="420" y1="370" x2="350" y2="415" stroke="#d97706" stroke-width="1.8" stroke-dasharray="4 4" marker-end="url(#arrowAmber)" />
-  <line x1="540" y1="370" x2="610" y2="415" stroke="#d97706" stroke-width="1.8" stroke-dasharray="4 4" marker-end="url(#arrowAmber)" />
+  <line x1="430" y1="290" x2="360" y2="245" stroke="#d97706" stroke-width="1.8" stroke-dasharray="4 4" marker-end="url(#arrowAmber)" />
+  <line x1="550" y1="290" x2="620" y2="245" stroke="#d97706" stroke-width="1.8" stroke-dasharray="4 4" marker-end="url(#arrowAmber)" />
+  <line x1="430" y1="370" x2="360" y2="415" stroke="#d97706" stroke-width="1.8" stroke-dasharray="4 4" marker-end="url(#arrowAmber)" />
+  <line x1="550" y1="370" x2="620" y2="415" stroke="#d97706" stroke-width="1.8" stroke-dasharray="4 4" marker-end="url(#arrowAmber)" />
 
-  <!-- 中心用例卡片 -->
-  <g transform="translate(365, 260)" filter="url(#centerGlow)">
+  <!-- 中心用例卡片 (精准居中 X: 375, Center X: 490) -->
+  <g transform="translate(375, 260)" filter="url(#centerGlow)">
     <!-- 外圈发光边框 -->
     <rect width="230" height="140" rx="16" fill="#fffbeb" stroke="#f59e0b" stroke-width="2.5" />
     
