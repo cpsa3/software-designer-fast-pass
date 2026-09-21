@@ -27,8 +27,6 @@
 ```plantuml
 @startuml
 !pragma layout smetana
-skinparam dpi 125
-skinparam defaultFontSize 12
 skinparam classAttributeIconSize 0
 hide circle
 
@@ -101,8 +99,6 @@ PersonRecord - IPerson
 ```plantuml
 @startuml
 !pragma layout smetana
-skinparam dpi 125
-skinparam defaultFontSize 12
 object "<u>Zhang : Student</u>" as Zhang
 object "<u>Li : Student</u>" as Li
 object "<u>Wang : Student</u>" as Wang
@@ -142,8 +138,6 @@ Zhang -- Li : 链 (同学)
 ```plantuml
 @startuml
 !pragma layout smetana
-skinparam dpi 125
-skinparam defaultFontSize 12
 left to right direction
 skinparam packageStyle rectangle
 
@@ -194,8 +188,6 @@ UC_VIP --|> UC_Normal
 ```plantuml
 @startuml
 !pragma layout smetana
-skinparam dpi 125
-skinparam defaultFontSize 12
 autonumber
 actor "用户 (User)" as User
 participant "控制器 (Controller)" as Ctrl
@@ -239,8 +231,6 @@ note right of DB : 对象生命周期终止 (X)
 ```plantuml
 @startuml
 !pragma layout smetana
-skinparam dpi 125
-skinparam defaultFontSize 12
 rectangle "读者 : Reader" as Reader
 rectangle "系统前台 : WebUI" as WebUI
 rectangle "借阅服务 : OrderService" as OrderSvc
@@ -265,8 +255,6 @@ OrderSvc - StockSvc : 1.2.1: 冻结在架库存() >
 ```plantuml
 @startuml
 !pragma layout smetana
-skinparam dpi 125
-skinparam defaultFontSize 12
 [*] --> 未支付 : 提交订单
 
 未支付 --> 支付成功 : 扫描付款 [余额充足] / 发送凭证
@@ -293,8 +281,6 @@ skinparam defaultFontSize 12
 ```plantuml
 @startuml
 !pragma layout smetana
-skinparam dpi 125
-skinparam defaultFontSize 12
 start
 :员工提交出差审批单;
 
@@ -324,8 +310,6 @@ stop
 ```plantuml
 @startuml
 !pragma layout smetana
-skinparam dpi 125
-skinparam defaultFontSize 12
 [订单处理组件\n(OrderComponent)] as OrderComp
 [支付处理网关\n(PaymentGateway)] as PayGateway
 
@@ -349,8 +333,6 @@ OrderComp ..( IPay : 依赖服务 (需接口/Socket)
 ```plantuml
 @startuml
 !pragma layout smetana
-skinparam dpi 125
-skinparam defaultFontSize 12
 node "客户端 PC 终端" as ClientPC <<device>> {
   node "Chrome 浏览器" as Browser <<execution environment>> {
     artifact "web-dist" as WebApp
