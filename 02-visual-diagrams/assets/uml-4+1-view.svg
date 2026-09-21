@@ -1,0 +1,217 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 660" width="100%" height="auto">
+  <defs>
+    <!-- 阴影滤镜 -->
+    <filter id="cardShadow" x="-6%" y="-6%" width="112%" height="112%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#0f172a" flood-opacity="0.08" />
+    </filter>
+    <filter id="centerGlow" x="-10%" y="-10%" width="120%" height="120%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#d97706" flood-opacity="0.18" />
+    </filter>
+
+    <!-- 箭头 Marker -->
+    <marker id="arrowBlue" markerWidth="10" markerHeight="10" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#2563eb" />
+    </marker>
+    <marker id="arrowGreen" markerWidth="10" markerHeight="10" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#059669" />
+    </marker>
+    <marker id="arrowPurple" markerWidth="10" markerHeight="10" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#7c3aed" />
+    </marker>
+    <marker id="arrowSlate" markerWidth="10" markerHeight="10" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#475569" />
+    </marker>
+    <marker id="arrowAmber" markerWidth="8" markerHeight="8" refX="5" refY="2.5" orient="auto">
+      <path d="M0,0 L0,5 L7,2.5 z" fill="#d97706" />
+    </marker>
+  </defs>
+
+  <style>
+    .card-title { font-size: 16px; font-weight: 700; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Microsoft YaHei", sans-serif; }
+    .card-tag { font-size: 12px; font-weight: 600; font-family: -apple-system, BlinkMacSystemFont, sans-serif; }
+    .card-body { font-size: 13px; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #334155; }
+    .card-key { font-weight: 600; fill: #0f172a; }
+    .flow-label { font-size: 13px; font-weight: 600; font-family: -apple-system, BlinkMacSystemFont, sans-serif; fill: #1e293b; text-anchor: middle; }
+    .flow-sub { font-size: 11px; fill: #64748b; font-family: -apple-system, BlinkMacSystemFont, sans-serif; text-anchor: middle; }
+    .center-title { font-size: 16px; font-weight: 800; fill: #78350f; font-family: -apple-system, BlinkMacSystemFont, sans-serif; text-anchor: middle; }
+    .center-sub { font-size: 13px; font-weight: 600; fill: #92400e; font-family: -apple-system, BlinkMacSystemFont, sans-serif; text-anchor: middle; }
+    .center-desc { font-size: 12px; fill: #b45309; font-family: -apple-system, BlinkMacSystemFont, sans-serif; text-anchor: middle; }
+  </style>
+
+  <!-- 画布底色 -->
+  <rect width="960" height="660" rx="12" fill="#ffffff" />
+
+  <!-- ════════════ 1. 外围四大工程视图卡片 ════════════ -->
+
+  <!-- 左上：逻辑视图 (Logical View) -->
+  <g transform="translate(30, 30)" filter="url(#cardShadow)">
+    <rect width="360" height="215" rx="10" fill="#f0f9ff" stroke="#0284c7" stroke-width="1.8" />
+    <rect x="0" y="0" width="360" height="38" rx="10" fill="#0284c7" />
+    <rect x="0" y="24" width="360" height="14" fill="#0284c7" />
+    <!-- 标题栏 -->
+    <text x="16" y="25" class="card-title" fill="#ffffff">📐 逻辑视图 (Logical View)</text>
+    <rect x="270" y="9" width="76" height="20" rx="4" fill="#e0f2fe" />
+    <text x="308" y="23" class="card-tag" fill="#0369a1" text-anchor="middle">设计视图</text>
+    <!-- 卡片正文 -->
+    <text x="16" y="65" class="card-body">
+      <tspan class="card-key">👤 面向角色：</tspan><tspan fill="#0369a1" font-weight="600">系统分析 / 设计人员</tspan>
+    </text>
+    <text x="16" y="95" class="card-body">
+      <tspan class="card-key">🎯 关注重点：</tspan><tspan fill="#0f172a" font-weight="600">展现系统功能</tspan> (设计子集)
+    </text>
+    <text x="16" y="125" class="card-body">
+      <tspan class="card-key">🧩 核心建模：</tspan>类、对象、接口、子系统协作
+    </text>
+    <text x="16" y="155" class="card-body">
+      <tspan class="card-key">📊 对应核心图：</tspan>类图、对象图、状态图
+    </text>
+    <line x1="16" y1="172" x2="344" y2="172" stroke="#bae6fd" stroke-width="1" stroke-dasharray="3 3" />
+    <text x="16" y="194" class="card-body" font-size="12" fill="#0284c7">
+      💡 考题眼：定义系统功能结构与静态设计模型
+    </text>
+  </g>
+
+  <!-- 右上：实现视图 (Implementation View) -->
+  <g transform="translate(570, 30)" filter="url(#cardShadow)">
+    <rect width="360" height="215" rx="10" fill="#ecfdf5" stroke="#059669" stroke-width="1.8" />
+    <rect x="0" y="0" width="360" height="38" rx="10" fill="#059669" />
+    <rect x="0" y="24" width="360" height="14" fill="#059669" />
+    <!-- 标题栏 -->
+    <text x="16" y="25" class="card-title" fill="#ffffff">📦 实现视图 (Implementation View)</text>
+    <rect x="270" y="9" width="76" height="20" rx="4" fill="#d1fae5" />
+    <text x="308" y="23" class="card-tag" fill="#047857" text-anchor="middle">开发视图</text>
+    <!-- 卡片正文 -->
+    <text x="16" y="65" class="card-body">
+      <tspan class="card-key">👤 面向角色：</tspan><tspan fill="#047857" font-weight="600">程序员 / 软件开发人员</tspan>
+    </text>
+    <text x="16" y="95" class="card-body">
+      <tspan class="card-key">🎯 关注重点：</tspan><tspan fill="#0f172a" font-weight="600">源代码结构</tspan>、编译与构建组织
+    </text>
+    <text x="16" y="125" class="card-body">
+      <tspan class="card-key">🧩 核心建模：</tspan>物理代码文件、组件、模块、包
+    </text>
+    <text x="16" y="155" class="card-body">
+      <tspan class="card-key">📊 对应核心图：</tspan>构件图 (组件图)、包图
+    </text>
+    <line x1="16" y1="172" x2="344" y2="172" stroke="#a7f3d0" stroke-width="1" stroke-dasharray="3 3" />
+    <text x="16" y="194" class="card-body" font-size="12" fill="#059669">
+      💡 考题眼：关注独立构建打包的代码物理构件
+    </text>
+  </g>
+
+  <!-- 左下：进程视图 (Process View) -->
+  <g transform="translate(30, 415)" filter="url(#cardShadow)">
+    <rect width="360" height="215" rx="10" fill="#faf5ff" stroke="#7c3aed" stroke-width="1.8" />
+    <rect x="0" y="0" width="360" height="38" rx="10" fill="#7c3aed" />
+    <rect x="0" y="24" width="360" height="14" fill="#7c3aed" />
+    <!-- 标题栏 -->
+    <text x="16" y="25" class="card-title" fill="#ffffff">⚡ 进程视图 (Process View)</text>
+    <rect x="270" y="9" width="76" height="20" rx="4" fill="#ede9fe" />
+    <text x="308" y="23" class="card-tag" fill="#6d28d9" text-anchor="middle">并发视图</text>
+    <!-- 卡片正文 -->
+    <text x="16" y="65" class="card-body">
+      <tspan class="card-key">👤 面向角色：</tspan><tspan fill="#6d28d9" font-weight="600">系统集成人员</tspan>
+    </text>
+    <text x="16" y="95" class="card-body">
+      <tspan class="card-key">🎯 关注重点：</tspan><tspan fill="#0f172a" font-weight="600">并发与同步结构</tspan> (性能与伸缩性)
+    </text>
+    <text x="16" y="125" class="card-body">
+      <tspan class="card-key">🧩 核心建模：</tspan>线程、进程、任务划分与时钟同步
+    </text>
+    <text x="16" y="155" class="card-body">
+      <tspan class="card-key">📊 对应核心图：</tspan>活动图、顺序图、通信图
+    </text>
+    <line x1="16" y1="172" x2="344" y2="172" stroke="#ddd6fe" stroke-width="1" stroke-dasharray="3 3" />
+    <text x="16" y="194" class="card-body" font-size="12" fill="#7c3aed">
+      💡 考题眼：逻辑视图的一次动态并发执行实例
+    </text>
+  </g>
+
+  <!-- 右下：部署视图 (Deployment View) -->
+  <g transform="translate(570, 415)" filter="url(#cardShadow)">
+    <rect width="360" height="215" rx="10" fill="#f8fafc" stroke="#475569" stroke-width="1.8" />
+    <rect x="0" y="0" width="360" height="38" rx="10" fill="#475569" />
+    <rect x="0" y="24" width="360" height="14" fill="#475569" />
+    <!-- 标题栏 -->
+    <text x="16" y="25" class="card-title" fill="#ffffff">🖥️ 部署视图 (Deployment View)</text>
+    <rect x="270" y="9" width="76" height="20" rx="4" fill="#e2e8f0" />
+    <text x="308" y="23" class="card-tag" fill="#334155" text-anchor="middle">物理视图</text>
+    <!-- 卡片正文 -->
+    <text x="16" y="65" class="card-body">
+      <tspan class="card-key">👤 面向角色：</tspan><tspan fill="#334155" font-weight="600">系统 / 网络工程师</tspan>
+    </text>
+    <text x="16" y="95" class="card-body">
+      <tspan class="card-key">🎯 关注重点：</tspan><tspan fill="#0f172a" font-weight="600">软硬件物理映射</tspan>与网络拓扑分布
+    </text>
+    <text x="16" y="125" class="card-body">
+      <tspan class="card-key">🧩 核心建模：</tspan>物理节点 (Node)、容器、通信链路
+    </text>
+    <text x="16" y="155" class="card-body">
+      <tspan class="card-key">📊 对应核心图：</tspan>部署图 (3D 透视立方体)
+    </text>
+    <line x1="16" y1="172" x2="344" y2="172" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="3 3" />
+    <text x="16" y="194" class="card-body" font-size="12" fill="#475569">
+      💡 考题眼：将软件构件分配映射到物理计算节点
+    </text>
+  </g>
+
+
+  <!-- ════════════ 2. 外围横纵向流动箭头 ════════════ -->
+
+  <!-- 上横向：逻辑 ➔ 实现 -->
+  <g>
+    <line x1="395" y1="135" x2="560" y2="135" stroke="#0284c7" stroke-width="2.5" stroke-dasharray="none" marker-end="url(#arrowBlue)" />
+    <rect x="420" y="115" width="115" height="22" rx="4" fill="#ffffff" stroke="#bae6fd" stroke-width="1" />
+    <text x="477" y="130" class="flow-label" fill="#0369a1">映射为源代码</text>
+  </g>
+
+  <!-- 下横向：进程 ➔ 部署 -->
+  <g>
+    <line x1="395" y1="520" x2="560" y2="520" stroke="#7c3aed" stroke-width="2.5" stroke-dasharray="none" marker-end="url(#arrowPurple)" />
+    <rect x="410" y="500" width="135" height="22" rx="4" fill="#ffffff" stroke="#ddd6fe" stroke-width="1" />
+    <text x="477" y="515" class="flow-label" fill="#6d28d9">分布式网络通信协同</text>
+  </g>
+
+  <!-- 左纵向：逻辑 ➔ 进程 -->
+  <g>
+    <line x1="210" y1="250" x2="210" y2="405" stroke="#2563eb" stroke-width="2.5" stroke-dasharray="none" marker-end="url(#arrowBlue)" />
+    <rect x="135" y="320" width="150" height="22" rx="4" fill="#ffffff" stroke="#bfdbfe" stroke-width="1" />
+    <text x="210" y="335" class="flow-label" fill="#1d4ed8">运行时并发执行实例</text>
+  </g>
+
+  <!-- 右纵向：实现 ➔ 部署 -->
+  <g>
+    <line x1="750" y1="250" x2="750" y2="405" stroke="#059669" stroke-width="2.5" stroke-dasharray="none" marker-end="url(#arrowGreen)" />
+    <rect x="685" y="320" width="130" height="22" rx="4" fill="#ffffff" stroke="#a7f3d0" stroke-width="1" />
+    <text x="750" y="335" class="flow-label" fill="#047857">物理节点部署运行</text>
+  </g>
+
+
+  <!-- ════════════ 3. 几何中心枢纽：用例视图 (Use-Case View) ════════════ -->
+
+  <!-- 中心辐射虚线箭头到四大象限 -->
+  <line x1="420" y1="290" x2="350" y2="245" stroke="#d97706" stroke-width="1.8" stroke-dasharray="4 4" marker-end="url(#arrowAmber)" />
+  <line x1="540" y1="290" x2="610" y2="245" stroke="#d97706" stroke-width="1.8" stroke-dasharray="4 4" marker-end="url(#arrowAmber)" />
+  <line x1="420" y1="370" x2="350" y2="415" stroke="#d97706" stroke-width="1.8" stroke-dasharray="4 4" marker-end="url(#arrowAmber)" />
+  <line x1="540" y1="370" x2="610" y2="415" stroke="#d97706" stroke-width="1.8" stroke-dasharray="4 4" marker-end="url(#arrowAmber)" />
+
+  <!-- 中心用例卡片 -->
+  <g transform="translate(365, 260)" filter="url(#centerGlow)">
+    <!-- 外圈发光边框 -->
+    <rect width="230" height="140" rx="16" fill="#fffbeb" stroke="#f59e0b" stroke-width="2.5" />
+    
+    <!-- 顶部小徽章 -->
+    <rect x="45" y="-12" width="140" height="24" rx="12" fill="#d97706" />
+    <text x="115" y="4" font-size="12" font-weight="700" fill="#ffffff" text-anchor="middle">★ 核心驱动枢纽 ★</text>
+
+    <!-- 卡片主体文字 -->
+    <text x="115" y="36" class="center-title">用例视图 (Use-Case)</text>
+    <text x="115" y="58" class="center-sub">👤 面向角色：最终用户 (User)</text>
+    
+    <line x1="20" y1="70" x2="210" y2="70" stroke="#fde68a" stroke-width="1.5" />
+
+    <text x="115" y="92" class="center-desc" font-weight="700">🎯 最基本的需求分析模型</text>
+    <text x="115" y="112" class="center-desc" fill="#92400e" font-size="11">驱动、串联并检验其余四大视图</text>
+    <text x="115" y="128" class="center-desc" fill="#b45309" font-size="11">对应核心图：用例图 (Use Case)</text>
+  </g>
+</svg>
