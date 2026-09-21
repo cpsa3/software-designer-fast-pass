@@ -336,22 +336,16 @@ flowchart TD
 
 ```mermaid
 flowchart LR
-    subgraph C1["«component»<br><b>订单处理构件 (OrderComponent)</b>"]
-        C1_Code["内部业务逻辑 (.jar)"]
-    end
+    C1["«component»<br><b>订单处理构件</b><br>(OrderComponent.jar)"]
+    IPay(("○ 供接口 (Ball)<br><b>IPayment</b>"))
+    C2["«component»<br><b>支付处理网关</b><br>(PaymentGateway.dll)"]
 
-    subgraph C2["«component»<br><b>支付处理构件 (PaymentComponent)</b>"]
-        C2_Code["第三方支付引擎 (.dll)"]
-    end
-
-    I_Pay(("○ 供接口 (Ball)<br>IPayment"))
-
-    C2 --> I_Pay
-    C1 -.->|"需接口 (Socket): 依赖调用"| I_Pay
+    C1 -.->|"需接口 (Socket): 依赖调用"| IPay
+    IPay ---|"供接口 (Ball): 提供服务"| C2
 
     style C1 fill:#eff6ff,stroke:#2563eb,stroke-width:1.5px
-    style C2 fill:#f8fafc,stroke:#334155,stroke-width:1.5px
-    style I_Pay fill:#fef3c7,stroke:#d97706,stroke-width:2px
+    style C2 fill:#f0fdf4,stroke:#16a34a,stroke-width:1.5px
+    style IPay fill:#fef3c7,stroke:#d97706,stroke-width:2px
 ```
 
 ### 读图要领与考场题眼
