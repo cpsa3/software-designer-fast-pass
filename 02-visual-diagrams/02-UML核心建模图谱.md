@@ -34,42 +34,23 @@
 
 ```mermaid
 flowchart TD
-    classDef rootStyle fill:#1e293b,stroke:#0f172a,color:#ffffff,stroke-width:2px,font-weight:bold;
-    classDef staticStyle fill:#eff6ff,stroke:#2563eb,stroke-width:2px,color:#1e3a8a,font-weight:bold;
-    classDef dynamicStyle fill:#fffbeb,stroke:#d97706,stroke-width:2px,color:#78350f,font-weight:bold;
-    classDef subStyle fill:#ffffff,stroke:#cbd5e1,stroke-width:1px,color:#334155;
+    classDef titleStyle fill:#0f172a,stroke:#0f172a,color:#ffffff,font-weight:bold;
+    classDef staticHeader fill:#1d4ed8,stroke:#1e40af,color:#ffffff,font-weight:bold;
+    classDef dynamicHeader fill:#b45309,stroke:#92400e,color:#ffffff,font-weight:bold;
+    classDef staticBox fill:#f0f9ff,stroke:#0284c7,stroke-width:1.5px,color:#0f172a;
+    classDef interactBox fill:#fffbeb,stroke:#f59e0b,stroke-width:1.5px,stroke-dasharray: 4 4,color:#0f172a;
+    classDef dynamicOther fill:#f8fafc,stroke:#64748b,stroke-width:1.5px,color:#0f172a;
 
-    Root["🏛️ UML 2.0 建模图谱分类总纲 (14 种)"]:::rootStyle
+    Root["🏛️ <b>UML 2.0 建模图谱分类总纲 (14 种)</b>"]:::titleStyle
 
-    Root --> Static["📐 一、静态图 / 结构图 (7 种)<br/><b>关注系统物理与逻辑的静态构造（不随时间推移而改变）</b>"]:::staticStyle
-    Root --> Dynamic["⚡ 二、动态图 / 行为图 (7 种)<br/><b>关注系统的跨时空演化、控制流与对象间动态交互</b>"]:::dynamicStyle
+    Root --> LeftHeader["📐 <b>静态图 / 结构图 (7 种)</b><br/>面向系统物理与逻辑的静态构造"]:::staticHeader
+    Root --> RightHeader["⚡ <b>动态图 / 行为图 (7 种)</b><br/>面向跨时空演化、控制流与交互"]:::dynamicHeader
 
-    subgraph SG_Static ["静态结构体系 (Structure Diagrams)"]
-        S1["<b>类图 (Class Diagram)</b><br/>类、接口、协作及相互静态关系 (设计视图核心)"]:::subStyle
-        S2["<b>对象图 (Object Diagram)</b><br/>某一运行瞬间的内存实例与链快照 (带下划线)"]:::subStyle
-        S3["<b>构件图 (Component Diagram)</b><br/>封装的软件模块与球窝装配接口 (实现视图核心)"]:::subStyle
-        S4["<b>部署图 (Deployment Diagram)</b><br/>软硬件物理节点映射与网络拓扑 (3D透视立方体)"]:::subStyle
-        S5["<b>制品图 (Artifact Diagram)</b><br/>物理文件、二进制包、脚本与配置文件"]:::subStyle
-        S6["<b>包图 (Package Diagram)</b><br/>系统分层组织单元与模块间依赖容器"]:::subStyle
-        S7["<b>组合结构图 (Composite Structure)</b><br/>类或协作内部部件、端口与连接器微观构造"]:::subStyle
-    end
+    LeftHeader --> StaticCard["<b>• 类图</b> (Class)：一组类、接口、协作及静态关系 (设计核心)<br/><b>• 对象图</b> (Object)：某一瞬时运行快照与链 (带下划线)<br/><b>• 构件图</b> (Component)：封装的模块代码与球窝装配接口 (实现核心)<br/><b>• 部署图</b> (Deployment)：软硬件物理映射与节点拓扑 (3D透视立方体)<br/><b>• 制品图</b> (Artifact)：系统的物理文件、配置与可执行体<br/><b>• 包图</b> (Package)：模型本身的组织单元与依赖关系容器<br/><b>• 组合结构图</b> (Composite Structure)：类或协作内部部件与端口连接"]:::staticBox
 
-    subgraph SG_Dynamic ["动态行为体系 (Behavior Diagrams)"]
-        subgraph SG_Interact ["🔄 交互图子类 (强调对象间的消息传递流转)"]
-            D1["<b>顺序图 (Sequence)</b><br/>强调【时间先后顺序】，垂直生命线向下推进"]:::subStyle
-            D2["<b>通信图 (Communication)</b><br/>强调【空间组织拓扑】，消息带层级数字编号 (1.1, 1.2)"]:::subStyle
-            D3["<b>定时图 (Timing)</b><br/>强调【实际时间数值】与状态持续波形线"]:::subStyle
-            D4["<b>交互概览图 (Interaction Overview)</b><br/>顺序图与活动图的粗粒度混合控制流"]:::subStyle
-        end
-        subgraph SG_NonInteract ["🎯 业务流程、状态跃迁与外部需求"]
-            D5["<b>用例图 (Use Case)</b><br/>系统与外部参与者交互 (最基本的需求分析模型)"]:::subStyle
-            D6["<b>状态图 (Statechart)</b><br/>单个对象全生命周期的状态变迁 (事件[监护条件]/动作)"]:::subStyle
-            D7["<b>活动图 (Activity)</b><br/>业务工作流与计算流程，并发分叉/汇合与泳道"]:::subStyle
-        end
-    end
+    RightHeader --> InteractCard["📦 <b>【交互图子类 (4 种)】强调对象间消息传递</b><br/>━━━━━━━━━━━━━━━━━━━━━━━━━━━━━<br/><b>• 顺序图</b> (Sequence)：强调【按时间先后顺序】，生命线垂直推进<br/><b>• 通信图</b> (Communication)：强调【空间组织拓扑】，消息编号 1.1<br/><b>• 定时图</b> (Timing)：强调【实际时间数值】与状态持续波形线<br/><b>• 交互概览图</b> (Interaction Overview)：顺序图与活动图粗粒度混合"]:::interactBox
 
-    Static --> SG_Static
-    Dynamic --> SG_Dynamic
+    InteractCard --> DynamicOther["🎯 <b>【其他行为图 (3 种)】</b><br/>━━━━━━━━━━━━━━━━━━━━━━━━━━━━━<br/><b>• 用例图</b> (Use Case)：系统与外部参与者的交互 (最基本需求模型)<br/><b>• 状态图</b> (Statechart)：单对象全生命周期状态变迁 (事件[条件]/动作)<br/><b>• 活动图</b> (Activity)：类似程序流程图，核心强化【并发分叉与汇合】"]:::dynamicOther
 ```
 
 ### 1.2 考纲重点归纳与深度辨析
