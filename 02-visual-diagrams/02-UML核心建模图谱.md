@@ -1,7 +1,9 @@
 # UML 核心建模图谱（UML 2.0 全景与 4+1 架构金字塔精讲）
 
 > **金字塔导读**：本专题遵循“**宏观全景（塔尖） ➔ 架构视图（统领） ➔ 动静分类（中层） ➔ 微观图解（细化） ➔ 题眼速杀（底座）**”的金字塔认知模型组织。  
-> **建模标准**：全量采用工业级标准 **PlantUML** 声明式代码建模，语法 100% 对应 OMG UML 2.5 规范。已内置 Retina 高清平衡参数，开箱即看、易维护、易拓展。
+> **建模规范与选型**：
+> 1. **宏观认知层（01 节分类大树 & 02 节 4+1 视图拓扑）**：采用原生 **Mermaid** 绘制。轻量免依赖、开箱即显、自适应排版、配色优雅，契合知识拓扑与概念关系图。
+> 2. **微观设计层（03 ~ 11 节 9 大核心图）**：全量采用工业级标准 **PlantUML** 声明式代码建模。100% 符合 OMG UML 2.5 规范语义，球窝接口、生命线激活条、3D 部署节点原生高精度渲染。
 
 ---
 
@@ -30,26 +32,44 @@
 
 ### 1.1 全景分类架构图
 
-```plantuml
-@startuml
-!pragma layout smetana
-skinparam dpi 125
-skinparam defaultFontSize 12
-skinparam roundcorner 8
+```mermaid
+flowchart TD
+    classDef rootStyle fill:#1e293b,stroke:#0f172a,color:#ffffff,stroke-width:2px,font-weight:bold;
+    classDef staticStyle fill:#eff6ff,stroke:#2563eb,stroke-width:2px,color:#1e3a8a,font-weight:bold;
+    classDef dynamicStyle fill:#fffbeb,stroke:#d97706,stroke-width:2px,color:#78350f,font-weight:bold;
+    classDef subStyle fill:#ffffff,stroke:#cbd5e1,stroke-width:1px,color:#334155;
 
-rectangle "<b>UML 2.0 建模图谱分类总纲 (14 种)</b>" as Root #0f172a;text:white
+    Root["🏛️ UML 2.0 建模图谱分类总纲 (14 种)"]:::rootStyle
 
-rectangle "<b>一、静态图 / 结构图 (7 种) —— 面向物理与逻辑静态构造</b>" as Static #e0f2fe {
-  rectangle "• <b>类图</b> (Class Diagram)：一组类、接口、协作及相互静态关系 (设计视图核心)\n• <b>对象图</b> (Object Diagram)：某一运行瞬间的内存实例与链快照 (运行时快照)\n• <b>构件图</b> (Component Diagram)：封装的模块代码与球窝装配接口 (实现视图核心)\n• <b>部署图</b> (Deployment Diagram)：软硬件物理映射与节点拓扑 (环境视图核心)\n• <b>制品图</b> (Artifact Diagram)：系统的物理文件、配置与可执行体\n• <b>包图</b> (Package Diagram)：由模型自身分解而成的组织单元与依赖\n• <b>组合结构图</b> (Composite Structure)：类或协作的内部部件与端口连接" as S_Detail #ffffff
-}
+    Root --> Static["📐 一、静态图 / 结构图 (7 种)<br/><b>关注系统物理与逻辑的静态构造（不随时间推移而改变）</b>"]:::staticStyle
+    Root --> Dynamic["⚡ 二、动态图 / 行为图 (7 种)<br/><b>关注系统的跨时空演化、控制流与对象间动态交互</b>"]:::dynamicStyle
 
-rectangle "<b>二、动态图 / 行为图 (7 种) —— 面向跨时空动态演化与交互</b>" as Dynamic #fef3c7 {
-  rectangle "【交互图子类 (4 种)】：强调对象间的消息传递流转\n• <b>顺序图</b> (Sequence)：强调【按时间先后顺序】组织生命线垂直推进\n• <b>通信图</b> (Communication)：强调【空间组织结构拓扑】与层级数字编号 (1.1, 1.2)\n• <b>定时图</b> (Timing)：强调【实际时间数值】与状态持续线 (波形图)\n• <b>交互概览图</b> (Interaction Overview)：顺序图与活动图粗粒度混合\n────────────────────────────────────────────────\n【非交互行为图 (3 种)】：强调业务逻辑、单对象状态与外部交互\n• <b>用例图</b> (Use Case)：系统与外部参与者的交互 (最基本的需求分析模型)\n• <b>状态图</b> (Statechart)：单个对象全生命周期的状态变迁与转移 (事件[条件]/动作)\n• <b>活动图</b> (Activity)：类似程序流程图，核心强化【并发分叉与汇合】及泳道" as D_Detail #ffffff
-}
+    subgraph SG_Static ["静态结构体系 (Structure Diagrams)"]
+        S1["<b>类图 (Class Diagram)</b><br/>类、接口、协作及相互静态关系 (设计视图核心)"]:::subStyle
+        S2["<b>对象图 (Object Diagram)</b><br/>某一运行瞬间的内存实例与链快照 (带下划线)"]:::subStyle
+        S3["<b>构件图 (Component Diagram)</b><br/>封装的软件模块与球窝装配接口 (实现视图核心)"]:::subStyle
+        S4["<b>部署图 (Deployment Diagram)</b><br/>软硬件物理节点映射与网络拓扑 (3D透视立方体)"]:::subStyle
+        S5["<b>制品图 (Artifact Diagram)</b><br/>物理文件、二进制包、脚本与配置文件"]:::subStyle
+        S6["<b>包图 (Package Diagram)</b><br/>系统分层组织单元与模块间依赖容器"]:::subStyle
+        S7["<b>组合结构图 (Composite Structure)</b><br/>类或协作内部部件、端口与连接器微观构造"]:::subStyle
+    end
 
-Root -down-> Static
-Static -down-> Dynamic
-@enduml
+    subgraph SG_Dynamic ["动态行为体系 (Behavior Diagrams)"]
+        subgraph SG_Interact ["🔄 交互图子类 (强调对象间的消息传递流转)"]
+            D1["<b>顺序图 (Sequence)</b><br/>强调【时间先后顺序】，垂直生命线向下推进"]:::subStyle
+            D2["<b>通信图 (Communication)</b><br/>强调【空间组织拓扑】，消息带层级数字编号 (1.1, 1.2)"]:::subStyle
+            D3["<b>定时图 (Timing)</b><br/>强调【实际时间数值】与状态持续波形线"]:::subStyle
+            D4["<b>交互概览图 (Interaction Overview)</b><br/>顺序图与活动图的粗粒度混合控制流"]:::subStyle
+        end
+        subgraph SG_NonInteract ["🎯 业务流程、状态跃迁与外部需求"]
+            D5["<b>用例图 (Use Case)</b><br/>系统与外部参与者交互 (最基本的需求分析模型)"]:::subStyle
+            D6["<b>状态图 (Statechart)</b><br/>单个对象全生命周期的状态变迁 (事件[监护条件]/动作)"]:::subStyle
+            D7["<b>活动图 (Activity)</b><br/>业务工作流与计算流程，并发分叉/汇合与泳道"]:::subStyle
+        end
+    end
+
+    Static --> SG_Static
+    Dynamic --> SG_Dynamic
 ```
 
 ### 1.2 考纲重点归纳与深度辨析
@@ -71,31 +91,35 @@ Static -down-> Dynamic
 
 ### 2.1 4+1 视图经典拓扑关系图
 
-```plantuml
-@startuml
-!pragma layout smetana
-skinparam dpi 125
-skinparam defaultFontSize 12
-skinparam shadowing false
-skinparam roundcorner 8
+```mermaid
+flowchart TD
+    classDef centerStyle fill:#fef3c7,stroke:#d97706,stroke-width:3px,font-weight:bold,color:#78350f;
+    classDef logicalStyle fill:#eff6ff,stroke:#2563eb,stroke-width:2px,color:#1e40af;
+    classDef implStyle fill:#f0fdf4,stroke:#16a34a,stroke-width:2px,color:#166534;
+    classDef processStyle fill:#faf5ff,stroke:#9333ea,stroke-width:2px,color:#6b21a8;
+    classDef deployStyle fill:#f8fafc,stroke:#475569,stroke-width:2px,color:#1e293b;
 
-rectangle "<b>逻辑视图 (Logical View)</b>\n【系统分析 / 设计人员】\n• 核心：类、对象、接口、子系统\n• 目标：展现系统功能 (也称设计视图)" as Logical #e0f2fe
-rectangle "<b>实现视图 (Implementation View)</b>\n【程序员 / 开发人员】\n• 核心：物理代码文件、组件、包\n• 目标：源代码结构与编译组织 (开发视图)" as Impl #f0fdf4
-rectangle "<b>进程视图 (Process View)</b>\n【系统集成人员】\n• 核心：线程、进程、并发同步\n• 目标：并发性、性能与可伸缩性" as Process #f3e8ff
-rectangle "<b>部署视图 (Deployment View)</b>\n【系统 / 网络工程师】\n• 核心：构件到物理节点的映射\n• 目标：软件到硬件拓扑与物理分布 (物理视图)" as Deploy #f1f5f9
+    UseCase["★ <b>用例视图 (Use-Case View)</b> ★<br/>━━━━━━━━━━━━━━━━━━━━<br/>👤 <b>面向角色</b>：最终用户 (End User)<br/>🎯 <b>关注重点</b>：最基本需求模型 / 功能边界<br/>📌 <b>核心地位</b>：处于架构中心，驱动并验证其余四大视图"]:::centerStyle
 
-node "<b>★ 用例视图 (Use-Case View) ★</b>\n【最终用户】\n• 核心：最基本的需求分析模型\n• 枢纽：驱动并串联其余四大视图" as UseCase #fef3c7
+    Logical["📐 <b>逻辑视图 (Logical View)</b><br/>━━━━━━━━━━━━━━━━━━━━<br/>👤 <b>系统分析 / 设计人员</b> (Analyst/Designer)<br/>🎯 <b>关注重点</b>：系统功能组织与设计模型<br/>🧩 <b>核心建模</b>：类、对象、接口、子系统<br/>📊 <b>对应 UML 图</b>：类图、对象图、状态图"]:::logicalStyle
 
-Logical -right-> Impl : 映射为源代码
-Process -right-> Deploy : 物理分布执行
-Logical -down-> Process : 运行执行实例
-Impl -down-> Deploy : 物理节点部署
+    Impl["📦 <b>实现视图 (Implementation View)</b><br/>━━━━━━━━━━━━━━━━━━━━<br/>👤 <b>程序员 / 软件开发人员</b> (Programmer)<br/>🎯 <b>关注重点</b>：源代码结构与编译打包组织<br/>🧩 <b>核心建模</b>：物理代码文件、组件、包<br/>📊 <b>对应 UML 图</b>：构件图、包图"]:::implStyle
 
-UseCase <--> Logical
-UseCase <--> Impl
-UseCase <--> Process
-UseCase <--> Deploy
-@enduml
+    Process["⚡ <b>进程视图 (Process View)</b><br/>━━━━━━━━━━━━━━━━━━━━<br/>👤 <b>系统集成人员</b> (Integrator)<br/>🎯 <b>关注重点</b>：并发性、性能与系统伸缩性<br/>🧩 <b>核心建模</b>：线程、进程、并发同步通信<br/>📊 <b>对应 UML 图</b>：活动图、顺序图、通信图"]:::processStyle
+
+    Deploy["🖥️ <b>部署视图 (Deployment View)</b><br/>━━━━━━━━━━━━━━━━━━━━<br/>👤 <b>系统 / 网络工程师</b> (Engineer)<br/>🎯 <b>关注重点</b>：软硬件物理映射与网络拓扑分布<br/>🧩 <b>核心建模</b>：物理机、虚拟机、容器、拓扑节点<br/>📊 <b>对应 UML 图</b>：部署图"]:::deployStyle
+
+    %% 核心枢纽辐射关系
+    UseCase <== 需求驱动 / 功能验证 ==> Logical
+    UseCase <== 需求驱动 / 功能验证 ==> Impl
+    UseCase <== 需求驱动 / 功能验证 ==> Process
+    UseCase <== 需求驱动 / 功能验证 ==> Deploy
+
+    %% 四大视图层间关联
+    Logical -- 映射为源码文件组织 --> Impl
+    Logical -- 运行时并发执行实例 --> Process
+    Impl -- 部署运行于物理节点 --> Deploy
+    Process -- 节点间分布通信协同 --> Deploy
 ```
 
 ### 2.2 4+1 视图核心考点辨析矩阵（文老师高频题眼）
@@ -234,13 +258,11 @@ Zhang -- Li : 链 (同学)
 !pragma layout smetana
 skinparam dpi 125
 skinparam defaultFontSize 12
-[订单处理组件
-(OrderComponent)] as OrderComp
-[支付处理网关
-(PaymentGateway)] as PayGateway
 
-() "IPayment
-(供接口/Ball)" as IPay
+component "订单处理组件\n(OrderComponent)" as OrderComp
+component "支付处理网关\n(PaymentGateway)" as PayGateway
+
+interface "IPayment\n(供接口/Ball)" as IPay
 
 PayGateway - IPay : 提供服务
 OrderComp ..( IPay : 依赖服务 (需接口/Socket)
@@ -248,8 +270,8 @@ OrderComp ..( IPay : 依赖服务 (需接口/Socket)
 ```
 
 ### 读图要领与考场核心题眼
-1. **构造型组件**：`[组件名]` 原生渲染标准构件矩形。
-2. **球窝装配连接**：`()` 原生渲染供接口圆球；`..(` 语法原生渲染半圆插座，表达组件解耦与装配。
+1. **构造型组件**：`component` 关键字原生渲染标准构件矩形与内部标牌。
+2. **球窝装配连接**：`interface` 或 `()` 原生渲染供接口圆球 (Ball)；`..(` 语法原生渲染需接口半圆插座 (Socket)，生动表达组件的解耦与即插即用装配。
 
 ---
 
@@ -262,6 +284,7 @@ OrderComp ..( IPay : 依赖服务 (需接口/Socket)
 !pragma layout smetana
 skinparam dpi 125
 skinparam defaultFontSize 12
+
 node "客户端 PC 终端" as ClientPC <<device>> {
   node "Chrome 浏览器" as Browser <<execution environment>> {
     artifact "web-dist" as WebApp
@@ -309,8 +332,7 @@ rectangle "图书借阅管理系统 (System Boundary)" {
   usecase "查询书籍信息" as UC_Search
   usecase "修改书籍信息" as UC_Modify
   usecase "登记外借信息" as UC_Borrow
-  usecase "用户登录
-(公共逻辑)" as UC_Login
+  usecase "用户登录\n(公共逻辑)" as UC_Login
   usecase "统计借阅数据" as UC_Stat
   usecase "普通借阅" as UC_Normal
   usecase "VIP借阅" as UC_VIP
@@ -396,14 +418,14 @@ note right of DB : 对象生命周期终止 (X)
 !pragma layout smetana
 skinparam dpi 125
 skinparam defaultFontSize 12
+
 rectangle "读者 : Reader" as Reader
 rectangle "系统前台 : WebUI" as WebUI
 rectangle "借阅服务 : OrderService" as OrderSvc
 rectangle "库存系统 : StockService" as StockSvc
 
 Reader - WebUI : 1: 提交借书申请() >
-WebUI - OrderSvc : 1.1: 检查欠费() >
-1.2: 扣减借阅限额() >
+WebUI - OrderSvc : 1.1: 检查欠费() >\n1.2: 扣减借阅限额() >
 OrderSvc - StockSvc : 1.2.1: 冻结在架库存() >
 @enduml
 ```
@@ -423,6 +445,7 @@ OrderSvc - StockSvc : 1.2.1: 冻结在架库存() >
 !pragma layout smetana
 skinparam dpi 125
 skinparam defaultFontSize 12
+
 [*] --> 未支付 : 提交订单
 
 未支付 --> 支付成功 : 扫描付款 [余额充足] / 发送凭证
@@ -451,6 +474,7 @@ skinparam defaultFontSize 12
 !pragma layout smetana
 skinparam dpi 125
 skinparam defaultFontSize 12
+
 start
 :员工提交出差审批单;
 
@@ -486,4 +510,3 @@ stop
 | **通信图** | **动态** | 进程/交互 | 网状对象连线、**`1.1, 1.2` 消息数字编号** | 与顺序图等价、**空间组织结构拓扑** |
 | **状态图** | **动态** | 逻辑视图 | 初态实心圆、终态牛眼同心圆、圆角矩形 | **单对象生命周期**、`事件[条件]/动作` |
 | **活动图** | **动态** | 进程/逻辑 | **粗黑水平/垂直同步条 (Fork/Join)** | 类似程序流程图、**并行分叉与汇合**、泳道 |
-
