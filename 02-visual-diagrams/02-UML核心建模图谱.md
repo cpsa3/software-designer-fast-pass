@@ -1,26 +1,116 @@
-# UML 核心建模图谱（PlantUML 工业级代码建模版）
+# UML 核心建模图谱（UML 2.0 全景与 4+1 架构金字塔精讲）
 
-> **设计理念**：采用 UML-as-Code 领域的工业级事实标准 **PlantUML**。  
-> **核心优势**：语法 100% 严格对应 OMG UML 2.5 规范标准。原生支持真实的火柴人 Actor、球窝装配接口、3D 节点与完整的对象属性声明。非常适合搭配 VS Code PlantUML 插件或自动化 Docs-as-Code 工具链。
-
----
-
-## 快速导航索引
-
-* [01. 类图 (Class Diagram) —— 静态设计视图核心](#01-类图-class-diagram--静态设计视图核心)
-* [02. 对象图 (Object Diagram) —— 运行时快照与链](#02-对象图-object-diagram--运行时快照与链)
-* [03. 用例图 (Use Case Diagram) —— 需求模型与三大关系](#03-用例图-use-case-diagram--需求模型与三大关系)
-* [04. 顺序图 / 时序图 (Sequence Diagram) —— 时间垂直生命线](#04-顺序图--时序图-sequence-diagram--时间垂直生命线)
-* [05. 通信图 / 协作图 (Communication Diagram) —— 空间拓扑与数字编号](#05-通信图--协作图-communication-diagram--空间拓扑与数字编号)
-* [06. 状态图 (Statechart Diagram) —— 单对象全生命周期变迁](#06-状态图-statechart-diagram--单对象全生命周期变迁)
-* [07. 活动图 (Activity Diagram) —— 并发分叉与汇合](#07-活动图-activity-diagram--并发分叉与汇合)
-* [08. 构件图 / 组件图 (Component Diagram) —— 软件封装与球窝接口](#08-构件图--组件图-component-diagram--软件封装与球窝接口)
-* [09. 部署图 (Deployment Diagram) —— 软硬件物理拓扑](#09-部署图-deployment-diagram--软硬件物理拓扑)
-* [附录：9 大图考场标志物一秒速杀对照表](#附录9-大图考场标志物一秒速杀对照表)
+> **金字塔导读**：本专题遵循“**宏观全景（塔尖） ➔ 架构视图（统领） ➔ 动静分类（中层） ➔ 微观图解（细化） ➔ 题眼速杀（底座）**”的金字塔认知模型组织。  
+> **建模标准**：全量采用工业级标准 **PlantUML** 声明式代码建模，语法 100% 对应 OMG UML 2.5 规范。已内置 Retina 高清平衡参数，开箱即看、易维护、易拓展。
 
 ---
 
-## 01. 类图 (Class Diagram) —— 静态设计视图核心
+## 🏛️ 金字塔快速导航索引
+
+- **第一部分：宏观认知（金字塔塔尖·全局俯瞰）**
+  * [01. 整体概要说明：UML 2.0 动静态 14 图分类大树](#01-整体概要说明uml-20-动静态-14-图分类大树)
+  * [02. 架构视角统领：UML 4+1 视图与多角色映射模型](#02-架构视角统领uml-41-视图与多角色映射模型)
+- **第二部分：中层支柱 A —— 静态结构视图核心建模**
+  * [03. 类图 (Class Diagram) —— 静态设计视图核心](#03-类图-class-diagram--静态设计视图核心)
+  * [04. 对象图 (Object Diagram) —— 运行时快照与链](#04-对象图-object-diagram--运行时快照与链)
+  * [05. 构件图 / 组件图 (Component Diagram) —— 软件封装与球窝接口](#05-构件图--组件图-component-diagram--软件封装与球窝接口)
+  * [06. 部署图 (Deployment Diagram) —— 软硬件物理拓扑](#06-部署图-deployment-diagram--软硬件物理拓扑)
+- **第三部分：中层支柱 B —— 动态行为与交互视图核心建模**
+  * [07. 用例图 (Use Case Diagram) —— 需求模型与三大关系](#07-用例图-use-case-diagram--需求模型与三大关系)
+  * [08. 顺序图 / 时序图 (Sequence Diagram) —— 时间垂直生命线](#08-顺序图--时序图-sequence-diagram--时间垂直生命线)
+  * [09. 通信图 / 协作图 (Communication Diagram) —— 空间拓扑与数字编号](#09-通信图--协作图-communication-diagram--空间拓扑与数字编号)
+  * [10. 状态图 (Statechart Diagram) —— 单对象全生命周期变迁](#10-状态图-statechart-diagram--单对象全生命周期变迁)
+  * [11. 活动图 (Activity Diagram) —— 并发分叉与汇合](#11-活动图-activity-diagram--并发分叉与汇合)
+- **第四部分：实战收敛（金字塔底座·考场速杀）**
+  * [附录：9 大核心图考场标志物一秒速杀对照表](#附录9-大核心图考场标志物一秒速杀对照表)
+
+---
+
+## 01. 整体概要说明：UML 2.0 动静态 14 图分类大树
+
+### 1.1 全景分类架构图
+
+```plantuml
+@startuml
+!pragma layout smetana
+skinparam dpi 125
+skinparam defaultFontSize 12
+skinparam roundcorner 8
+
+rectangle "<b>UML 2.0 建模图谱分类总纲 (14 种)</b>" as Root #0f172a;text:white
+
+rectangle "<b>一、静态图 / 结构图 (7 种) —— 面向物理与逻辑静态构造</b>" as Static #e0f2fe {
+  rectangle "• <b>类图</b> (Class Diagram)：一组类、接口、协作及相互静态关系 (设计视图核心)\n• <b>对象图</b> (Object Diagram)：某一运行瞬间的内存实例与链快照 (运行时快照)\n• <b>构件图</b> (Component Diagram)：封装的模块代码与球窝装配接口 (实现视图核心)\n• <b>部署图</b> (Deployment Diagram)：软硬件物理映射与节点拓扑 (环境视图核心)\n• <b>制品图</b> (Artifact Diagram)：系统的物理文件、配置与可执行体\n• <b>包图</b> (Package Diagram)：由模型自身分解而成的组织单元与依赖\n• <b>组合结构图</b> (Composite Structure)：类或协作的内部部件与端口连接" as S_Detail #ffffff
+}
+
+rectangle "<b>二、动态图 / 行为图 (7 种) —— 面向跨时空动态演化与交互</b>" as Dynamic #fef3c7 {
+  rectangle "【交互图子类 (4 种)】：强调对象间的消息传递流转\n• <b>顺序图</b> (Sequence)：强调【按时间先后顺序】组织生命线垂直推进\n• <b>通信图</b> (Communication)：强调【空间组织结构拓扑】与层级数字编号 (1.1, 1.2)\n• <b>定时图</b> (Timing)：强调【实际时间数值】与状态持续线 (波形图)\n• <b>交互概览图</b> (Interaction Overview)：顺序图与活动图粗粒度混合\n────────────────────────────────────────────────\n【非交互行为图 (3 种)】：强调业务逻辑、单对象状态与外部交互\n• <b>用例图</b> (Use Case)：系统与外部参与者的交互 (最基本的需求分析模型)\n• <b>状态图</b> (Statechart)：单个对象全生命周期的状态变迁与转移 (事件[条件]/动作)\n• <b>活动图</b> (Activity)：类似程序流程图，核心强化【并发分叉与汇合】及泳道" as D_Detail #ffffff
+}
+
+Root -down-> Static
+Static -down-> Dynamic
+@enduml
+```
+
+### 1.2 考纲重点归纳与深度辨析
+
+> [!IMPORTANT]
+> **官方教材分类口径**：清华版教材正文常表述为 **13 种图**（因为早期标准将“制品图”归入构件/部署层，不作为顶级图），部分现代考题也会算上“制品图”统称为 **14 种图**。考生切勿纠结数字，关键在于掌握**“静态结构”与“动态行为”的二分法判定法则**！
+
+1. **静态图（结构图）判定铁律**：
+   - 不随时间发生流动或变迁，描述系统在某一时刻的结构蓝图或物理部件。
+   - **典型成员**：类图、对象图、构件图、部署图、制品图、包图、组合结构图。
+2. **动态图（行为图）判定铁律**：
+   - 包含时间流动、状态迁移、控制流或对象间的消息通讯。
+   - **交互图子类（重点考点）**：顺序图（时间优先）、通信图（空间优先）、定时图（数值优先）、交互概览图。**凡是带有消息流转的，均属于交互图**！
+   - **非交互图**：用例图（需求起点）、状态图（单对象生命全貌）、活动图（业务流程与并行）。
+
+---
+
+## 02. 架构视角统领：UML 4+1 视图与多角色映射模型
+
+### 2.1 4+1 视图经典拓扑关系图
+
+```plantuml
+@startuml
+!pragma layout smetana
+skinparam dpi 125
+skinparam defaultFontSize 12
+skinparam shadowing false
+skinparam roundcorner 8
+
+rectangle "<b>逻辑视图 (Logical View)</b>\n【系统分析 / 设计人员】\n• 核心：类、对象、接口、子系统\n• 目标：展现系统功能 (也称设计视图)" as Logical #e0f2fe
+rectangle "<b>实现视图 (Implementation View)</b>\n【程序员 / 开发人员】\n• 核心：物理代码文件、组件、包\n• 目标：源代码结构与编译组织 (开发视图)" as Impl #f0fdf4
+rectangle "<b>进程视图 (Process View)</b>\n【系统集成人员】\n• 核心：线程、进程、并发同步\n• 目标：并发性、性能与可伸缩性" as Process #f3e8ff
+rectangle "<b>部署视图 (Deployment View)</b>\n【系统 / 网络工程师】\n• 核心：构件到物理节点的映射\n• 目标：软件到硬件拓扑与物理分布 (物理视图)" as Deploy #f1f5f9
+
+node "<b>★ 用例视图 (Use-Case View) ★</b>\n【最终用户】\n• 核心：最基本的需求分析模型\n• 枢纽：驱动并串联其余四大视图" as UseCase #fef3c7
+
+Logical -right-> Impl : 映射为源代码
+Process -right-> Deploy : 物理分布执行
+Logical -down-> Process : 运行执行实例
+Impl -down-> Deploy : 物理节点部署
+
+UseCase <--> Logical
+UseCase <--> Impl
+UseCase <--> Process
+UseCase <--> Deploy
+@enduml
+```
+
+### 2.2 4+1 视图核心考点辨析矩阵（文老师高频题眼）
+
+| 视图名称 | 别名 | 面向角色 | 关注重点 / 建模内容 | 对应核心 UML 图 | 考场高频题眼与特征词 |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **用例视图**<br>*(Use-Case)* | **需求视图** | **最终用户**<br>*(End User)* | **最基本的需求分析模型**，定义系统边界与功能边界 | 用例图 (Use Case) | **“核心驱动枢纽”**、描述用户可见行为 |
+| **逻辑视图**<br>*(Logical)* | **设计视图** | **系统分析/设计人员**<br>*(Analyst/Designer)* | **展现系统功能**，设计模型中具有架构意义的类、接口、子系统 | 类图、对象图、状态图 | **“类与对象”**、**“展现系统功能”**、设计子集 |
+| **实现视图**<br>*(Implementation)*| **开发视图** | **程序员 / 开发人员**<br>*(Programmer)* | **源代码结构**，组成基于系统的物理代码文件和构件 | 构件图、包图 | **“物理代码文件”**、**“构件建模”**、编译打包 |
+| **进程视图**<br>*(Process)* | **并发视图** | **系统集成人员**<br>*(Integrator)* | **并发与同步结构**，是逻辑视图的一次执行实例，关注非功能需求 | 活动图、顺序图、通信图 | **“线程与进程”**、**“并发与同步”**、性能可伸缩性 |
+| **部署视图**<br>*(Deployment)* | **物理视图** | **系统/网络工程师**<br>*(Engineer)* | **软件到硬件的物理映射**，构件部署到物理节点的拓扑分布 | 部署图 (Deployment) | **“物理节点”**、**“软硬件映射”**、网络分布拓扑 |
+
+---
+
+## 03. 类图 (Class Diagram) —— 静态设计视图核心
 
 ### 标准 PlantUML 建模源码
 
@@ -94,7 +184,7 @@ PersonRecord - IPerson
 
 ---
 
-## 02. 对象图 (Object Diagram) —— 运行时快照与链
+## 04. 对象图 (Object Diagram) —— 运行时快照与链
 
 ### 标准 PlantUML 建模源码
 
@@ -135,7 +225,71 @@ Zhang -- Li : 链 (同学)
 
 ---
 
-## 03. 用例图 (Use Case Diagram) —— 需求模型与三大关系
+## 05. 构件图 / 组件图 (Component Diagram) —— 软件封装与球窝接口
+
+### 标准 PlantUML 建模源码
+
+```plantuml
+@startuml
+!pragma layout smetana
+skinparam dpi 125
+skinparam defaultFontSize 12
+[订单处理组件
+(OrderComponent)] as OrderComp
+[支付处理网关
+(PaymentGateway)] as PayGateway
+
+() "IPayment
+(供接口/Ball)" as IPay
+
+PayGateway - IPay : 提供服务
+OrderComp ..( IPay : 依赖服务 (需接口/Socket)
+@enduml
+```
+
+### 读图要领与考场核心题眼
+1. **构造型组件**：`[组件名]` 原生渲染标准构件矩形。
+2. **球窝装配连接**：`()` 原生渲染供接口圆球；`..(` 语法原生渲染半圆插座，表达组件解耦与装配。
+
+---
+
+## 06. 部署图 (Deployment Diagram) —— 软硬件物理拓扑
+
+### 标准 PlantUML 建模源码
+
+```plantuml
+@startuml
+!pragma layout smetana
+skinparam dpi 125
+skinparam defaultFontSize 12
+node "客户端 PC 终端" as ClientPC <<device>> {
+  node "Chrome 浏览器" as Browser <<execution environment>> {
+    artifact "web-dist" as WebApp
+  }
+}
+
+node "应用服务器群" as AppServer <<device>> {
+  node "Docker 容器" as Docker <<execution environment>> {
+    artifact "order-service.jar" as OrderApp
+  }
+}
+
+node "数据库物理服务器" as DBServer <<device>> {
+  database "MySQL 8.0" as MySQL
+}
+
+ClientPC -- AppServer : HTTPS (端口: 443)
+AppServer -- DBServer : JDBC (端口: 3306)
+@enduml
+```
+
+### 读图要领与考场核心题眼
+1. **3D 透视立方体**：`node` 关键字原生渲染标准的三维立方体硬件节点。
+2. **软硬件映射**：硬件 `<<device>>` 内部嵌套运行容器 `<<execution environment>>` 与可执行文件 `artifact`。
+
+---
+
+## 07. 用例图 (Use Case Diagram) —— 需求模型与三大关系
 
 ### 标准 PlantUML 建模源码
 
@@ -155,7 +309,8 @@ rectangle "图书借阅管理系统 (System Boundary)" {
   usecase "查询书籍信息" as UC_Search
   usecase "修改书籍信息" as UC_Modify
   usecase "登记外借信息" as UC_Borrow
-  usecase "用户登录\n(公共逻辑)" as UC_Login
+  usecase "用户登录
+(公共逻辑)" as UC_Login
   usecase "统计借阅数据" as UC_Stat
   usecase "普通借阅" as UC_Normal
   usecase "VIP借阅" as UC_VIP
@@ -187,7 +342,7 @@ UC_VIP --|> UC_Normal
 
 ---
 
-## 04. 顺序图 / 时序图 (Sequence Diagram) —— 时间垂直生命线
+## 08. 顺序图 / 时序图 (Sequence Diagram) —— 时间垂直生命线
 
 ### 标准 PlantUML 建模源码
 
@@ -232,7 +387,7 @@ note right of DB : 对象生命周期终止 (X)
 
 ---
 
-## 05. 通信图 / 协作图 (Communication Diagram) —— 空间拓扑与数字编号
+## 09. 通信图 / 协作图 (Communication Diagram) —— 空间拓扑与数字编号
 
 ### 标准 PlantUML 建模源码
 
@@ -247,7 +402,8 @@ rectangle "借阅服务 : OrderService" as OrderSvc
 rectangle "库存系统 : StockService" as StockSvc
 
 Reader - WebUI : 1: 提交借书申请() >
-WebUI - OrderSvc : 1.1: 检查欠费() >\n1.2: 扣减借阅限额() >
+WebUI - OrderSvc : 1.1: 检查欠费() >
+1.2: 扣减借阅限额() >
 OrderSvc - StockSvc : 1.2.1: 冻结在架库存() >
 @enduml
 ```
@@ -258,7 +414,7 @@ OrderSvc - StockSvc : 1.2.1: 冻结在架库存() >
 
 ---
 
-## 06. 状态图 (Statechart Diagram) —— 单对象全生命周期变迁
+## 10. 状态图 (Statechart Diagram) —— 单对象全生命周期变迁
 
 ### 标准 PlantUML 建模源码
 
@@ -286,7 +442,7 @@ skinparam defaultFontSize 12
 
 ---
 
-## 07. 活动图 (Activity Diagram) —— 并发分叉与汇合
+## 11. 活动图 (Activity Diagram) —— 并发分叉与汇合
 
 ### 标准 PlantUML 建模源码
 
@@ -317,77 +473,17 @@ stop
 
 ---
 
-## 08. 构件图 / 组件图 (Component Diagram) —— 软件封装与球窝接口
-
-### 标准 PlantUML 建模源码
-
-```plantuml
-@startuml
-!pragma layout smetana
-skinparam dpi 125
-skinparam defaultFontSize 12
-[订单处理组件\n(OrderComponent)] as OrderComp
-[支付处理网关\n(PaymentGateway)] as PayGateway
-
-() "IPayment\n(供接口/Ball)" as IPay
-
-PayGateway - IPay : 提供服务
-OrderComp ..( IPay : 依赖服务 (需接口/Socket)
-@enduml
-```
-
-### 读图要领与考场核心题眼
-1. **构造型组件**：`[组件名]` 原生渲染标准构件矩形。
-2. **球窝装配连接**：`()` 原生渲染供接口圆球；`..(` 语法原生渲染半圆插座，表达组件解耦与装配。
-
----
-
-## 09. 部署图 (Deployment Diagram) —— 软硬件物理拓扑
-
-### 标准 PlantUML 建模源码
-
-```plantuml
-@startuml
-!pragma layout smetana
-skinparam dpi 125
-skinparam defaultFontSize 12
-node "客户端 PC 终端" as ClientPC <<device>> {
-  node "Chrome 浏览器" as Browser <<execution environment>> {
-    artifact "web-dist" as WebApp
-  }
-}
-
-node "应用服务器群" as AppServer <<device>> {
-  node "Docker 容器" as Docker <<execution environment>> {
-    artifact "order-service.jar" as OrderApp
-  }
-}
-
-node "数据库物理服务器" as DBServer <<device>> {
-  database "MySQL 8.0" as MySQL
-}
-
-ClientPC -- AppServer : HTTPS (端口: 443)
-AppServer -- DBServer : JDBC (端口: 3306)
-@enduml
-```
-
-### 读图要领与考场核心题眼
-1. **3D 透视立方体**：`node` 关键字原生渲染标准的三维立方体硬件节点。
-2. **软硬件映射**：硬件 `<<device>>` 内部嵌套运行容器 `<<execution environment>>` 与可执行文件 `artifact`。
-
----
-
 ## 附录：9 大图考场标志物一秒速杀对照表
 
-| 图名称 | 动/静属性 | 一秒识别的“视觉标志物” | 考题标志性特征词 |
-| :--- | :---: | :--- | :--- |
-| **类图** | **静态** | 三段式矩形、继承三角、组合聚合菱形 | **静态设计视图**、多重度、类间关系 |
-| **对象图** | **静态** | 名字带**下划线**（如 `<u>:Course</u>`）、无方法格 | **特定时刻快照 (Snapshot)**、链 |
-| **用例图** | **动态** | **火柴人**、椭圆、系统大矩形框 | **最基本需求模型**、`<<include>>`、`<<extend>>` |
-| **顺序图** | **动态** | **垂直向下虚线（生命线）**、细矩形激活条 | **时间顺序**、调用消息、返回消息 |
-| **通信图** | **动态** | 网状对象连线、**`1.1, 1.2` 消息数字编号** | 与顺序图等价、**对象组织结构拓扑** |
-| **状态图** | **动态** | 初态实心圆、终态牛眼同心圆、圆角矩形 | **单对象生命周期**、`事件[条件]/动作` |
-| **活动图** | **动态** | **粗黑水平/垂直同步条 (Fork/Join)** | 类似程序流程图、**并行分叉与汇合**、泳道 |
-| **构件图** | **静态** | «component»、**供接口圆球与需接口插座** | 物理软件模块封装、`.dll/.jar` |
-| **部署图** | **静态** | **3D 立方体节点**、网络连线标协议 | **软硬件映射**、物理节点 (Node) |
+| 图名称 | 动/静属性 | 所属 4+1 视图 | 一秒识别的“视觉标志物” | 考题标志性特征词 |
+| :--- | :---: | :---: | :--- | :--- |
+| **类图** | **静态** | 逻辑视图 | 三段式矩形、继承三角、组合聚合菱形 | **静态设计视图**、多重度、类间关系 |
+| **对象图** | **静态** | 逻辑视图 | 名字带**下划线**（如 `<u>:Course</u>`）、无方法格 | **特定时刻快照 (Snapshot)**、链 |
+| **构件图** | **静态** | 实现视图 | «component»、**供接口圆球与需接口插座** | 物理软件模块封装、`.dll/.jar`、接口解耦 |
+| **部署图** | **静态** | 部署视图 | **3D 立方体节点**、网络连线标协议 | **软硬件映射**、物理节点 (Node)、分布结构 |
+| **用例图** | **动态** | 用例视图 | **火柴人**、椭圆、系统大矩形框 | **最基本需求模型**、`<<include>>`、`<<extend>>` |
+| **顺序图** | **动态** | 进程/交互 | **垂直向下虚线（生命线）**、细矩形激活条 | **时间顺序**、调用消息、返回消息 |
+| **通信图** | **动态** | 进程/交互 | 网状对象连线、**`1.1, 1.2` 消息数字编号** | 与顺序图等价、**空间组织结构拓扑** |
+| **状态图** | **动态** | 逻辑视图 | 初态实心圆、终态牛眼同心圆、圆角矩形 | **单对象生命周期**、`事件[条件]/动作` |
+| **活动图** | **动态** | 进程/逻辑 | **粗黑水平/垂直同步条 (Fork/Join)** | 类似程序流程图、**并行分叉与汇合**、泳道 |
+
