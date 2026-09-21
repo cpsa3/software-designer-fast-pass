@@ -70,38 +70,13 @@ flowchart TD
 
 ## 02. 架构视角统领：UML 4+1 视图与多角色映射模型
 
-### 2.1 4+1 视图经典拓扑关系图
+### 2.1 4+1 视图经典拓扑关系图（四象限矩阵架构）
 
-```mermaid
-flowchart TD
-    classDef centerStyle fill:#fef3c7,stroke:#d97706,stroke-width:3px,font-weight:bold,color:#78350f;
-    classDef logicalStyle fill:#eff6ff,stroke:#2563eb,stroke-width:2px,color:#1e40af;
-    classDef implStyle fill:#f0fdf4,stroke:#16a34a,stroke-width:2px,color:#166534;
-    classDef processStyle fill:#faf5ff,stroke:#9333ea,stroke-width:2px,color:#6b21a8;
-    classDef deployStyle fill:#f8fafc,stroke:#475569,stroke-width:2px,color:#1e293b;
+| 📐 **逻辑视图 (Logical View)**<br>👤 **系统分析 / 设计人员**<br>🎯 **展现系统功能**<br>🧩 类与对象、接口、设计子系统<br>📊 *对应图：类图、对象图、状态图* | ════ 映射为源代码 ════▶ | 📦 **实现视图 (Implementation View)**<br>👤 **程序员 / 开发人员**<br>🎯 **源代码物理结构**<br>🧩 物理代码文件、组件、包<br>📊 *对应图：构件图、包图* |
+| :---: | :---: | :---: |
+| ║<br>运行时并发执行实例<br>▼ | ⭐ **【用例视图 (Use-Case View)】** ⭐<br>━━━━━━━━━━━━━━━━━━━━<br>👤 **面向角色**：最终用户 (End User)<br>🎯 **核心定位**：**最基本需求分析模型**<br>📌 **枢纽作用**：驱动并验证其余四大工程视图 | ║<br>物理节点部署运行<br>▼ |
+| ⚡ **进程视图 (Process View)**<br>👤 **系统集成人员**<br>🎯 **并发与同步结构**<br>🧩 线程、进程、并发同步<br>📊 *对应图：活动图、顺序图、通信图* | ════ 分布式通信协同 ════▶ | 🖥️ **部署视图 (Deployment View)**<br>👤 **系统 / 网络工程师**<br>🎯 **软硬件物理映射**<br>🧩 物理机、容器、网络拓扑分布<br>📊 *对应图：部署图* |
 
-    UseCase["★ <b>用例视图 (Use-Case View)</b> ★<br/>━━━━━━━━━━━━━━━━━━━━<br/>👤 <b>面向角色</b>：最终用户 (End User)<br/>🎯 <b>关注重点</b>：最基本需求模型 / 功能边界<br/>📌 <b>核心地位</b>：处于架构中心，驱动并验证其余四大视图"]:::centerStyle
-
-    Logical["📐 <b>逻辑视图 (Logical View)</b><br/>━━━━━━━━━━━━━━━━━━━━<br/>👤 <b>系统分析 / 设计人员</b> (Analyst/Designer)<br/>🎯 <b>关注重点</b>：系统功能组织与设计模型<br/>🧩 <b>核心建模</b>：类、对象、接口、子系统<br/>📊 <b>对应 UML 图</b>：类图、对象图、状态图"]:::logicalStyle
-
-    Impl["📦 <b>实现视图 (Implementation View)</b><br/>━━━━━━━━━━━━━━━━━━━━<br/>👤 <b>程序员 / 软件开发人员</b> (Programmer)<br/>🎯 <b>关注重点</b>：源代码结构与编译打包组织<br/>🧩 <b>核心建模</b>：物理代码文件、组件、包<br/>📊 <b>对应 UML 图</b>：构件图、包图"]:::implStyle
-
-    Process["⚡ <b>进程视图 (Process View)</b><br/>━━━━━━━━━━━━━━━━━━━━<br/>👤 <b>系统集成人员</b> (Integrator)<br/>🎯 <b>关注重点</b>：并发性、性能与系统伸缩性<br/>🧩 <b>核心建模</b>：线程、进程、并发同步通信<br/>📊 <b>对应 UML 图</b>：活动图、顺序图、通信图"]:::processStyle
-
-    Deploy["🖥️ <b>部署视图 (Deployment View)</b><br/>━━━━━━━━━━━━━━━━━━━━<br/>👤 <b>系统 / 网络工程师</b> (Engineer)<br/>🎯 <b>关注重点</b>：软硬件物理映射与网络拓扑分布<br/>🧩 <b>核心建模</b>：物理机、虚拟机、容器、拓扑节点<br/>📊 <b>对应 UML 图</b>：部署图"]:::deployStyle
-
-    %% 核心枢纽辐射关系
-    UseCase <== 需求驱动 / 功能验证 ==> Logical
-    UseCase <== 需求驱动 / 功能验证 ==> Impl
-    UseCase <== 需求驱动 / 功能验证 ==> Process
-    UseCase <== 需求驱动 / 功能验证 ==> Deploy
-
-    %% 四大视图层间关联
-    Logical -- 映射为源码文件组织 --> Impl
-    Logical -- 运行时并发执行实例 --> Process
-    Impl -- 部署运行于物理节点 --> Deploy
-    Process -- 节点间分布通信协同 --> Deploy
-```
 
 ### 2.2 4+1 视图核心考点辨析矩阵（文老师高频题眼）
 
