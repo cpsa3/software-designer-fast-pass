@@ -1,0 +1,188 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 410" width="100%" height="100%">
+  <defs>
+    <style>
+      .header-title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif; font-size: 16px; font-weight: 700; fill: #0f172a; }
+      .header-sub { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif; font-size: 12px; fill: #64748b; }
+      .card-bg { fill: #ffffff; stroke: #cbd5e1; stroke-width: 1.4; rx: 8; }
+      .class-box { fill: #ffffff; stroke: #334155; stroke-width: 1.5; }
+      .class-head { fill: #f1f5f9; }
+      .class-line { stroke: #334155; stroke-width: 1; }
+      .class-name { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Microsoft YaHei", sans-serif; font-size: 12px; font-weight: 700; fill: #0f172a; text-anchor: middle; }
+      .rel-title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Microsoft YaHei", sans-serif; font-size: 13px; font-weight: 700; text-anchor: middle; }
+      .rel-tag { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Microsoft YaHei", sans-serif; font-size: 11px; fill: #475569; text-anchor: middle; }
+      .footer-text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Microsoft YaHei", sans-serif; font-size: 12px; fill: #1e40af; font-weight: 600; text-anchor: middle; }
+    </style>
+  </defs>
+
+  <!-- Background Canvas -->
+  <rect width="920" height="410" fill="#f8fafc" rx="10" />
+
+  <!-- Top Header Title -->
+  <g transform="translate(20, 26)">
+    <text x="0" y="0" class="header-title">UML 类间 6 大核心关系标准规范全景图（与官方教材 1:1 对齐）</text>
+    <text x="0" y="18" class="header-sub">依据 UML 2.5 国际规范及软考官方教材第 17 页图示 · 严格区别实线无箭头关联与虚线依赖</text>
+  </g>
+
+  <!-- ================= ROW 1: (a) (b) (c) ================= -->
+  <!-- (a) 关联关系 -->
+  <g transform="translate(20, 58)">
+    <rect width="280" height="148" class="card-bg" />
+    <!-- Left Class: 类 A -->
+    <g transform="translate(20, 20)">
+      <rect width="74" height="52" class="class-box" rx="2" />
+      <rect width="74" height="18" class="class-head" rx="2" />
+      <line x1="0" y1="18" x2="74" y2="18" class="class-line" />
+      <line x1="0" y1="35" x2="74" y2="35" class="class-line" />
+      <text x="37" y="14" class="class-name">类 A</text>
+    </g>
+    <!-- Right Class: 类 B -->
+    <g transform="translate(186, 20)">
+      <rect width="74" height="52" class="class-box" rx="2" />
+      <rect width="74" height="18" class="class-head" rx="2" />
+      <line x1="0" y1="18" x2="74" y2="18" class="class-line" />
+      <line x1="0" y1="35" x2="74" y2="35" class="class-line" />
+      <text x="37" y="14" class="class-name">类 B</text>
+    </g>
+    <!-- 纯实线无箭头 (双向/标准通用关联) -->
+    <line x1="94" y1="46" x2="186" y2="46" stroke="#2563eb" stroke-width="2.2" />
+    <text x="140" y="100" class="rel-title" fill="#1d4ed8">(a) 关联关系</text>
+    <text x="140" y="120" class="rel-tag">纯实线无箭头 · 长期静态拥有/引用</text>
+  </g>
+
+  <!-- (b) 依赖关系 -->
+  <g transform="translate(320, 58)">
+    <rect width="280" height="148" class="card-bg" />
+    <!-- Left Class: 类 A -->
+    <g transform="translate(20, 20)">
+      <rect width="74" height="52" class="class-box" rx="2" />
+      <rect width="74" height="18" class="class-head" rx="2" />
+      <line x1="0" y1="18" x2="74" y2="18" class="class-line" />
+      <line x1="0" y1="35" x2="74" y2="35" class="class-line" />
+      <text x="37" y="14" class="class-name">类 A</text>
+    </g>
+    <!-- Right Class: 类 B -->
+    <g transform="translate(186, 20)">
+      <rect width="74" height="52" class="class-box" rx="2" />
+      <rect width="74" height="18" class="class-head" rx="2" />
+      <line x1="0" y1="18" x2="74" y2="18" class="class-line" />
+      <line x1="0" y1="35" x2="74" y2="35" class="class-line" />
+      <text x="37" y="14" class="class-name">类 B</text>
+    </g>
+    <!-- 虚线单向箭头 (依赖) -->
+    <line x1="94" y1="46" x2="176" y2="46" stroke="#7c3aed" stroke-width="2" stroke-dasharray="5,4" />
+    <polygon points="174,40 186,46 174,52" fill="#7c3aed" />
+    <text x="140" y="100" class="rel-title" fill="#6d28d9">(b) 依赖关系</text>
+    <text x="140" y="120" class="rel-tag">虚线普通箭头 · 方法形参/临时调用</text>
+  </g>
+
+  <!-- (c) 泛化关系 -->
+  <g transform="translate(620, 58)">
+    <rect width="280" height="148" class="card-bg" />
+    <!-- Left Class: 子类 -->
+    <g transform="translate(20, 20)">
+      <rect width="74" height="52" class="class-box" rx="2" />
+      <rect width="74" height="18" class="class-head" rx="2" />
+      <line x1="0" y1="18" x2="74" y2="18" class="class-line" />
+      <line x1="0" y1="35" x2="74" y2="35" class="class-line" />
+      <text x="37" y="14" class="class-name">子类</text>
+    </g>
+    <!-- Right Class: 父类 -->
+    <g transform="translate(186, 20)">
+      <rect width="74" height="52" class="class-box" rx="2" />
+      <rect width="74" height="18" class="class-head" rx="2" />
+      <line x1="0" y1="18" x2="74" y2="18" class="class-line" />
+      <line x1="0" y1="35" x2="74" y2="35" class="class-line" />
+      <text x="37" y="14" class="class-name">父类</text>
+    </g>
+    <!-- 实线空心三角 (泛化/继承) -->
+    <line x1="94" y1="46" x2="172" y2="46" stroke="#0284c7" stroke-width="2" />
+    <polygon points="172,38 186,46 172,54" fill="#ffffff" stroke="#0284c7" stroke-width="2" />
+    <text x="140" y="100" class="rel-title" fill="#0369a1">(c) 泛化关系</text>
+    <text x="140" y="120" class="rel-tag">实线空心三角指父类 · 类继承(is-a)</text>
+  </g>
+
+  <!-- ================= ROW 2: (d) (e) (f) ================= -->
+  <!-- (d) 聚合关系 -->
+  <g transform="translate(20, 218)">
+    <rect width="280" height="148" class="card-bg" />
+    <!-- Left Class: 部分类 -->
+    <g transform="translate(20, 20)">
+      <rect width="74" height="52" class="class-box" rx="2" />
+      <rect width="74" height="18" class="class-head" rx="2" />
+      <line x1="0" y1="18" x2="74" y2="18" class="class-line" />
+      <line x1="0" y1="35" x2="74" y2="35" class="class-line" />
+      <text x="37" y="14" class="class-name">部分类</text>
+    </g>
+    <!-- Right Class: 整体类 -->
+    <g transform="translate(186, 20)">
+      <rect width="74" height="52" class="class-box" rx="2" />
+      <rect width="74" height="18" class="class-head" rx="2" />
+      <line x1="0" y1="18" x2="74" y2="18" class="class-line" />
+      <line x1="0" y1="35" x2="74" y2="35" class="class-line" />
+      <text x="37" y="14" class="class-name">整体类</text>
+    </g>
+    <!-- 实线空心菱形在整体端 (聚合) -->
+    <line x1="94" y1="46" x2="168" y2="46" stroke="#d97706" stroke-width="2" />
+    <polygon points="168,46 177,38 186,46 177,54" fill="#ffffff" stroke="#d97706" stroke-width="2" />
+    <text x="140" y="100" class="rel-title" fill="#b45309">(d) 聚合关系</text>
+    <text x="140" y="120" class="rel-tag">实线空心菱形在整体端 · 弱部分整体</text>
+  </g>
+
+  <!-- (e) 组合关系 -->
+  <g transform="translate(320, 218)">
+    <rect width="280" height="148" class="card-bg" />
+    <!-- Left Class: 部分类 -->
+    <g transform="translate(20, 20)">
+      <rect width="74" height="52" class="class-box" rx="2" />
+      <rect width="74" height="18" class="class-head" rx="2" />
+      <line x1="0" y1="18" x2="74" y2="18" class="class-line" />
+      <line x1="0" y1="35" x2="74" y2="35" class="class-line" />
+      <text x="37" y="14" class="class-name">部分类</text>
+    </g>
+    <!-- Right Class: 整体类 -->
+    <g transform="translate(186, 20)">
+      <rect width="74" height="52" class="class-box" rx="2" />
+      <rect width="74" height="18" class="class-head" rx="2" />
+      <line x1="0" y1="18" x2="74" y2="18" class="class-line" />
+      <line x1="0" y1="35" x2="74" y2="35" class="class-line" />
+      <text x="37" y="14" class="class-name">整体类</text>
+    </g>
+    <!-- 实线实心菱形在整体端 (组合) -->
+    <line x1="94" y1="46" x2="168" y2="46" stroke="#dc2626" stroke-width="2" />
+    <polygon points="168,46 177,38 186,46 177,54" fill="#dc2626" stroke="#dc2626" stroke-width="2" />
+    <text x="140" y="100" class="rel-title" fill="#b91c1c">(e) 组合关系</text>
+    <text x="140" y="120" class="rel-tag">实线实心菱形在整体端 · 强部分整体</text>
+  </g>
+
+  <!-- (f) 实现关系 -->
+  <g transform="translate(620, 218)">
+    <rect width="280" height="148" class="card-bg" />
+    <!-- Left Class: 类 A (实现类) -->
+    <g transform="translate(20, 20)">
+      <rect width="74" height="52" class="class-box" rx="2" />
+      <rect width="74" height="18" class="class-head" rx="2" />
+      <line x1="0" y1="18" x2="74" y2="18" class="class-line" />
+      <line x1="0" y1="35" x2="74" y2="35" class="class-line" />
+      <text x="37" y="14" class="class-name">类 A</text>
+    </g>
+    <!-- Right Class: 类 B (接口) -->
+    <g transform="translate(186, 20)">
+      <rect width="74" height="52" class="class-box" rx="2" />
+      <rect width="74" height="18" class="class-head" rx="2" />
+      <line x1="0" y1="18" x2="74" y2="18" class="class-line" />
+      <line x1="0" y1="35" x2="74" y2="35" class="class-line" />
+      <text x="37" y="14" class="class-name">类 B</text>
+    </g>
+    <!-- 虚线空心三角指接口 (实现) -->
+    <line x1="94" y1="46" x2="172" y2="46" stroke="#059669" stroke-width="2" stroke-dasharray="5,4" />
+    <polygon points="172,38 186,46 172,54" fill="#ffffff" stroke="#059669" stroke-width="2" />
+    <text x="140" y="100" class="rel-title" fill="#047857">(f) 实现关系</text>
+    <text x="140" y="120" class="rel-tag">虚线空心三角指接口 · 接口契约保证</text>
+  </g>
+
+  <!-- Bottom Core Takeaway Pill -->
+  <g transform="translate(20, 376)">
+    <rect width="880" height="24" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1" rx="6" />
+    <text x="440" y="16" class="footer-text">💡 考点穿透铁律：组合(◆)与聚合(◇)本质都是【关联关系】的特化！连线时：菱形在【整体类】端，三角指向【父类/接口】端！</text>
+  </g>
+</svg>
