@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 380" width="100%" height="100%">
+  <defs>
+    <style>
+      .bg { fill: #ffffff; }
+      .box { fill: #ffffff; stroke: #1e293b; stroke-width: 1.5; }
+      .box-head { fill: #f8fafc; }
+      .line { stroke: #1e293b; stroke-width: 1.5; }
+      .dash-line { stroke: #475569; stroke-width: 1.5; stroke-dasharray: 5,4; }
+      .txt-title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", sans-serif; font-size: 13px; font-weight: bold; fill: #0f172a; text-anchor: middle; }
+      .txt-content { font-family: "SFMono-Regular", Consolas, Menlo, monospace; font-size: 11px; fill: #334155; }
+      .txt-label { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", sans-serif; font-size: 11px; fill: #64748b; text-anchor: middle; }
+      .txt-multi { font-family: "SFMono-Regular", Consolas, monospace; font-size: 11px; font-weight: 600; fill: #0f172a; }
+      .txt-role { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 11px; font-style: italic; fill: #2563eb; }
+      .badge-note { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 11px; fill: #d97706; font-weight: 600; }
+    </style>
+</defs>
+  <rect width="800" height="380" fill="#ffffff" />
+  <g transform="translate(60, 40)">
+    <rect width="180" height="60" class="box" /><rect width="180" height="24" class="box-head" />
+    <line x1="0" y1="24" x2="180" y2="24" stroke="#1e293b" stroke-width="1" />
+    <text x="90" y="17" class="txt-title" text-decoration="underline">Zhang : Student</text>
+  </g>
+  <g transform="translate(60, 160)">
+    <rect width="180" height="60" class="box" /><rect width="180" height="24" class="box-head" />
+    <line x1="0" y1="24" x2="180" y2="24" stroke="#1e293b" stroke-width="1" />
+    <text x="90" y="17" class="txt-title" text-decoration="underline">Li : Student</text>
+  </g>
+  <g transform="translate(60, 280)">
+    <rect width="180" height="60" class="box" /><rect width="180" height="24" class="box-head" />
+    <line x1="0" y1="24" x2="180" y2="24" stroke="#1e293b" stroke-width="1" />
+    <text x="90" y="17" class="txt-title" text-decoration="underline">Wang : Student</text>
+  </g>
+  <g transform="translate(380, 80)">
+    <rect width="190" height="65" class="box" /><rect width="190" height="24" class="box-head" />
+    <line x1="0" y1="24" x2="190" y2="24" stroke="#1e293b" stroke-width="1" />
+    <text x="95" y="17" class="txt-title" text-decoration="underline">CSC2014a : Seminar</text>
+    <text x="10" y="48" class="txt-content">Term = "Fall"</text>
+  </g>
+  <g transform="translate(380, 230)">
+    <rect width="190" height="65" class="box" /><rect width="190" height="24" class="box-head" />
+    <line x1="0" y1="24" x2="190" y2="24" stroke="#1e293b" stroke-width="1" />
+    <text x="95" y="17" class="txt-title" text-decoration="underline">CSC2014b : Seminar</text>
+    <text x="10" y="48" class="txt-content">Term = "Spring"</text>
+  </g>
+  <g transform="translate(560, 160)">
+    <rect width="190" height="65" class="box" /><rect width="190" height="24" class="box-head" />
+    <line x1="0" y1="24" x2="190" y2="24" stroke="#1e293b" stroke-width="1" />
+    <text x="95" y="17" class="txt-title" text-decoration="underline">: Course</text>
+    <text x="10" y="48" class="txt-content">name = "计算机导论"</text>
+  </g>
+
+  <!-- Links -->
+  <path d="M 240,70 L 380,100" class="line" fill="none" />
+  <text x="310" y="75" class="badge-note">助教</text>
+  <path d="M 240,180 L 380,125" class="line" fill="none" />
+  <text x="310" y="160" class="badge-note">助教</text>
+  <path d="M 240,300 L 380,260" class="line" fill="none" />
+  <text x="310" y="295" class="txt-label">Student</text>
+  <path d="M 570,110 L 620,160" class="line" fill="none" />
+  <path d="M 570,260 L 620,225" class="line" fill="none" />
+  <path d="M 60,70 Q 20,180 60,300" class="line" fill="none" />
+  <text x="25" y="185" class="txt-label">链</text>
+</svg>

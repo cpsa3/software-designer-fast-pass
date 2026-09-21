@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 320" width="100%" height="100%">
+  <defs>
+    <style>
+      .bg { fill: #ffffff; }
+      .box { fill: #ffffff; stroke: #1e293b; stroke-width: 1.5; }
+      .box-head { fill: #f8fafc; }
+      .line { stroke: #1e293b; stroke-width: 1.5; }
+      .dash-line { stroke: #475569; stroke-width: 1.5; stroke-dasharray: 5,4; }
+      .txt-title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", sans-serif; font-size: 13px; font-weight: bold; fill: #0f172a; text-anchor: middle; }
+      .txt-content { font-family: "SFMono-Regular", Consolas, Menlo, monospace; font-size: 11px; fill: #334155; }
+      .txt-label { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", sans-serif; font-size: 11px; fill: #64748b; text-anchor: middle; }
+      .txt-multi { font-family: "SFMono-Regular", Consolas, monospace; font-size: 11px; font-weight: 600; fill: #0f172a; }
+      .txt-role { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 11px; font-style: italic; fill: #2563eb; }
+      .badge-note { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 11px; fill: #d97706; font-weight: 600; }
+    </style>
+</defs>
+  <rect width="800" height="320" fill="#ffffff" />
+
+  <!-- Component 1: 订单处理组件 -->
+  <g transform="translate(60, 90)">
+    <rect width="240" height="120" class="box" />
+    <!-- Component Stereotype Icon -->
+    <rect x="180" y="10" width="45" height="28" fill="#ffffff" stroke="#1e293b" stroke-width="1.2" />
+    <rect x="175" y="14" width="10" height="6" fill="#ffffff" stroke="#1e293b" stroke-width="1" />
+    <rect x="175" y="24" width="10" height="6" fill="#ffffff" stroke="#1e293b" stroke-width="1" />
+    <text x="120" y="60" class="txt-title">«component»</text>
+    <text x="120" y="80" class="txt-title">订单处理组件</text>
+  </g>
+
+  <!-- Component 2: 支付网关组件 -->
+  <g transform="translate(500, 90)">
+    <rect width="240" height="120" class="box" />
+    <!-- Component Stereotype Icon -->
+    <rect x="620-440" y="10" width="45" height="28" fill="#ffffff" stroke="#1e293b" stroke-width="1.2" />
+    <rect x="615-440" y="14" width="10" height="6" fill="#ffffff" stroke="#1e293b" stroke-width="1" />
+    <rect x="615-440" y="24" width="10" height="6" fill="#ffffff" stroke="#1e293b" stroke-width="1" />
+    <text x="120" y="60" class="txt-title">«component»</text>
+    <text x="120" y="80" class="txt-title">支付网关组件</text>
+  </g>
+
+  <!-- Assembly: Ball-and-Socket Connector -->
+  <!-- Line from Comp 2 to Provided Ball -->
+  <line x1="500" y1="150" x2="410" y2="150" class="line" />
+  <!-- Provided Interface (Ball) -->
+  <circle cx="400" cy="150" r="10" fill="#ffffff" stroke="#1e293b" stroke-width="2" />
+  
+  <!-- Required Interface (Socket/Cup) from Comp 1 -->
+  <line x1="300" y1="150" x2="385" y2="150" class="line" />
+  <!-- Arc Socket around the ball -->
+  <path d="M 390,135 A 16,16 0 0,1 390,165" fill="none" stroke="#1e293b" stroke-width="2.5" />
+
+  <text x="400" y="120" class="badge-note">供接口 (Ball)</text>
+  <text x="350" y="185" class="txt-label">需接口 (Socket)</text>
+  <text x="400" y="220" class="txt-title" fill="#2563eb">IPayment (装配连接)</text>
+</svg>
