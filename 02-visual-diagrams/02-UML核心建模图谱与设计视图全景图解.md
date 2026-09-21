@@ -174,23 +174,23 @@ flowchart LR
 ```mermaid
 flowchart LR
     subgraph SystemBoundary["【系统边界：图书借阅系统】"]
-        UC_Borrow(["登记外借信息<br>(基础用例)"])
-        UC_Login(["用户登录<br>(公共基础用例)"])
-        UC_Search(["查询书籍信息<br>(基础用例)"])
-        UC_Modify(["修改书籍信息<br>(可选扩展)"])
-        UC_VIP(["VIP 读者借阅<br>(子用例)"])
-        UC_Normal(["普通读者借阅<br>(父用例)"])
+        UC_Borrow["登记外借信息<br>(基础用例)"]
+        UC_Login["用户登录<br>(公共基础用例)"]
+        UC_Search["查询书籍信息<br>(基础用例)"]
+        UC_Modify["修改书籍信息<br>(可选扩展)"]
+        UC_VIP["VIP 读者借阅<br>(子用例)"]
+        UC_Normal["普通读者借阅<br>(父用例)"]
 
         %% 关系连线
-        UC_Borrow -.->|"<<include>>"| UC_Login
-        UC_Search -.->|"<<include>>"| UC_Login
-        UC_Modify -.->|"<<extend>>"| UC_Search
-        UC_VIP --|> UC_Normal
+        UC_Borrow -.->|"«include» 包含"| UC_Login
+        UC_Search -.->|"«include» 包含"| UC_Login
+        UC_Modify -.->|"«extend» 扩展"| UC_Search
+        UC_VIP -->|"泛化 (继承)"| UC_Normal
     end
 
-    Admin(["👤 图书管理员<br>(Actor)"]) --> UC_Borrow
+    Admin["👤 图书管理员 (Actor)"] --> UC_Borrow
     Admin --> UC_Search
-    Reader(["👤 读者<br>(Actor)"]) --> UC_VIP
+    Reader["👤 读者 (Actor)"] --> UC_VIP
 
     style SystemBoundary fill:#f8fafc,stroke:#475569,stroke-width:1.5px
     style UC_Login fill:#fef3c7,stroke:#d97706,stroke-width:2px
@@ -347,7 +347,7 @@ flowchart LR
     I_Pay(("○ 供接口 (Ball)<br>IPayment"))
 
     C2 --> I_Pay
-    C1 -.->|需接口 (Socket): 依赖调用| I_Pay
+    C1 -.->|"需接口 (Socket): 依赖调用"| I_Pay
 
     style C1 fill:#eff6ff,stroke:#2563eb,stroke-width:1.5px
     style C2 fill:#f8fafc,stroke:#334155,stroke-width:1.5px
