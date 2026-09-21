@@ -133,21 +133,10 @@ classDiagram
 
 ```mermaid
 flowchart LR
-    subgraph O1["<u>Zhang : Student</u>"]
-        O1_val["(属性处于特定状态)"]
-    end
-
-    subgraph O2["<u>CSC2014a : Seminar</u>"]
-        O2_val["Term = 'Fall'"]
-    end
-
-    subgraph O3["<u>Li : Student</u>"]
-        O3_val["(属性处于特定状态)"]
-    end
-
-    subgraph O4["<u>: Course</u><br><i>(匿名对象: 冒号前为空)</i>"]
-        O4_val["name = '计算机导论'"]
-    end
+    O1["<u>Zhang : Student</u><br>──────────<br>状态: 助教在岗"]
+    O2["<u>CSC2014a : Seminar</u><br>──────────<br>Term = 'Fall'"]
+    O3["<u>Li : Student</u><br>──────────<br>状态: 助教在岗"]
+    O4["<u>: Course</u><br><i>(匿名对象)</i><br>──────────<br>name = '计算机导论'"]
 
     O1 ---|"链: 担任助教"| O2
     O3 ---|"链: 担任助教"| O2
