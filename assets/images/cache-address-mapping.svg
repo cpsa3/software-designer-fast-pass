@@ -202,16 +202,15 @@
     <rect width="288" height="540" rx="10" fill="#ffffff" stroke="#bbf7d0" stroke-width="2"/>
     <rect width="288" height="38" rx="10" fill="#f0fdf4"/>
     <path d="M 0 28 Q 0 38 10 38 L 278 38 Q 288 38 288 28 L 288 38 L 0 38 Z" fill="#f0fdf4"/>
-    <!-- 标为王道推荐 -->
-    <rect x="220" y="8" width="56" height="20" rx="4" fill="#16a34a"/>
-    <text x="248" y="22" font-size="10" font-weight="700" fill="#ffffff" text-anchor="middle">最佳折中</text>
     <text x="16" y="24" font-size="14" font-weight="700" fill="#166534">3. 组相联映射 (Set Associative)</text>
     
-    <!-- 特征徽标 -->
-    <rect x="16" y="50" width="80" height="22" rx="4" fill="#dcfce7"/>
-    <text x="56" y="65" font-size="11" font-weight="600" fill="#15803d" text-anchor="middle">冲突率: 较低</text>
-    <rect x="102" y="50" width="80" height="22" rx="4" fill="#e0f2fe"/>
-    <text x="142" y="65" font-size="11" font-weight="600" fill="#0369a1" text-anchor="middle">现代CPU标配</text>
+    <!-- 特征徽标 (三徽标横向对齐) -->
+    <rect x="16" y="50" width="76" height="22" rx="4" fill="#dcfce7"/>
+    <text x="54" y="65" font-size="11" font-weight="600" fill="#15803d" text-anchor="middle">冲突率: 较低</text>
+    <rect x="98" y="50" width="80" height="22" rx="4" fill="#e0f2fe"/>
+    <text x="138" y="65" font-size="11" font-weight="600" fill="#0369a1" text-anchor="middle">现代CPU标配</text>
+    <rect x="184" y="50" width="84" height="22" rx="4" fill="#16a34a"/>
+    <text x="226" y="65" font-size="11" font-weight="700" fill="#ffffff" text-anchor="middle">★ 最佳折中</text>
 
     <!-- 地址格式切分图 (3 段式: 组号) -->
     <text x="16" y="100" font-size="12" font-weight="700" fill="#334155">主存地址结构划分 (Tag + 组号 + 偏移)：</text>
