@@ -1,0 +1,275 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" width="100%" height="100%" style="background:#ffffff; border-radius:12px; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+  <defs>
+    <!-- 线性渐变定义 -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#f8fafc"/>
+    </linearGradient>
+    <linearGradient id="blueGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#3b82f6"/>
+      <stop offset="100%" stop-color="#1d4ed8"/>
+    </linearGradient>
+    <linearGradient id="purpleGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#8b5cf6"/>
+      <stop offset="100%" stop-color="#6d28d9"/>
+    </linearGradient>
+    <linearGradient id="amberGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#f59e0b"/>
+      <stop offset="100%" stop-color="#b45309"/>
+    </linearGradient>
+    <linearGradient id="emeraldGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#10b981"/>
+      <stop offset="100%" stop-color="#047857"/>
+    </linearGradient>
+    <filter id="cardShadow" x="-5%" y="-5%" width="110%" height="115%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#0f172a" flood-opacity="0.08"/>
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#64748b"/>
+    </marker>
+    <marker id="arrow-blue" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#2563eb"/>
+    </marker>
+  </defs>
+
+  <!-- 背景底板 -->
+  <rect x="2" y="2" width="996" height="576" rx="12" fill="url(#bgGrad)" stroke="#e2e8f0" stroke-width="2"/>
+
+  <!-- 顶部标题区 -->
+  <g transform="translate(40, 36)">
+    <rect x="0" y="0" width="4" height="28" rx="2" fill="#2563eb"/>
+    <text x="16" y="20" font-size="20" font-weight="700" fill="#0f172a" letter-spacing="0.5">4级指令流水线时空并发推进与建立/排空机制模型</text>
+    <text x="16" y="44" font-size="13" fill="#64748b">时空阶梯甘特图 (Space-Time Gantt Chart) &amp; 软考核心计算公式几何映射</text>
+  </g>
+
+  <!-- 阶段分类遮罩背景：建立期、稳定满载期、排空期 -->
+  <!-- 建立期背景 -->
+  <rect x="150" y="105" width="420" height="280" rx="8" fill="#eff6ff" opacity="0.6"/>
+  <text x="360" y="125" font-size="12" font-weight="600" fill="#1e40af" text-anchor="middle">【建立期】部件依次启动 (4个周期)</text>
+
+  <!-- 稳定满载期背景 -->
+  <rect x="465" y="105" width="420" height="280" rx="8" fill="#f0fdf4" opacity="0.5" stroke="#86efac" stroke-dasharray="4,4"/>
+  <text x="675" y="125" font-size="12" font-weight="600" fill="#166534" text-anchor="middle">【满载稳定期】全负荷运转 (每周期产出1条)</text>
+
+  <!-- 时间轴刻度线与表头 -->
+  <!-- X 轴: 周期 T1 ~ T7 -->
+  <g transform="translate(0, 140)">
+    <!-- 标头文本 -->
+    <text x="80" y="16" font-size="13" font-weight="700" fill="#475569" text-anchor="middle">指令 \ 周期</text>
+    
+    <!-- 时间轴箭头 -->
+    <line x1="150" y1="28" x2="920" y2="28" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow)"/>
+    <text x="940" y="32" font-size="12" font-weight="600" fill="#64748b">时间 (t)</text>
+
+    <!-- 周期节点: T1 ~ T7 (步长 105px, 起点 202) -->
+    <!-- T1 -->
+    <g transform="translate(202, 0)">
+      <circle cx="0" cy="28" r="14" fill="#ffffff" stroke="#3b82f6" stroke-width="2"/>
+      <text x="0" y="32" font-size="12" font-weight="700" fill="#1d4ed8" text-anchor="middle">T1</text>
+      <line x1="0" y1="46" x2="0" y2="245" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="3,3"/>
+    </g>
+    <!-- T2 -->
+    <g transform="translate(307, 0)">
+      <circle cx="0" cy="28" r="14" fill="#ffffff" stroke="#3b82f6" stroke-width="2"/>
+      <text x="0" y="32" font-size="12" font-weight="700" fill="#1d4ed8" text-anchor="middle">T2</text>
+      <line x1="0" y1="46" x2="0" y2="245" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="3,3"/>
+    </g>
+    <!-- T3 -->
+    <g transform="translate(412, 0)">
+      <circle cx="0" cy="28" r="14" fill="#ffffff" stroke="#3b82f6" stroke-width="2"/>
+      <text x="0" y="32" font-size="12" font-weight="700" fill="#1d4ed8" text-anchor="middle">T3</text>
+      <line x1="0" y1="46" x2="0" y2="245" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="3,3"/>
+    </g>
+    <!-- T4 -->
+    <g transform="translate(517, 0)">
+      <circle cx="0" cy="28" r="14" fill="#ffffff" stroke="#10b981" stroke-width="2"/>
+      <text x="0" y="32" font-size="12" font-weight="700" fill="#047857" text-anchor="middle">T4</text>
+      <line x1="0" y1="46" x2="0" y2="245" stroke="#86efac" stroke-width="1.5" stroke-dasharray="3,3"/>
+    </g>
+    <!-- T5 -->
+    <g transform="translate(622, 0)">
+      <circle cx="0" cy="28" r="14" fill="#ffffff" stroke="#10b981" stroke-width="2"/>
+      <text x="0" y="32" font-size="12" font-weight="700" fill="#047857" text-anchor="middle">T5</text>
+      <line x1="0" y1="46" x2="0" y2="245" stroke="#86efac" stroke-width="1.5" stroke-dasharray="3,3"/>
+    </g>
+    <!-- T6 -->
+    <g transform="translate(727, 0)">
+      <circle cx="0" cy="28" r="14" fill="#ffffff" stroke="#10b981" stroke-width="2"/>
+      <text x="0" y="32" font-size="12" font-weight="700" fill="#047857" text-anchor="middle">T6</text>
+      <line x1="0" y1="46" x2="0" y2="245" stroke="#86efac" stroke-width="1.5" stroke-dasharray="3,3"/>
+    </g>
+    <!-- T7 -->
+    <g transform="translate(832, 0)">
+      <circle cx="0" cy="28" r="14" fill="#ffffff" stroke="#10b981" stroke-width="2"/>
+      <text x="0" y="32" font-size="12" font-weight="700" fill="#047857" text-anchor="middle">T7</text>
+      <line x1="0" y1="46" x2="0" y2="245" stroke="#86efac" stroke-width="1.5" stroke-dasharray="3,3"/>
+    </g>
+  </g>
+
+  <!-- 指令阶梯流水区 (Y轴: 指令1 ~ 指令4, 起始Y: 195, 行距 48px) -->
+  <g transform="translate(0, 195)">
+    <!-- 指令 1 (首条指令，全程无阻) -->
+    <g transform="translate(0, 0)">
+      <rect x="36" y="2" width="90" height="38" rx="6" fill="#f1f5f9" stroke="#cbd5e1"/>
+      <text x="81" y="26" font-size="13" font-weight="700" fill="#1e293b" text-anchor="middle">指令 1 (I₁)</text>
+      
+      <!-- IF (T1) -->
+      <g transform="translate(155, 0)" filter="url(#cardShadow)">
+        <rect width="94" height="40" rx="6" fill="url(#blueGrad)"/>
+        <text x="47" y="24" font-size="13" font-weight="700" fill="#ffffff" text-anchor="middle">IF 取指</text>
+      </g>
+      <!-- ID (T2) -->
+      <g transform="translate(260, 0)" filter="url(#cardShadow)">
+        <rect width="94" height="40" rx="6" fill="url(#purpleGrad)"/>
+        <text x="47" y="24" font-size="13" font-weight="700" fill="#ffffff" text-anchor="middle">ID 译码</text>
+      </g>
+      <!-- EX (T3) -->
+      <g transform="translate(365, 0)" filter="url(#cardShadow)">
+        <rect width="94" height="40" rx="6" fill="url(#amberGrad)"/>
+        <text x="47" y="24" font-size="13" font-weight="700" fill="#ffffff" text-anchor="middle">EX 执行</text>
+      </g>
+      <!-- WB (T4) -->
+      <g transform="translate(470, 0)" filter="url(#cardShadow)">
+        <rect width="94" height="40" rx="6" fill="url(#emeraldGrad)"/>
+        <text x="47" y="24" font-size="13" font-weight="700" fill="#ffffff" text-anchor="middle">WB 写回</text>
+      </g>
+      <!-- 完工标记 -->
+      <text x="580" y="25" font-size="12" font-weight="600" fill="#047857">🏁 首条完工 (耗时 4 周期)</text>
+    </g>
+
+    <!-- 指令 2 (第 2 周期进入) -->
+    <g transform="translate(0, 48)">
+      <rect x="36" y="2" width="90" height="38" rx="6" fill="#f1f5f9" stroke="#cbd5e1"/>
+      <text x="81" y="26" font-size="13" font-weight="700" fill="#1e293b" text-anchor="middle">指令 2 (I₂)</text>
+      
+      <!-- IF (T2) -->
+      <g transform="translate(260, 0)" filter="url(#cardShadow)">
+        <rect width="94" height="40" rx="6" fill="url(#blueGrad)"/>
+        <text x="47" y="24" font-size="13" font-weight="700" fill="#ffffff" text-anchor="middle">IF 取指</text>
+      </g>
+      <!-- ID (T3) -->
+      <g transform="translate(365, 0)" filter="url(#cardShadow)">
+        <rect width="94" height="40" rx="6" fill="url(#purpleGrad)"/>
+        <text x="47" y="24" font-size="13" font-weight="700" fill="#ffffff" text-anchor="middle">ID 译码</text>
+      </g>
+      <!-- EX (T4) -->
+      <g transform="translate(470, 0)" filter="url(#cardShadow)">
+        <rect width="94" height="40" rx="6" fill="url(#amberGrad)"/>
+        <text x="47" y="24" font-size="13" font-weight="700" fill="#ffffff" text-anchor="middle">EX 执行</text>
+      </g>
+      <!-- WB (T5) -->
+      <g transform="translate(575, 0)" filter="url(#cardShadow)">
+        <rect width="94" height="40" rx="6" fill="url(#emeraldGrad)"/>
+        <text x="47" y="24" font-size="13" font-weight="700" fill="#ffffff" text-anchor="middle">WB 写回</text>
+      </g>
+      <!-- 完工标记 -->
+      <text x="685" y="25" font-size="12" font-weight="600" fill="#047857">🏁 +1 周期完工</text>
+    </g>
+
+    <!-- 指令 3 (第 3 周期进入) -->
+    <g transform="translate(0, 96)">
+      <rect x="36" y="2" width="90" height="38" rx="6" fill="#f1f5f9" stroke="#cbd5e1"/>
+      <text x="81" y="26" font-size="13" font-weight="700" fill="#1e293b" text-anchor="middle">指令 3 (I₃)</text>
+      
+      <!-- IF (T3) -->
+      <g transform="translate(365, 0)" filter="url(#cardShadow)">
+        <rect width="94" height="40" rx="6" fill="url(#blueGrad)"/>
+        <text x="47" y="24" font-size="13" font-weight="700" fill="#ffffff" text-anchor="middle">IF 取指</text>
+      </g>
+      <!-- ID (T4) -->
+      <g transform="translate(470, 0)" filter="url(#cardShadow)">
+        <rect width="94" height="40" rx="6" fill="url(#purpleGrad)"/>
+        <text x="47" y="24" font-size="13" font-weight="700" fill="#ffffff" text-anchor="middle">ID 译码</text>
+      </g>
+      <!-- EX (T5) -->
+      <g transform="translate(575, 0)" filter="url(#cardShadow)">
+        <rect width="94" height="40" rx="6" fill="url(#amberGrad)"/>
+        <text x="47" y="24" font-size="13" font-weight="700" fill="#ffffff" text-anchor="middle">EX 执行</text>
+      </g>
+      <!-- WB (T6) -->
+      <g transform="translate(680, 0)" filter="url(#cardShadow)">
+        <rect width="94" height="40" rx="6" fill="url(#emeraldGrad)"/>
+        <text x="47" y="24" font-size="13" font-weight="700" fill="#ffffff" text-anchor="middle">WB 写回</text>
+      </g>
+      <!-- 完工标记 -->
+      <text x="790" y="25" font-size="12" font-weight="600" fill="#047857">🏁 +1 周期完工</text>
+    </g>
+
+    <!-- 指令 4 (第 4 周期进入) -->
+    <g transform="translate(0, 144)">
+      <rect x="36" y="2" width="90" height="38" rx="6" fill="#f1f5f9" stroke="#cbd5e1"/>
+      <text x="81" y="26" font-size="13" font-weight="700" fill="#1e293b" text-anchor="middle">指令 4 (I₄)</text>
+      
+      <!-- IF (T4) -->
+      <g transform="translate(470, 0)" filter="url(#cardShadow)">
+        <rect width="94" height="40" rx="6" fill="url(#blueGrad)"/>
+        <text x="47" y="24" font-size="13" font-weight="700" fill="#ffffff" text-anchor="middle">IF 取指</text>
+      </g>
+      <!-- ID (T5) -->
+      <g transform="translate(575, 0)" filter="url(#cardShadow)">
+        <rect width="94" height="40" rx="6" fill="url(#purpleGrad)"/>
+        <text x="47" y="24" font-size="13" font-weight="700" fill="#ffffff" text-anchor="middle">ID 译码</text>
+      </g>
+      <!-- EX (T6) -->
+      <g transform="translate(680, 0)" filter="url(#cardShadow)">
+        <rect width="94" height="40" rx="6" fill="url(#amberGrad)"/>
+        <text x="47" y="24" font-size="13" font-weight="700" fill="#ffffff" text-anchor="middle">EX 执行</text>
+      </g>
+      <!-- WB (T7) -->
+      <g transform="translate(785, 0)" filter="url(#cardShadow)">
+        <rect width="94" height="40" rx="6" fill="url(#emeraldGrad)"/>
+        <text x="47" y="24" font-size="13" font-weight="700" fill="#ffffff" text-anchor="middle">WB 写回</text>
+      </g>
+      <!-- 完工标记 -->
+      <text x="895" y="25" font-size="12" font-weight="600" fill="#047857">🏁 +1 周期完工</text>
+    </g>
+  </g>
+
+  <!-- 几何尺寸量线与考题公式空间对应 -->
+  <g transform="translate(0, 400)">
+    <!-- 基础测量背景栏 -->
+    <rect x="36" y="0" width="928" height="74" rx="8" fill="#f8fafc" stroke="#e2e8f0"/>
+
+    <!-- 首条指令耗时括号标注 (155 到 564, 宽 409) -->
+    <path d="M 155 18 L 155 30 L 360 30 L 360 40 L 360 30 L 564 30 L 564 18" fill="none" stroke="#2563eb" stroke-width="2"/>
+    <text x="360" y="22" font-size="13" font-weight="700" fill="#1d4ed8" text-anchor="middle">首条指令走完全程耗时 = ∑ tᵢ (4 周期)</text>
+
+    <!-- 后续每条指令追加标注 (575, 680, 785) -->
+    <path d="M 575 18 L 575 30 L 627 30 L 627 38 L 627 30 L 669 30 L 669 18" fill="none" stroke="#059669" stroke-width="2"/>
+    <text x="622" y="22" font-size="11" font-weight="700" fill="#047857" text-anchor="middle">+1 Δt</text>
+
+    <path d="M 680 18 L 680 30 L 732 30 L 732 38 L 732 30 L 774 30 L 774 18" fill="none" stroke="#059669" stroke-width="2"/>
+    <text x="727" y="22" font-size="11" font-weight="700" fill="#047857" text-anchor="middle">+1 Δt</text>
+
+    <path d="M 785 18 L 785 30 L 837 30 L 837 38 L 837 30 L 879 30 L 879 18" fill="none" stroke="#059669" stroke-width="2"/>
+    <text x="832" y="22" font-size="11" font-weight="700" fill="#047857" text-anchor="middle">+1 Δt</text>
+
+    <!-- 核心公式几何结论 -->
+    <text x="500" y="60" font-size="14" font-weight="700" fill="#0f172a" text-anchor="middle">
+      流水线总耗时 T = 首条指令总耗时 + (n - 1) × Δt = 4 + (4 - 1) × 1 = 7 个周期
+    </text>
+  </g>
+
+  <!-- 底部图例栏与心智映射 (洗、烘、熨、收) -->
+  <g transform="translate(40, 500)">
+    <rect x="0" y="0" width="920" height="52" rx="8" fill="#ffffff" stroke="#e2e8f0"/>
+    
+    <text x="20" y="32" font-size="13" font-weight="700" fill="#475569">四步洗衣房映射：</text>
+
+    <!-- IF 取指 (洗) -->
+    <rect x="150" y="14" width="22" height="22" rx="4" fill="url(#blueGrad)"/>
+    <text x="180" y="30" font-size="13" font-weight="600" fill="#1e293b">IF 取指 (洗衣机)</text>
+
+    <!-- ID 译码 (烘) -->
+    <rect x="340" y="14" width="22" height="22" rx="4" fill="url(#purpleGrad)"/>
+    <text x="370" y="30" font-size="13" font-weight="600" fill="#1e293b">ID 译码 (烘干机)</text>
+
+    <!-- EX 执行 (熨) -->
+    <rect x="530" y="14" width="22" height="22" rx="4" fill="url(#amberGrad)"/>
+    <text x="560" y="30" font-size="13" font-weight="600" fill="#1e293b">EX 执行 (熨衣台)</text>
+
+    <!-- WB 写回 (收) -->
+    <rect x="720" y="14" width="22" height="22" rx="4" fill="url(#emeraldGrad)"/>
+    <text x="750" y="30" font-size="13" font-weight="600" fill="#1e293b">WB 写回 (收纳柜)</text>
+  </g>
+</svg>
