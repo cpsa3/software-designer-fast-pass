@@ -1,0 +1,127 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 540" width="100%" height="100%" style="background:#ffffff; border-radius:12px; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#f8fafc"/>
+    </linearGradient>
+    <linearGradient id="blueCard" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#3b82f6"/>
+      <stop offset="100%" stop-color="#2563eb"/>
+    </linearGradient>
+    <linearGradient id="emeraldCard" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#10b981"/>
+      <stop offset="100%" stop-color="#059669"/>
+    </linearGradient>
+    <linearGradient id="roseCard" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#f43f5e"/>
+      <stop offset="100%" stop-color="#e11d48"/>
+    </linearGradient>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#0f172a" flood-opacity="0.08"/>
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#0284c7"/>
+    </marker>
+  </defs>
+
+  <!-- 背景底板 -->
+  <rect x="2" y="2" width="996" height="536" rx="12" fill="url(#bgGrad)" stroke="#e2e8f0" stroke-width="2"/>
+
+  <!-- 顶部标题区 -->
+  <g transform="translate(40, 26)">
+    <rect x="0" y="0" width="5" height="32" rx="2.5" fill="#2563eb"/>
+    <text x="18" y="22" font-size="20" font-weight="700" fill="#0f172a" letter-spacing="0.5">Armstrong 公理系统推导拓扑与考场防钓鱼罗盘</text>
+    <text x="18" y="44" font-size="13" fill="#64748b">正确性 (Sound) 与 完备性 (Complete)：三大原始基石公理 ➔ 三大解题导出规则 ➔ 四大高危伪命题</text>
+  </g>
+
+  <!-- 区域 1：三大原始公理基石 (宽 920px, 浅蓝底) -->
+  <g transform="translate(40, 85)" filter="url(#shadow)">
+    <rect width="920" height="150" rx="10" fill="#ffffff" stroke="#bfdbfe" stroke-width="1.5"/>
+    <rect width="920" height="32" rx="10" fill="url(#blueCard)"/>
+    <path d="M 0 22 Q 0 32 10 32 L 910 32 Q 920 32 920 22 L 920 32 L 0 32 Z" fill="#2563eb"/>
+    <text x="20" y="21" font-size="13" font-weight="700" fill="#ffffff">★ 三大核心原始公理（不可再分的绝对基石）</text>
+
+    <!-- 1. 自反律 -->
+    <g transform="translate(24, 46)">
+      <rect width="270" height="90" rx="6" fill="#eff6ff" stroke="#dbeafe"/>
+      <text x="16" y="24" font-size="13" font-weight="700" fill="#1e40af">A1. 自反律 (Reflexivity)</text>
+      <text x="16" y="46" font-size="12" font-family="monospace" font-weight="bold" fill="#0f172a">若 Y ⊆ X ⊆ U，则 X → Y</text>
+      <text x="16" y="68" font-size="11" fill="#475569">💡 形象：“大包小，超集定子集”</text>
+      <text x="16" y="82" font-size="11" fill="#64748b">例：(学号, 姓名) → 姓名</text>
+    </g>
+
+    <!-- 2. 增广律 -->
+    <g transform="translate(325, 46)">
+      <rect width="270" height="90" rx="6" fill="#eff6ff" stroke="#dbeafe"/>
+      <text x="16" y="24" font-size="13" font-weight="700" fill="#1e40af">A2. 增广律 (Augmentation)</text>
+      <text x="16" y="46" font-size="12" font-family="monospace" font-weight="bold" fill="#0f172a">若 X → Y，则 XZ → YZ</text>
+      <text x="16" y="68" font-size="11" fill="#475569">💡 形象：“两端同加砝码，平衡依旧”</text>
+      <text x="16" y="82" font-size="11" fill="#64748b">例：学号→姓名 ➔ 学号课号→姓名课号</text>
+    </g>
+
+    <!-- 3. 传递律 -->
+    <g transform="translate(626, 46)">
+      <rect width="270" height="90" rx="6" fill="#eff6ff" stroke="#dbeafe"/>
+      <text x="16" y="24" font-size="13" font-weight="700" fill="#1e40af">A3. 传递律 (Transitivity)</text>
+      <text x="16" y="46" font-size="12" font-family="monospace" font-weight="bold" fill="#0f172a">若 X → Y 且 Y → Z，则 X → Z</text>
+      <text x="16" y="68" font-size="11" fill="#475569">💡 形象：“多米诺骨牌链式反应”</text>
+      <text x="16" y="82" font-size="11" fill="#dc2626">⚠️ 严防偷换：绝非 X→Y (原地转圈)</text>
+    </g>
+  </g>
+
+  <!-- 中间下推箭头 -->
+  <path d="M 500 240 L 500 255" stroke="#2563eb" stroke-width="3" marker-end="url(#arrow)"/>
+
+  <!-- 区域 2：三大实用导出规则 (宽 920px, 浅绿底) -->
+  <g transform="translate(40, 260)" filter="url(#shadow)">
+    <rect width="920" height="135" rx="10" fill="#ffffff" stroke="#a7f3d0" stroke-width="1.5"/>
+    <rect width="920" height="32" rx="10" fill="url(#emeraldCard)"/>
+    <path d="M 0 22 Q 0 32 10 32 L 910 32 Q 920 32 920 22 L 920 32 L 0 32 Z" fill="#059669"/>
+    <text x="20" y="21" font-size="13" font-weight="700" fill="#ffffff">⚡ 三大解题利刃：导出推理规则（推导得出，考场最爱）</text>
+
+    <!-- 1. 合并规则 -->
+    <g transform="translate(24, 44)">
+      <rect width="270" height="80" rx="6" fill="#ecfdf5" stroke="#a7f3d0"/>
+      <text x="16" y="22" font-size="13" font-weight="700" fill="#065f46">1. 合并规则 (Union Rule)</text>
+      <text x="16" y="44" font-size="12" font-family="monospace" font-weight="bold" fill="#047857">X→Y 且 X→Z ➔ X → YZ</text>
+      <text x="16" y="66" font-size="11" fill="#059669">左端相同，右端直接打包并集！</text>
+    </g>
+
+    <!-- 2. 伪传递规则 -->
+    <g transform="translate(325, 44)">
+      <rect width="270" height="80" rx="6" fill="#ecfdf5" stroke="#a7f3d0"/>
+      <text x="16" y="22" font-size="13" font-weight="700" fill="#065f46">2. 伪传递律 (Pseudo-Transitivity)</text>
+      <text x="16" y="44" font-size="12" font-family="monospace" font-weight="bold" fill="#047857">X→Y 且 WY→Z ➔ XW → Z</text>
+      <text x="16" y="66" font-size="11" fill="#059669">X 可以替打 Y，拼入前件即可生效！</text>
+    </g>
+
+    <!-- 3. 分解规则 -->
+    <g transform="translate(626, 44)">
+      <rect width="270" height="80" rx="6" fill="#ecfdf5" stroke="#a7f3d0"/>
+      <text x="16" y="22" font-size="13" font-weight="700" fill="#065f46">3. 分解规则 (Decomposition)</text>
+      <text x="16" y="44" font-size="12" font-family="monospace" font-weight="bold" fill="#047857">X→YZ ➔ X→Y 且 X→Z</text>
+      <text x="16" y="66" font-size="11" fill="#b91c1c">⚠️ 铁律：右边可拆，左边绝不可拆！</text>
+    </g>
+  </g>
+
+  <!-- 区域 3：底部考场四大致命伪命题排雷雷盘 (宽 920px, 浅粉/红底) -->
+  <g transform="translate(40, 410)">
+    <rect width="920" height="110" rx="8" fill="#fff1f2" stroke="#fecdd3" stroke-width="1.5"/>
+    <rect x="0" y="0" width="130" height="28" rx="4" fill="url(#roseCard)"/>
+    <text x="65" y="19" font-size="12" font-weight="700" fill="#ffffff" text-anchor="middle">🔥 考场四大伪命题</text>
+    
+    <g transform="translate(20, 40)">
+      <!-- 坑 1 -->
+      <text x="0" y="18" font-size="12" font-weight="700" fill="#9f1239">❌ 陷阱 1（左边强拆）：</text>
+      <text x="135" y="18" font-size="12" fill="#475569">误以为 AB→C 可以推出 A→C。（荒谬！两人合力抬桌子，一人未必抬得动）</text>
+      
+      <!-- 坑 2 -->
+      <text x="0" y="40" font-size="12" font-weight="700" fill="#9f1239">❌ 陷阱 2（颠倒自反）：</text>
+      <text x="135" y="40" font-size="12" fill="#475569">写成 若 Y ⊆ X，则 Y → X。（大能包小，小绝不能推大！姓名推不出身份证号）</text>
+      
+      <!-- 坑 3 -->
+      <text x="0" y="62" font-size="12" font-weight="700" fill="#9f1239">❌ 陷阱 3（偷换结论）：</text>
+      <text x="135" y="62" font-size="12" fill="#475569">题干给 X→Y, Y→Z，结论却恶心写成 X→Y。（真题 103 原型钓鱼杀手！）</text>
+    </g>
+  </g>
+</svg>
