@@ -1,0 +1,152 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 520" width="100%" height="100%" style="background:#ffffff; border-radius:12px; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#f8fafc"/>
+    </linearGradient>
+    <linearGradient id="blueCard" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#3b82f6"/>
+      <stop offset="100%" stop-color="#2563eb"/>
+    </linearGradient>
+    <linearGradient id="emeraldCard" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#10b981"/>
+      <stop offset="100%" stop-color="#059669"/>
+    </linearGradient>
+    <linearGradient id="roseCard" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#f43f5e"/>
+      <stop offset="100%" stop-color="#e11d48"/>
+    </linearGradient>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#0f172a" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+
+  <!-- 背景底板 -->
+  <rect x="2" y="2" width="996" height="516" rx="12" fill="url(#bgGrad)" stroke="#e2e8f0" stroke-width="2"/>
+
+  <!-- 顶部标题区 -->
+  <g transform="translate(40, 26)">
+    <rect x="0" y="0" width="5" height="32" rx="2.5" fill="#2563eb"/>
+    <text x="18" y="22" font-size="20" font-weight="700" fill="#0f172a" letter-spacing="0.5">SQL 多表查询机制对比：JOIN vs 相关 EXISTS vs 不相关子查询</text>
+    <text x="18" y="44" font-size="13" fill="#64748b">以“查询选修了学分&gt;3课程的学生姓名”为例：行膨胀、短路探测与外层解绑崩溃剖析</text>
+  </g>
+
+  <!-- 3 大机制对比卡片 (宽 288px, 间距 28px, X=40, 356, 672; 高度 400px) -->
+  <g transform="translate(40, 85)" filter="url(#shadow)">
+    
+    <!-- 模式 1: JOIN 多表联结 (行膨胀) -->
+    <g transform="translate(0, 0)">
+      <rect width="288" height="390" rx="10" fill="#ffffff" stroke="#bfdbfe" stroke-width="1.5"/>
+      <rect width="288" height="36" rx="10" fill="url(#blueCard)"/>
+      <path d="M 0 26 Q 0 36 10 36 L 278 36 Q 288 36 288 26 L 288 36 L 0 36 Z" fill="#2563eb"/>
+      <text x="144" y="23" font-size="14" font-weight="700" fill="#ffffff" text-anchor="middle">1. JOIN 联结（行膨胀模型）</text>
+      
+      <!-- 特征徽标 -->
+      <g transform="translate(16, 50)">
+        <rect width="80" height="22" rx="4" fill="#eff6ff"/>
+        <text x="40" y="15" font-size="11" font-weight="600" fill="#1d4ed8" text-anchor="middle">笛卡尔积裂变</text>
+        <rect x="88" width="90" height="22" rx="4" fill="#fef2f2"/>
+        <text x="133" y="15" font-size="11" font-weight="600" fill="#b91c1c" text-anchor="middle">必须 DISTINCT</text>
+      </g>
+
+      <!-- 执行机理展示 -->
+      <g transform="translate(16, 84)">
+        <text x="0" y="16" font-size="13" font-weight="600" fill="#334155">【执行过程】</text>
+        <text x="0" y="36" font-size="12" fill="#64748b">小明选了 2 门 &gt;3 学分的课：</text>
+        <rect y="46" width="256" height="52" rx="4" fill="#f8fafc" stroke="#e2e8f0"/>
+        <text x="12" y="68" font-size="12" font-family="monospace" fill="#0f172a">小明 ➔ 高数(4分) ➔ 行 1</text>
+        <text x="12" y="88" font-size="12" font-family="monospace" fill="#0f172a">小明 ➔ 物理(4分) ➔ 行 2</text>
+        
+        <text x="0" y="122" font-size="12" font-weight="700" fill="#dc2626">⚠️ 结果集被复制膨胀为 2 行！</text>
+        <text x="0" y="142" font-size="12" fill="#64748b">必须强制加 DISTINCT 做全排序去重。</text>
+      </g>
+
+      <!-- 考场结论 -->
+      <g transform="translate(16, 260)">
+        <rect width="256" height="110" rx="6" fill="#eff6ff" stroke="#bfdbfe"/>
+        <text x="12" y="24" font-size="13" font-weight="700" fill="#1e40af">🎯 题目 C 选项正解写法：</text>
+        <text x="12" y="46" font-size="11" font-family="monospace" fill="#1e3a8a">SELECT DISTINCT 姓名</text>
+        <text x="12" y="62" font-size="11" font-family="monospace" fill="#1e3a8a">FROM 学生 JOIN 选课 ON...</text>
+        <text x="12" y="78" font-size="11" font-family="monospace" fill="#1e3a8a">JOIN 课程 ON... WHERE...</text>
+        <text x="12" y="98" font-size="11" font-weight="600" fill="#2563eb">✅ 逻辑正确，语法闭环</text>
+      </g>
+    </g>
+
+    <!-- 模式 2: EXISTS 相关子查询 (短路探测) -->
+    <g transform="translate(316, 0)">
+      <rect width="288" height="390" rx="10" fill="#ffffff" stroke="#86efac" stroke-width="2"/>
+      <rect width="288" height="36" rx="10" fill="url(#emeraldCard)"/>
+      <path d="M 0 26 Q 0 36 10 36 L 278 36 Q 288 36 288 26 L 288 36 L 0 36 Z" fill="#059669"/>
+      <text x="144" y="23" font-size="14" font-weight="700" fill="#ffffff" text-anchor="middle">2. 相关 EXISTS（短路探测模型）</text>
+      
+      <!-- 特征徽标 -->
+      <g transform="translate(16, 50)">
+        <rect width="80" height="22" rx="4" fill="#f0fdf4"/>
+        <text x="40" y="15" font-size="11" font-weight="600" fill="#16a34a" text-anchor="middle">天然无膨胀</text>
+        <rect x="88" width="90" height="22" rx="4" fill="#ecfdf5"/>
+        <text x="133" y="15" font-size="11" font-weight="600" fill="#047857" text-anchor="middle">短路性能极佳</text>
+      </g>
+
+      <!-- 执行机理展示 -->
+      <g transform="translate(16, 84)">
+        <text x="0" y="16" font-size="13" font-weight="600" fill="#334155">【执行过程】</text>
+        <text x="0" y="36" font-size="12" fill="#64748b">外层扫到小明，探针深入子查询：</text>
+        <rect y="46" width="256" height="52" rx="4" fill="#f0fdf4" stroke="#bbf7d0"/>
+        <text x="12" y="68" font-size="12" font-family="monospace" fill="#166534">扫描命中 高数(4分) ➔ 返回 TRUE!</text>
+        <text x="12" y="88" font-size="12" font-family="monospace" fill="#047857">⚡ 立即短路终止，不再扫物理课</text>
+        
+        <text x="0" y="122" font-size="12" font-weight="700" fill="#16a34a">✨ 结果集天然只有 1 行！</text>
+        <text x="0" y="142" font-size="12" fill="#64748b">无需昂贵的 DISTINCT 去重排序开销。</text>
+      </g>
+
+      <!-- 考场结论 -->
+      <g transform="translate(16, 260)">
+        <rect width="256" height="110" rx="6" fill="#f0fdf4" stroke="#bbf7d0"/>
+        <text x="12" y="24" font-size="13" font-weight="700" fill="#166534">★ EXISTS 标准优雅写法：</text>
+        <text x="12" y="46" font-size="11" font-family="monospace" fill="#15803d">SELECT 姓名 FROM 学生</text>
+        <text x="12" y="62" font-size="11" font-family="monospace" fill="#15803d">WHERE EXISTS (SELECT 1 ...</text>
+        <text x="12" y="78" font-size="11" font-family="monospace" font-weight="bold" fill="#047857">  WHERE 选课.学号=学生.学号)</text>
+        <text x="12" y="98" font-size="11" font-weight="600" fill="#16a34a">✅ 里应外合，工程首选</text>
+      </g>
+    </g>
+
+    <!-- 模式 3: 不相关子查询 (脱缰灾难) -->
+    <g transform="translate(632, 0)">
+      <rect width="288" height="390" rx="10" fill="#ffffff" stroke="#fca5a5" stroke-width="2"/>
+      <rect width="288" height="36" rx="10" fill="url(#roseCard)"/>
+      <path d="M 0 26 Q 0 36 10 36 L 278 36 Q 288 36 288 26 L 288 36 L 0 36 Z" fill="#e11d48"/>
+      <text x="144" y="23" font-size="14" font-weight="700" fill="#ffffff" text-anchor="middle">3. 不相关 EXISTS（原题 D 陷阱）</text>
+      
+      <!-- 特征徽标 -->
+      <g transform="translate(16, 50)">
+        <rect width="80" height="22" rx="4" fill="#fff1f2"/>
+        <text x="40" y="15" font-size="11" font-weight="600" fill="#e11d48" text-anchor="middle">脱缰解绑</text>
+        <rect x="88" width="90" height="22" rx="4" fill="#fef2f2"/>
+        <text x="133" y="15" font-size="11" font-weight="600" fill="#b91c1c" text-anchor="middle">子查询恒为真</text>
+      </g>
+
+      <!-- 执行机理展示 -->
+      <g transform="translate(16, 84)">
+        <text x="0" y="16" font-size="13" font-weight="600" fill="#334155">【灾难机理】</text>
+        <text x="0" y="36" font-size="12" fill="#64748b">子查询内没有挂钩“学生.学号”：</text>
+        <rect y="46" width="256" height="52" rx="4" fill="#fff1f2" stroke="#fecdd3"/>
+        <text x="12" y="68" font-size="12" font-family="monospace" fill="#9f1239">全校只要有人选了 4 学分课</text>
+        <text x="12" y="88" font-size="12" font-family="monospace" fill="#9f1239">子查询结果集就恒不为空！</text>
+        
+        <text x="0" y="122" font-size="12" font-weight="700" fill="#e11d48">💥 EXISTS 恒为 TRUE！</text>
+        <text x="0" y="142" font-size="12" fill="#64748b">全校所有学生（哪怕零选课）全输出！</text>
+      </g>
+
+      <!-- 考场结论 -->
+      <g transform="translate(16, 260)">
+        <rect width="256" height="110" rx="6" fill="#fff1f2" stroke="#fecdd3"/>
+        <text x="12" y="24" font-size="13" font-weight="700" fill="#9f1239">❌ 原题 D 选项致命缺陷：</text>
+        <text x="12" y="46" font-size="11" font-family="monospace" fill="#881337">WHERE EXISTS (SELECT *</text>
+        <text x="12" y="62" font-size="11" font-family="monospace" fill="#881337">FROM 选课 JOIN 课程 WHERE...)</text>
+        <text x="12" y="78" font-size="11" font-family="monospace" fill="#e11d48">-- 里面完全没有关联学生表！</text>
+        <text x="12" y="98" font-size="11" font-weight="600" fill="#e11d48">❌ 逻辑崩盘，全军覆没</text>
+      </g>
+    </g>
+
+  </g>
+</svg>
