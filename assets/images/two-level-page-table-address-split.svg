@@ -1,0 +1,145 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 520" width="100%" height="100%" style="background:#ffffff; border-radius:12px; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#f8fafc"/>
+    </linearGradient>
+    <linearGradient id="blueGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#3b82f6"/>
+      <stop offset="100%" stop-color="#2563eb"/>
+    </linearGradient>
+    <linearGradient id="pinkGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ec4899"/>
+      <stop offset="100%" stop-color="#db2777"/>
+    </linearGradient>
+    <linearGradient id="emeraldGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#10b981"/>
+      <stop offset="100%" stop-color="#059669"/>
+    </linearGradient>
+    <filter id="cardShadow" x="-5%" y="-5%" width="110%" height="115%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#0f172a" flood-opacity="0.08"/>
+    </filter>
+    <marker id="arrow-pink" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#db2777"/>
+    </marker>
+    <marker id="arrow-blue" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#2563eb"/>
+    </marker>
+    <marker id="arrow-emerald" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#059669"/>
+    </marker>
+  </defs>
+
+  <!-- 背景底板 -->
+  <rect x="2" y="2" width="996" height="516" rx="12" fill="url(#bgGrad)" stroke="#e2e8f0" stroke-width="2"/>
+
+  <!-- 顶部标题区 -->
+  <g transform="translate(40, 28)">
+    <rect x="0" y="0" width="5" height="32" rx="2.5" fill="#2563eb"/>
+    <text x="18" y="22" font-size="20" font-weight="700" fill="#0f172a" letter-spacing="0.5">32位系统二级页表逻辑地址切割与索引映射模型</text>
+    <text x="18" y="44" font-size="13" fill="#64748b">以 0x00403210 为例：页大小 4KB (12位偏移) 与页表项 4B (10位索引) 的微观位段切分</text>
+  </g>
+
+  <!-- 待拆解地址卡片 -->
+  <g transform="translate(40, 90)">
+    <rect width="920" height="48" rx="8" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1"/>
+    <text x="24" y="30" font-size="14" font-weight="600" fill="#475569">原始逻辑地址：</text>
+    <rect x="130" y="10" width="130" height="28" rx="4" fill="#ffffff" stroke="#94a3b8"/>
+    <text x="195" y="29" font-size="15" font-family="monospace" font-weight="700" fill="#0f172a" text-anchor="middle">0x00403210</text>
+    
+    <text x="280" y="30" font-size="14" font-weight="600" fill="#475569">32位二进制完整展开：</text>
+    <rect x="440" y="10" width="455" height="28" rx="4" fill="#ffffff" stroke="#94a3b8"/>
+    <text x="667" y="29" font-size="14" font-family="monospace" font-weight="700" fill="#0f172a" text-anchor="middle" letter-spacing="1">0000 0000 0100 0000 0011 0010 0001 0000</text>
+  </g>
+
+  <!-- 32位空间切割条 (总宽 920px, 比例 10 : 10 : 12 -> 287.5px : 287.5px : 345px) -->
+  <g transform="translate(40, 165)" filter="url(#cardShadow)">
+    
+    <!-- 1. 一级页目录索引 (10位, bits 31~22) -->
+    <g transform="translate(0, 0)">
+      <rect width="280" height="96" rx="8" fill="#eff6ff" stroke="#93c5fd" stroke-width="2"/>
+      <rect width="280" height="28" rx="8" fill="url(#blueGrad)"/>
+      <path d="M 0 20 Q 0 28 8 28 L 272 28 Q 280 28 280 20 L 280 28 L 0 28 Z" fill="#2563eb"/>
+      <text x="140" y="19" font-size="13" font-weight="700" fill="#ffffff" text-anchor="middle">一级页目录索引 (10 位 | bits 31~22)</text>
+      
+      <!-- 二进制值 -->
+      <text x="140" y="55" font-size="17" font-family="monospace" font-weight="700" fill="#1e3a8a" text-anchor="middle">0000 0000 01</text>
+      <text x="140" y="80" font-size="12" fill="#60a5fa" text-anchor="middle">对应十六进制：0x001 (第 1 项)</text>
+    </g>
+
+    <!-- 2. 二级页表索引 (10位, bits 21~12) ★ 核心考点 -->
+    <g transform="translate(295, 0)">
+      <rect width="280" height="96" rx="8" fill="#fdf2f8" stroke="#f472b6" stroke-width="2.5"/>
+      <rect width="280" height="28" rx="8" fill="url(#pinkGrad)"/>
+      <path d="M 0 20 Q 0 28 8 28 L 272 28 Q 280 28 280 20 L 280 28 L 0 28 Z" fill="#db2777"/>
+      <text x="140" y="19" font-size="13" font-weight="700" fill="#ffffff" text-anchor="middle">★ 二级页表索引 (10 位 | bits 21~12)</text>
+      
+      <!-- 二进制值 -->
+      <text x="140" y="55" font-size="18" font-family="monospace" font-weight="800" fill="#9d174d" text-anchor="middle">00 0000 0011</text>
+      <text x="140" y="80" font-size="13" font-weight="700" fill="#db2777" text-anchor="middle">🎯 锁定答案：0x003 (第 3 项)</text>
+    </g>
+
+    <!-- 3. 页内偏移量 (12位, bits 11~0) -->
+    <g transform="translate(590, 0)">
+      <rect width="330" height="96" rx="8" fill="#ecfdf5" stroke="#6ee7b7" stroke-width="2"/>
+      <rect width="330" height="28" rx="8" fill="url(#emeraldGrad)"/>
+      <path d="M 0 20 Q 0 28 8 28 L 322 28 Q 330 28 330 20 L 330 28 L 0 28 Z" fill="#059669"/>
+      <text x="165" y="19" font-size="13" font-weight="700" fill="#ffffff" text-anchor="middle">页内偏移量 (12 位 | bits 11~0)</text>
+      
+      <!-- 二进制值 -->
+      <text x="165" y="55" font-size="17" font-family="monospace" font-weight="700" fill="#065f46" text-anchor="middle">0010 0001 0000</text>
+      <text x="165" y="80" font-size="12" fill="#34d399" text-anchor="middle">对应十六进制：0x210 (字节偏移 528)</text>
+    </g>
+  </g>
+
+  <!-- 底部推导步骤与考场规则卡片 (3 列卡片) -->
+  <g transform="translate(40, 290)">
+    
+    <!-- 步骤 1: 算偏移 -->
+    <g transform="translate(0, 0)">
+      <rect width="280" height="190" rx="8" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+      <rect x="16" y="16" width="32" height="24" rx="4" fill="#eff6ff"/>
+      <text x="32" y="33" font-size="12" font-weight="700" fill="#2563eb" text-anchor="middle">01</text>
+      <text x="56" y="33" font-size="14" font-weight="700" fill="#0f172a">第 1 刀：切页内偏移</text>
+      
+      <text x="16" y="65" font-size="13" fill="#475569">● 页大小 = 4 KB = 2¹² Byte</text>
+      <text x="16" y="88" font-size="13" fill="#475569">● 2¹² 决定了寻址需要 <tspan font-weight="bold" fill="#059669">12 位</tspan></text>
+      <text x="16" y="111" font-size="13" fill="#475569">● 规则：从右往左数出末尾 12 位</text>
+      
+      <rect x="16" y="130" width="248" height="40" rx="4" fill="#f8fafc" stroke="#e2e8f0"/>
+      <text x="140" y="155" font-size="12" font-weight="600" fill="#334155" text-anchor="middle">末尾 12 位即页内偏移 0x210</text>
+    </g>
+
+    <!-- 步骤 2: 算索引 -->
+    <g transform="translate(295, 0)">
+      <rect width="280" height="190" rx="8" fill="#ffffff" stroke="#fbcfe8" stroke-width="1.5"/>
+      <rect x="16" y="16" width="32" height="24" rx="4" fill="#fdf2f8"/>
+      <text x="32" y="33" font-size="12" font-weight="700" fill="#db2777" text-anchor="middle">02</text>
+      <text x="56" y="33" font-size="14" font-weight="700" fill="#0f172a">第 2 刀：切每级索引位</text>
+      
+      <text x="16" y="65" font-size="13" fill="#475569">● 1 个页可容纳的表项数：</text>
+      <text x="28" y="86" font-size="13" font-family="monospace" font-weight="700" fill="#db2777">4KB ÷ 4B = 1024 = 2¹⁰ 个</text>
+      <text x="16" y="111" font-size="13" fill="#475569">● 2¹⁰ 决定了每级索引占 <tspan font-weight="bold" fill="#db2777">10 位</tspan></text>
+      
+      <rect x="16" y="130" width="248" height="40" rx="4" fill="#fdf2f8" stroke="#fbcfe8"/>
+      <text x="140" y="155" font-size="12" font-weight="700" fill="#db2777" text-anchor="middle">32位 = 10位 + 10位 + 12位</text>
+    </g>
+
+    <!-- 步骤 3: 提取与防错口诀 -->
+    <g transform="translate(590, 0)">
+      <rect width="330" height="190" rx="8" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+      <rect x="16" y="16" width="32" height="24" rx="4" fill="#ecfdf5"/>
+      <text x="32" y="33" font-size="12" font-weight="700" fill="#059669" text-anchor="middle">03</text>
+      <text x="56" y="33" font-size="14" font-weight="700" fill="#0f172a">第 3 步：提取与考场避坑</text>
+      
+      <text x="16" y="65" font-size="13" fill="#475569">● 切出中间 10 位二进制：</text>
+      <text x="28" y="86" font-size="14" font-family="monospace" font-weight="700" fill="#db2777">00 0000 0011B = 3D = 0x003</text>
+      
+      <rect x="16" y="105" width="298" height="65" rx="4" fill="#fffbeb" stroke="#fde68a"/>
+      <text x="26" y="126" font-size="12" font-weight="700" fill="#b45309">🔥 考场秒杀口诀：</text>
+      <text x="26" y="146" font-size="12" fill="#92400e">“页大定偏移(12)，页除项定索引(10)；</text>
+      <text x="26" y="162" font-size="12" fill="#92400e"> 展开二进制切中间，0x003 直接秒！”</text>
+    </g>
+
+  </g>
+</svg>
