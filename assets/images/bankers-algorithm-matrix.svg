@@ -1,0 +1,159 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" width="100%" height="100%" style="background:#ffffff; border-radius:12px; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#f8fafc"/>
+    </linearGradient>
+    <linearGradient id="blueCard" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#3b82f6"/>
+      <stop offset="100%" stop-color="#2563eb"/>
+    </linearGradient>
+    <linearGradient id="amberCard" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#f59e0b"/>
+      <stop offset="100%" stop-color="#d97706"/>
+    </linearGradient>
+    <linearGradient id="emeraldCard" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#10b981"/>
+      <stop offset="100%" stop-color="#059669"/>
+    </linearGradient>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#0f172a" flood-opacity="0.08"/>
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#0284c7"/>
+    </marker>
+  </defs>
+
+  <!-- 背景底板 -->
+  <rect x="2" y="2" width="996" height="576" rx="12" fill="url(#bgGrad)" stroke="#e2e8f0" stroke-width="2"/>
+
+  <!-- 顶部标题区 -->
+  <g transform="translate(40, 28)">
+    <rect x="0" y="0" width="5" height="32" rx="2.5" fill="#2563eb"/>
+    <text x="18" y="22" font-size="20" font-weight="700" fill="#0f172a" letter-spacing="0.5">银行家算法安全性探测与“滚雪球”推导模型</text>
+    <text x="18" y="44" font-size="13" fill="#64748b">核心哲学：试探性借款 ➔ 寻找能借满完工的客户 ➔ 资金回流滚雪球 ➔ 找到闭环安全序列</text>
+  </g>
+
+  <!-- 顶部长条：P3 申请触发试探分配 (宽 920px) -->
+  <g transform="translate(40, 88)">
+    <rect width="920" height="56" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5"/>
+    <text x="24" y="34" font-size="14" font-weight="700" fill="#334155">【触发事件】</text>
+    <text x="110" y="34" font-size="14" fill="#475569">P3 申请资源 <tspan font-family="monospace" font-weight="700" fill="#2563eb">(1, 1, 0, 0)</tspan></text>
+    <text x="320" y="34" font-size="13" fill="#64748b">➔ 初始系统可用 Available = (1, 1, 2, 1)</text>
+    
+    <rect x="620" y="10" width="280" height="36" rx="6" fill="#fef2f2" stroke="#fca5a5"/>
+    <text x="760" y="33" font-size="13" font-weight="700" fill="#b91c1c" text-anchor="middle">试探后剩余 Available' = (0, 0, 2, 1)</text>
+  </g>
+
+  <!-- 核心三大安全推导流水卡片 (宽 288px, 间距 28px, X=40, 356, 672) -->
+  <g transform="translate(40, 164)" filter="url(#shadow)">
+    
+    <!-- 第 1 棒：P3 破局 (绿色高亮) -->
+    <g transform="translate(0, 0)">
+      <rect width="288" height="320" rx="10" fill="#ffffff" stroke="#86efac" stroke-width="2"/>
+      <rect width="288" height="36" rx="10" fill="url(#emeraldCard)"/>
+      <path d="M 0 26 Q 0 36 10 36 L 278 36 Q 288 36 288 26 L 288 36 L 0 36 Z" fill="#059669"/>
+      <text x="144" y="23" font-size="14" font-weight="700" fill="#ffffff" text-anchor="middle">第 1 棒：寻找软柿子 (P3 破局)</text>
+      
+      <!-- 现状比对 -->
+      <g transform="translate(16, 52)">
+        <text x="0" y="18" font-size="13" font-weight="600" fill="#475569">当前试探可用：</text>
+        <text x="100" y="18" font-size="14" font-family="monospace" font-weight="700" fill="#059669">(0, 0, 2, 1)</text>
+        
+        <text x="0" y="44" font-size="13" font-weight="600" fill="#475569">P1 还需 (Need)：</text>
+        <text x="100" y="44" font-size="13" font-family="monospace" fill="#ef4444">(1, 1, 0, 1) ❌卡死</text>
+        
+        <text x="0" y="70" font-size="13" font-weight="600" fill="#475569">P2 还需 (Need)：</text>
+        <text x="100" y="70" font-size="13" font-family="monospace" fill="#ef4444">(1, 1, 2, 1) ❌卡死</text>
+        
+        <text x="0" y="96" font-size="13" font-weight="600" fill="#475569">P3 还需 (Need)：</text>
+        <text x="100" y="96" font-size="14" font-family="monospace" font-weight="700" fill="#16a34a">(0, 0, 1, 1) ✅完美满足</text>
+      </g>
+      
+      <!-- 释放结论 -->
+      <g transform="translate(16, 175)">
+        <rect width="256" height="125" rx="6" fill="#f0fdf4" stroke="#bbf7d0"/>
+        <text x="12" y="24" font-size="13" font-weight="700" fill="#166534">⚡ P3 顺利执行完毕！</text>
+        <text x="12" y="48" font-size="12" fill="#15803d">释放 P3 全部占有资源：</text>
+        <text x="12" y="68" font-size="13" font-family="monospace" font-weight="700" fill="#166534">已占资源 = (1, 1, 1, 1)</text>
+        <line x1="12" y1="78" x2="244" y2="78" stroke="#86efac" stroke-dasharray="3,3"/>
+        <text x="12" y="98" font-size="12" font-weight="600" fill="#15803d">资金池回流滚雪球：</text>
+        <text x="12" y="116" font-size="13" font-family="monospace" font-weight="700" fill="#047857">可用更新为 (1, 1, 3, 2)</text>
+      </g>
+    </g>
+
+    <!-- 第 2 棒：P1 接力 (蓝色) -->
+    <g transform="translate(316, 0)">
+      <rect width="288" height="320" rx="10" fill="#ffffff" stroke="#93c5fd" stroke-width="2"/>
+      <rect width="288" height="36" rx="10" fill="url(#blueCard)"/>
+      <path d="M 0 26 Q 0 36 10 36 L 278 36 Q 288 36 288 26 L 288 36 L 0 36 Z" fill="#2563eb"/>
+      <text x="144" y="23" font-size="14" font-weight="700" fill="#ffffff" text-anchor="middle">第 2 棒：资金倍增 (P1 接力)</text>
+      
+      <!-- 现状比对 -->
+      <g transform="translate(16, 52)">
+        <text x="0" y="18" font-size="13" font-weight="600" fill="#475569">当前扩充可用：</text>
+        <text x="100" y="18" font-size="14" font-family="monospace" font-weight="700" fill="#2563eb">(1, 1, 3, 2)</text>
+        
+        <text x="0" y="48" font-size="13" font-weight="600" fill="#475569">检查 P1 还需：</text>
+        <text x="100" y="48" font-size="14" font-family="monospace" font-weight="700" fill="#1d4ed8">(1, 1, 0, 1)</text>
+        
+        <rect x="0" y="65" width="256" height="32" rx="4" fill="#eff6ff"/>
+        <text x="128" y="86" font-size="13" font-weight="700" fill="#1d4ed8" text-anchor="middle">(1,1,3,2) ≥ (1,1,0,1) ✅ 满足！</text>
+      </g>
+      
+      <!-- 释放结论 -->
+      <g transform="translate(16, 175)">
+        <rect width="256" height="125" rx="6" fill="#eff6ff" stroke="#bfdbfe"/>
+        <text x="12" y="24" font-size="13" font-weight="700" fill="#1e40af">⚡ P1 顺利执行完毕！</text>
+        <text x="12" y="48" font-size="12" fill="#1d4ed8">释放 P1 占有的全部资源：</text>
+        <text x="12" y="68" font-size="13" font-family="monospace" font-weight="700" fill="#1e40af">已占资源 = (2, 1, 1, 0)</text>
+        <line x1="12" y1="78" x2="244" y2="78" stroke="#93c5fd" stroke-dasharray="3,3"/>
+        <text x="12" y="98" font-size="12" font-weight="600" fill="#1d4ed8">资金池二次膨胀：</text>
+        <text x="12" y="116" font-size="13" font-family="monospace" font-weight="700" fill="#1e3a8a">可用更新为 (3, 2, 4, 2)</text>
+      </g>
+    </g>
+
+    <!-- 第 3 棒：P2 收尾通关 (橙黄色) -->
+    <g transform="translate(632, 0)">
+      <rect width="288" height="320" rx="10" fill="#ffffff" stroke="#fcd34d" stroke-width="2"/>
+      <rect width="288" height="36" rx="10" fill="url(#amberCard)"/>
+      <path d="M 0 26 Q 0 36 10 36 L 278 36 Q 288 36 288 26 L 288 36 L 0 36 Z" fill="#d97706"/>
+      <text x="144" y="23" font-size="14" font-weight="700" fill="#ffffff" text-anchor="middle">第 3 棒：全员通关 (P2 收尾)</text>
+      
+      <!-- 现状比对 -->
+      <g transform="translate(16, 52)">
+        <text x="0" y="18" font-size="13" font-weight="600" fill="#475569">当前巨量可用：</text>
+        <text x="100" y="18" font-size="14" font-family="monospace" font-weight="700" fill="#d97706">(3, 2, 4, 2)</text>
+        
+        <text x="0" y="48" font-size="13" font-weight="600" fill="#475569">检查 P2 还需：</text>
+        <text x="100" y="48" font-size="14" font-family="monospace" font-weight="700" fill="#b45309">(1, 1, 2, 1)</text>
+        
+        <rect x="0" y="65" width="256" height="32" rx="4" fill="#fffbeb"/>
+        <text x="128" y="86" font-size="13" font-weight="700" fill="#b45309" text-anchor="middle">(3,2,4,2) 远大于需求 ✅ 轻松满足！</text>
+      </g>
+      
+      <!-- 释放结论 -->
+      <g transform="translate(16, 175)">
+        <rect width="256" height="125" rx="6" fill="#fffbeb" stroke="#fde68a"/>
+        <text x="12" y="24" font-size="13" font-weight="700" fill="#92400e">🎉 全进程成功跑完！</text>
+        <text x="12" y="48" font-size="12" fill="#b45309">锁定安全执行序列：</text>
+        <text x="12" y="70" font-size="15" font-family="monospace" font-weight="800" fill="#b45309">⟨ P3, P1, P2 ⟩</text>
+        <line x1="12" y1="78" x2="244" y2="78" stroke="#fcd34d" stroke-dasharray="3,3"/>
+        <text x="12" y="98" font-size="12" font-weight="600" fill="#92400e">裁决结论：处于安全状态</text>
+        <text x="12" y="116" font-size="13" font-weight="800" fill="#047857">🎯 考场答案：准予分配 (A)</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- 底部连结箭头引导 (两根横向箭头) -->
+  <path d="M 336 300 L 350 300" stroke="#0284c7" stroke-width="3" marker-end="url(#arrow)"/>
+  <path d="M 652 300 L 666 300" stroke="#0284c7" stroke-width="3" marker-end="url(#arrow)"/>
+
+  <!-- 底部终极口诀栏 -->
+  <g transform="translate(40, 508)">
+    <rect width="920" height="48" rx="6" fill="#0f172a"/>
+    <text x="460" y="30" font-size="14" font-weight="700" fill="#f8fafc" text-anchor="middle">
+      🔥 考场秒杀口诀：试探借款算剩余，挑软柿子（需求≤可用）先通关；滚雪球回流资金，只要能串出一条活路就是“安全”！
+    </text>
+  </g>
+</svg>
