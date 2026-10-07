@@ -1,0 +1,201 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1020 680" width="100%" height="100%" style="background:#ffffff; border-radius:12px; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'PingFang SC', 'Microsoft YaHei', sans-serif;">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#f8fafc"/>
+    </linearGradient>
+    <linearGradient id="cuHeaderGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0284c7"/>
+      <stop offset="100%" stop-color="#0369a1"/>
+    </linearGradient>
+    <linearGradient id="aluHeaderGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#8b5cf6"/>
+      <stop offset="100%" stop-color="#6d28d9"/>
+    </linearGradient>
+    <linearGradient id="busGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#818cf8"/>
+    </linearGradient>
+    <linearGradient id="footerGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#1e293b"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+
+    <filter id="shadowSm" x="-5%" y="-5%" width="110%" height="115%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="1.5" stdDeviation="2.5" flood-color="#0f172a" flood-opacity="0.06"/>
+    </filter>
+    <filter id="shadowMd" x="-5%" y="-5%" width="110%" height="115%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#0f172a" flood-opacity="0.08"/>
+    </filter>
+
+    <marker id="arrowGray" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#64748b"/>
+    </marker>
+    <marker id="arrowBlue" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#0284c7"/>
+    </marker>
+    <marker id="arrowPurple" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#7c3aed"/>
+    </marker>
+    <marker id="arrowAmber" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#d97706"/>
+    </marker>
+  </defs>
+
+  <!-- 背景画布底板 -->
+  <rect x="2" y="2" width="1016" height="676" rx="12" fill="url(#bgGrad)" stroke="#e2e8f0" stroke-width="2"/>
+
+  <!-- 顶部标题区 -->
+  <g transform="translate(35, 20)">
+    <rect x="0" y="0" width="6" height="40" rx="3" fill="#4f46e5"/>
+    <text x="18" y="24" font-size="20" font-weight="800" fill="#0f172a" letter-spacing="0.5">CPU 运算器与控制器部件谱系与协同机制全景图</text>
+    <text x="18" y="44" font-size="13" fill="#64748b">冯·诺依曼架构下 CPU 内部两大核心阵营的物理分工、总线拓扑与数据/控制流交互</text>
+  </g>
+
+  <!-- 左侧大卡片：控制器阵营 (CU - Control Unit) -->
+  <g transform="translate(35, 75)" filter="url(#shadowMd)">
+    <rect width="450" height="465" rx="10" fill="#ffffff" stroke="#bae6fd" stroke-width="1.5"/>
+    <rect width="450" height="34" rx="10" fill="url(#cuHeaderGrad)"/>
+    <path d="M 0 24 Q 0 34 10 34 L 440 34 Q 450 34 450 24 L 450 34 L 0 34 Z" fill="#0284c7"/>
+    <text x="16" y="22" font-size="13.5" font-weight="700" fill="#ffffff">🧠 控制器阵营 (CU - Control Unit) —— 决策与调度中枢</text>
+    <text x="375" y="22" font-size="11" font-weight="600" fill="#e0f2fe">管“指挥”</text>
+
+    <!-- 部件 1: 程序计数器 PC -->
+    <g transform="translate(18, 50)" filter="url(#shadowSm)">
+      <rect width="414" height="64" rx="8" fill="#f0f9ff" stroke="#7dd3fc" stroke-width="1.2"/>
+      <rect x="12" y="10" width="110" height="22" rx="4" fill="#0284c7"/>
+      <text x="67" y="25" font-size="11" font-weight="700" fill="#ffffff" text-anchor="middle">程序计数器 PC</text>
+      <text x="130" y="25" font-size="12" font-weight="800" fill="#0369a1">存放：下一条将要执行指令的内存地址！</text>
+      <text x="14" y="48" font-size="10.5" fill="#0c4a6e">⚙️ 运行机制：取指后自动自增（PC+1）；遇跳转指令（JMP/CALL）则被目标地址强行重写。</text>
+    </g>
+
+    <!-- 部件 2: 指令寄存器 IR -->
+    <g transform="translate(18, 126)" filter="url(#shadowSm)">
+      <rect width="414" height="64" rx="8" fill="#f0f9ff" stroke="#7dd3fc" stroke-width="1.2"/>
+      <rect x="12" y="10" width="110" height="22" rx="4" fill="#0284c7"/>
+      <text x="67" y="25" font-size="11" font-weight="700" fill="#ffffff" text-anchor="middle">指令寄存器 IR</text>
+      <text x="130" y="25" font-size="12" font-weight="800" fill="#0369a1">存放：当前正在执行的整条机器指令！</text>
+      <text x="14" y="48" font-size="10.5" fill="#0c4a6e">⚙️ 结构拆解：拆分为【操作码 OP】（干什么）与【地址码 ADDR】（对谁干，送MAR）。</text>
+    </g>
+
+    <!-- 部件 3: 指令译码器 ID 与 时序控制逻辑 -->
+    <g transform="translate(18, 202)" filter="url(#shadowSm)">
+      <rect width="414" height="74" rx="8" fill="#f0f9ff" stroke="#7dd3fc" stroke-width="1.2"/>
+      <rect x="12" y="10" width="110" height="22" rx="4" fill="#0284c7"/>
+      <text x="67" y="25" font-size="11" font-weight="700" fill="#ffffff" text-anchor="middle">指令译码器 ID</text>
+      <text x="130" y="25" font-size="12" font-weight="800" fill="#0369a1">翻译：对 IR 中的操作码（OP）进行解码分析</text>
+      <text x="14" y="47" font-size="10.5" fill="#0c4a6e">⚙️ 协同部件：配合【时序发生器】在时钟脉冲节拍下，向全机发出成百上千个微操作控制信号。</text>
+      <text x="14" y="63" font-size="10" font-weight="600" fill="#0284c7">👉 控制实现技术：硬布线逻辑（RISC 纯组合逻辑） vs 微程序控制器（CISC 控制存储器 CS）</text>
+    </g>
+
+    <!-- 部件 4: 地址寄存器 AR / MAR -->
+    <g transform="translate(18, 288)" filter="url(#shadowSm)">
+      <rect width="414" height="62" rx="8" fill="#f0f9ff" stroke="#7dd3fc" stroke-width="1.2"/>
+      <rect x="12" y="10" width="110" height="22" rx="4" fill="#0284c7"/>
+      <text x="67" y="25" font-size="11" font-weight="700" fill="#ffffff" text-anchor="middle">地址寄存器 AR</text>
+      <text x="130" y="25" font-size="12" font-weight="800" fill="#0369a1">存放：CPU 即将访问的主存物理单元地址</text>
+      <text x="14" y="48" font-size="10.5" fill="#0c4a6e">⚙️ 硬件接口：直接驱动外部【地址总线 AB】；无论是取指令地址还是取操作数地址都经此流出。</text>
+    </g>
+
+    <!-- 控制器特征总结贴纸 -->
+    <g transform="translate(18, 362)">
+      <rect width="414" height="85" rx="6" fill="#f8fafc" stroke="#cbd5e1" stroke-dasharray="4,3"/>
+      <text x="14" y="22" font-size="11.5" font-weight="800" fill="#0f172a">🎯 控制器阵营四大核心部件口诀：</text>
+      <text x="14" y="42" font-size="11" font-weight="700" fill="#0369a1">【PC 寻址指向下，IR 藏身当前码，ID 译码时序走，AR 锁存地址出】</text>
+      <text x="14" y="62" font-size="10.5" fill="#64748b">⚠️ 考场防坑：控制器里面绝对没有做加减乘除计算的部件，也没有用来存运算结果的累加器！</text>
+      <text x="14" y="76" font-size="10" font-weight="600" fill="#ef4444">💥 错题 130 钓鱼项排除：PC、IR、ID、AR 均归控制器！</text>
+    </g>
+  </g>
+
+  <!-- 右侧大卡片：运算器阵营 (ALU - Arithmetic Logic Unit) -->
+  <g transform="translate(535, 75)" filter="url(#shadowMd)">
+    <rect width="450" height="465" rx="10" fill="#ffffff" stroke="#ddd6fe" stroke-width="1.5"/>
+    <rect width="450" height="34" rx="10" fill="url(#aluHeaderGrad)"/>
+    <path d="M 0 24 Q 0 34 10 34 L 440 34 Q 450 34 450 24 L 450 34 L 0 34 Z" fill="#6d28d9"/>
+    <text x="16" y="22" font-size="13.5" font-weight="700" fill="#ffffff">⚡ 运算器阵营 (ALU - Arithmetic Logic Unit) —— 数据加工中枢</text>
+    <text x="375" y="22" font-size="11" font-weight="600" fill="#ede9fe">管“计算”</text>
+
+    <!-- 部件 1: 算术逻辑单元 ALU -->
+    <g transform="translate(18, 50)" filter="url(#shadowSm)">
+      <rect width="414" height="64" rx="8" fill="#f5f3ff" stroke="#c4b5fd" stroke-width="1.2"/>
+      <rect x="12" y="10" width="115" height="22" rx="4" fill="#7c3aed"/>
+      <text x="69.5" y="25" font-size="11" font-weight="700" fill="#ffffff" text-anchor="middle">算术逻辑单元 ALU</text>
+      <text x="135" y="25" font-size="12" font-weight="800" fill="#5b21b6">核心算力引擎：专门负责各种运算</text>
+      <text x="14" y="48" font-size="10.5" fill="#4c1d95">⚙️ 运算种类：算术运算（+、-、×、÷）与 逻辑运算（AND、OR、NOT、XOR、移位等）。</text>
+    </g>
+
+    <!-- 部件 2: 累加器 AC / ACC (错题 130 核心题眼) -->
+    <g transform="translate(18, 126)" filter="url(#shadowSm)">
+      <rect width="414" height="64" rx="8" fill="#fdf4ff" stroke="#e879f9" stroke-width="1.5"/>
+      <rect x="12" y="10" width="115" height="22" rx="4" fill="#c026d3"/>
+      <text x="69.5" y="25" font-size="11" font-weight="800" fill="#ffffff" text-anchor="middle">🔥 累加器 AC / ACC</text>
+      <text x="135" y="25" font-size="12" font-weight="800" fill="#a21caf">存放：ALU 输入的操作数与暂存运算结果！</text>
+      <text x="14" y="48" font-size="10.5" fill="#701a75">⚙️ 为什么必须有它：单总线架构不能同时传两路数据，必须先将一个数放进 AC 蓄势待发！</text>
+    </g>
+
+    <!-- 部件 3: 数据缓冲寄存器 DR / MDR -->
+    <g transform="translate(18, 202)" filter="url(#shadowSm)">
+      <rect width="414" height="64" rx="8" fill="#f5f3ff" stroke="#c4b5fd" stroke-width="1.2"/>
+      <rect x="12" y="10" width="115" height="22" rx="4" fill="#7c3aed"/>
+      <text x="69.5" y="25" font-size="11" font-weight="700" fill="#ffffff" text-anchor="middle">数据寄存器 DR</text>
+      <text x="135" y="25" font-size="12" font-weight="800" fill="#5b21b6">存放：CPU 与主存/外设进行数据交互的隔离门</text>
+      <text x="14" y="48" font-size="10.5" fill="#4c1d95">⚙️ 硬件接口：双向连接外部【数据总线 DB】；抹平 CPU 超高速与外部内存低速之间的时序剪刀差。</text>
+    </g>
+
+    <!-- 部件 4: 状态条件寄存器 PSW / Flag (高危易错部件) -->
+    <g transform="translate(18, 278)" filter="url(#shadowSm)">
+      <rect width="414" height="72" rx="8" fill="#f5f3ff" stroke="#c4b5fd" stroke-width="1.2"/>
+      <rect x="12" y="10" width="115" height="22" rx="4" fill="#7c3aed"/>
+      <text x="69.5" y="25" font-size="11" font-weight="700" fill="#ffffff" text-anchor="middle">状态寄存器 PSW</text>
+      <text x="135" y="25" font-size="12" font-weight="800" fill="#5b21b6">存放：记录算术逻辑运算后的标志与状态！</text>
+      <text x="14" y="48" font-size="10.5" fill="#4c1d95">⚙️ 状态标志位：进位标志（CF）、零标志（ZF）、溢出标志（OF）、符号标志（SF）。</text>
+      <text x="14" y="63" font-size="10" font-weight="600" fill="#7c3aed">⚠️ 极高频陷阱：PSW 虽为控制器跳转提供依据，但它记录运算状态，【官方大纲 100% 归属运算器】！</text>
+    </g>
+
+    <!-- 运算器特征总结贴纸 -->
+    <g transform="translate(18, 362)">
+      <rect width="414" height="85" rx="6" fill="#f8fafc" stroke="#cbd5e1" stroke-dasharray="4,3"/>
+      <text x="14" y="22" font-size="11.5" font-weight="800" fill="#0f172a">🎯 运算器阵营核心成员口诀：</text>
+      <text x="14" y="42" font-size="11" font-weight="700" fill="#6d28d9">【ALU 算逻辑，累加器 (AC) 存结果，数据缓冲 (DR) 倒内存，PSW 记溢出与零】</text>
+      <text x="14" y="62" font-size="10.5" fill="#64748b">包含通用寄存器组（R0~Rn，暂存临时变量）；</text>
+      <text x="14" y="76" font-size="10" font-weight="800" fill="#059669">✅ 错题 130 题眼定论：题干给出 ALU、PSW、通用寄存器，所缺必定是【累加器 AC】！</text>
+    </g>
+  </g>
+
+  <!-- 中间连接示意交互小桥梁 (Bus Bridge) -->
+  <g transform="translate(488, 175)">
+    <rect width="44" height="270" rx="6" fill="url(#busGrad)" opacity="0.15"/>
+    <line x1="22" y1="10" x2="22" y2="260" stroke="#0284c7" stroke-width="2.5" stroke-dasharray="4,3"/>
+    <text x="22" y="70" font-size="11" font-weight="800" fill="#0369a1" text-anchor="middle" transform="rotate(90, 22, 70)">CPU 内部数据与控制总线</text>
+    <path d="M 5 110 L -15 110" stroke="#0284c7" stroke-width="2" marker-end="url(#arrowBlue)"/>
+    <path d="M 40 180 L 60 180" stroke="#7c3aed" stroke-width="2" marker-end="url(#arrowPurple)"/>
+  </g>
+
+  <!-- 底部通栏：指令执行五部曲（取指-译码-取数-执行-写回）与秒杀防坑心法 -->
+  <g transform="translate(35, 555)">
+    <rect width="950" height="95" rx="8" fill="url(#footerGrad)"/>
+    <g transform="translate(20, 14)">
+      <rect width="80" height="22" rx="4" fill="#f59e0b"/>
+      <text x="40" y="15" font-size="11" font-weight="800" fill="#ffffff" text-anchor="middle">协同运转流水</text>
+      
+      <!-- 五步曲流线 -->
+      <text x="95" y="16" font-size="12" font-weight="700" fill="#f8fafc">
+        ① 取指：<tspan fill="#38bdf8">PC → MAR → 内存 → MDR → IR</tspan> (PC自动+1)  ➜  
+        ② 译码：<tspan fill="#38bdf8">IR[OP] → ID 译码</tspan>  ➜  
+        ③ 取数：<tspan fill="#c084fc">IR[ADDR] → MAR → 内存 → MDR → AC/DR</tspan>  ➜  
+        ④ 执行：<tspan fill="#c084fc">ALU 运算并将状态打入 PSW</tspan>  ➜  
+        ⑤ 写回：<tspan fill="#c084fc">写回 AC / 寄存器 / 内存</tspan>
+      </text>
+
+      <!-- 终极秒杀心法 -->
+      <text x="0" y="46" font-size="12" font-weight="800" fill="#fbbf24">
+        🔥 考场秒杀口诀：
+        <tspan fill="#ffffff">算术逻辑带累加（ALU + AC），状态条件（PSW）暂存数（DR），统统归属【运算器】；</tspan>
+      </text>
+      <text x="100" y="66" font-size="12" font-weight="800" fill="#38bdf8">
+        程序计数指下条（PC），当前指令躺在堂（IR），译码时序发号令（ID），稳坐中军【控制器】！
+      </text>
+      <text x="770" y="66" font-size="11" font-weight="600" fill="#94a3b8">【错题 130 极速秒杀模型】</text>
+    </g>
+  </g>
+</svg>
