@@ -70,22 +70,52 @@
 ```mermaid
 flowchart TD
     classDef root fill:#4F46E5,stroke:#312E81,stroke-width:2px,color:#fff;
-    classDef core fill:#EEF2FF,stroke:#4F46E5,stroke-width:1.5px,color:#312E81;
+    classDef hub fill:#0D9488,stroke:#115E59,stroke-width:2px,color:#fff;
+    classDef base fill:#EEF2FF,stroke:#4F46E5,stroke-width:1.5px,color:#312E81;
     classDef exam fill:#FEF3C7,stroke:#D97706,stroke-width:1.5px,color:#92400E;
-    classDef tool fill:#F0FDF4,stroke:#16A34A,stroke-width:1.5px,color:#166534;
+    classDef vault fill:#FEE2E2,stroke:#DC2626,stroke-width:1.5px,color:#991B1B;
 
-    Root["<b>软件设计师数字化备考引擎</b><br>(全套通关体系)"]:::root
+    Root["<b>⚡ 软件设计师数字化备考引擎</b><br>(全套通关体系)"]:::root
+    Map["<b>🗺️ 00-全局知识检索地图.md</b><br>全库中央路由索引 · Ctrl+F 秒级直达各考点"]:::hub
 
-    Root --> Map["<b>00-全局知识检索地图.md</b><br>全库中央索引 · Ctrl+F 秒级定位"]:::tool
+    Root --> Map
 
-    Root --> M1["<b>01-fast-pass/ 全科 15 讲通关速记</b><br>系统教材提炼 · 考纲考点 80/20 剪枝"]:::core
-    Root --> M2["<b>02-visual-diagrams/ 空间视觉图谱</b><br>算法 / UML / 23 种设计模式矢量图解"]:::core
-    Root --> M3["<b>03-case-studies/ 下午案例大题拆解</b><br>五大题型流水线 · 近 5 年真题估分复盘"]:::exam
-    Root --> M4["<b>04-cheatsheets/ 考前冲刺绝杀武器库</b><br>15 年真题全景双璧 · 50 保命口诀 · 70 避坑闪卡"]:::exam
-    Root --> M5["<b>05-error-vault/ 错题透析与弱点歼灭</b><br>四步透析法 · 212 道真实翻车题靶向排雷"]:::tool
-    Root --> M6["<b>06-study-notes/ 全科考点闪卡库</b><br>Anki 兼容 · 移动碎片化自测秒杀"]:::tool
-    Root --> M7["<b>07-topic-mastery/ 底层机制专项专著</b><br>23 篇硬核解剖 · 击穿主定理/死锁/DFD"]:::core
+    subgraph G1 ["<b>📚 第一兵团：体系建构与底层原理</b>"]
+        M1["<b>01-fast-pass/</b><br>全科 15 讲教材速记 (80/20 剪枝)"]:::base
+        M2["<b>02-visual-diagrams/</b><br>空间视觉图谱 (算法/UML/设计模式)"]:::base
+        M7["<b>07-topic-mastery/</b><br>底层机制专著 (23 篇深度解剖)"]:::base
+        M1 --> M2 --> M7
+    end
+
+    subgraph G2 ["<b>⚔️ 第二兵团：真题实战与冲刺绝杀</b>"]
+        M3["<b>03-case-studies/</b><br>下午大题流水线与真题估分复盘"]:::exam
+        M4["<b>04-cheatsheets/</b><br>考前冲刺绝杀武器库 (双璧+口诀+闪卡)"]:::exam
+        M3 --> M4
+    end
+
+    subgraph G3 ["<b>🎯 第三兵团：弱点歼灭与碎片记忆</b>"]
+        M5["<b>05-error-vault/</b><br>错题透析全景库 (212 道翻车题)"]:::vault
+        M6["<b>06-study-notes/</b><br>全科考点闪卡库 (Anki 随身秒杀)"]:::vault
+        M5 --> M6
+    end
+
+    Map --> M1
+    Map --> M3
+    Map --> M5
 ```
+
+### 📋 8 大模块职能与导航对照大表
+
+| 模块类别 | 目录路径与名称 | 核心职能与解决的备考痛点 | 包含核心交付物 | 快速直达 |
+| :---: | :--- | :--- | :--- | :---: |
+| 🗺️ **中央索引** | **00-全局知识检索地图.md** | 全库中央索引与考点快速路由寻址 | 全量考点 Ctrl+F 秒级直达锚点大表 | [👉 进入索引](00-全局知识检索地图.md) |
+| 📚 **基础讲义** | **01-fast-pass/** | 15 讲教材知识系统工程化提炼 | 80/20 剪枝指南、宏观导图、防冷箭自测 | [👉 进入讲义](./01-fast-pass/) |
+| 🎨 **空间视觉** | **02-visual-diagrams/** | 专治抽象逻辑“看字犯困”，建立空间心智 | 算法流、OMG UML 2.5 规范图、23 设计模式矩阵 | [👉 进入图解](./02-visual-diagrams/) |
+| 🔬 **底层机理** | **07-topic-mastery/** | 23 篇底层机制长文专著攻坚难点 | 击穿主定理、银行家算法、Armstrong、DFD补流 | [👉 进入专著](./07-topic-mastery/) |
+| ⚔️ **大题实战** | **03-case-studies/** | 下午五大案例大题工程化破题 | DFD/ER/UML/算法/Java流水线与真题复盘报告 | [👉 进入实战](./03-case-studies/) |
+| ⚡ **冲刺绝杀** | **04-cheatsheets/** | 考前决胜一站式高密度武器库 | 上下午 15 年真题全景绝杀双壁、50 口诀、70 闪卡 | [👉 进入绝杀](./04-cheatsheets/) |
+| 🎯 **弱点歼灭** | **05-error-vault/** | 闭环错题分析与命题人挖坑逻辑回溯 | 212 道真题四步透析、薄弱点画像、反向排雷 | [👉 进入错题](./05-error-vault/) |
+| 🎴 **碎片刷题** | **06-study-notes/** | 记忆间隔复习与移动端随身自测 | 10 科标准 Anki 级高频考点闪卡合集 | [👉 进入闪卡](./06-study-notes/) |
 
 ---
 
@@ -129,16 +159,11 @@ flowchart TD
 
 ## 🚀 三阶通关作战路线图
 
-```mermaid
-flowchart TD
-    classDef path fill:#EEF2FF,stroke:#4F46E5,stroke-width:2px,color:#312E81;
-
-    P1["<b>⚡ 14 天极限冲刺流（急于通关）</b><br>1. 直奔 04-cheatsheets 刷上下午 15 年绝杀双壁<br>2. 熟背 50 句保命口诀与 70 张高频闪卡<br>3. 研读 05-error-vault 错题集靶向排雷"]:::path
-
-    P2["<b>📚 30 天稳扎稳打流（系统备考）</b><br>1. 依序通读 01-fast-pass 15 讲教材速记<br>2. 研读 02-visual-diagrams 空间图谱强化心智<br>3. 结合 03-case-studies 做下午真题单卷复盘<br>4. 考前一周全量切换至 04-cheatsheets 绝杀"]:::path
-
-    P3["<b>🎯 下午案例大题突击流（攻坚提分）</b><br>1. 研读 03-case-studies 破题流水线总纲<br>2. 掌握试题一消消乐、试题二两步法、试题六 Java 模板<br>3. 严守 04-cheatsheets/03 考场答题规范红线"]:::path
-```
+| 作战路线 | 适合考生画像 | 核心作战行动 | 目标产出 |
+| :--- | :--- | :--- | :---: |
+| ⚡ **14 天极限冲刺流** | 考前突击、时间紧迫、需快速通关 | ① 直奔 [`04-cheatsheets/`](./04-cheatsheets/) 刷透上下午 15 年绝杀双壁，动手手算 5 大计算母题<br>② 熟背 50 句保命口诀与 70 张高频闪卡<br>③ 研读 [`05-error-vault/`](./05-error-vault/) 错题集靶向排雷 | 🎯 稳过 45 分及格线 |
+| 📚 **30 天稳扎稳打流** | 零基础跨考、在校生、追求高分体系 | ① 依序通读 [`01-fast-pass/`](./01-fast-pass/) 15 讲教材速记指南<br>② 研读 [`02-visual-diagrams/`](./02-visual-diagrams/) 空间图谱强化心智模型<br>③ 结合 [`03-case-studies/`](./03-case-studies/) 完成下午真题单卷实战估分复盘<br>④ 考前一周全量切换至 [`04-cheatsheets/`](./04-cheatsheets/) 绝杀武器库 | 🏆 双 60+ 分高分大捷 |
+| 🎯 **下午案例大题突击流** | 上午已有把握、下午案例大题易翻车 | ① 研读 [`03-case-studies/`](./03-case-studies/) 掌握五大题型破题流水线总纲<br>② 熟练运用“试题一消消乐”、“试题二两步法”与“试题六 Java 模板”<br>③ 严守 [`04-cheatsheets/03`](./04-cheatsheets/03-下午案例分析考场审题避坑与答题规范红线手册.md) 考场答题规范红线 | ⚔️ 案例分析 63+ 分破局 |
 
 ---
 
