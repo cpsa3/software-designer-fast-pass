@@ -73,7 +73,7 @@ flowchart TD
     classDef hub fill:#0D9488,stroke:#115E59,stroke-width:2px,color:#fff
     classDef base fill:#EEF2FF,stroke:#4F46E5,stroke-width:1.5px,color:#312E81
     classDef exam fill:#FEF3C7,stroke:#D97706,stroke-width:1.5px,color:#92400E
-    classDef vault fill:#FEE2E2,stroke:#DC2676,stroke-width:1.5px,color:#991B1B
+    classDef vault fill:#FEE2E2,stroke:#DC2706,stroke-width:1.5px,color:#991B1B
 
     Root["🚀 软件设计师数字化备考引擎<br>(全套通关体系)"]:::root
     Map["🗺️ 00-全局知识检索地图.md<br>全库中央路由索引 · Ctrl+F 秒级直达各考点"]:::hub
@@ -94,7 +94,7 @@ flowchart TD
     end
 
     subgraph G3["🎯 第三兵团：弱点歼灭与碎片记忆"]
-        M5["05-error-vault/<br>错题透析全景库 (267 道翻车题)"]:::vault
+        M5["05-error-vault/<br>错题透析全景库 (270 道翻车题)"]:::vault
         M6["06-study-notes/<br>全科考点闪卡库 (Anki 随身秒杀)"]:::vault
         M5 --> M6
     end
@@ -114,7 +114,7 @@ flowchart TD
 | 🔬 **底层机理** | **07-topic-mastery/** | 23 篇底层机制长文专著攻坚难点 | 击穿主定理、银行家算法、Armstrong、DFD补流 | [👉 进入专著](./07-topic-mastery/) |
 | ⚔️ **大题实战** | **03-case-studies/** | 下午五大案例大题工程化破题 | DFD/ER/UML/算法/Java流水线与真题复盘报告 | [👉 进入实战](./03-case-studies/) |
 | ⚡ **冲刺绝杀** | **04-cheatsheets/** | 考前决胜一站式高密度武器库 | 上下午 15 年真题全景绝杀双壁、50 口诀、70 闪卡 | [👉 进入绝杀](./04-cheatsheets/) |
-| 🎯 **弱点歼灭** | **05-error-vault/** | 闭环错题分析与命题人挖坑逻辑回溯 | 267 道真题四步透析、薄弱点画像、反向排雷 | [👉 进入错题](./05-error-vault/) |
+| 🎯 **弱点歼灭** | **05-error-vault/** | 闭环错题分析与命题人挖坑逻辑回溯 | 270 道真题四步透析、薄弱点画像、反向排雷 | [👉 进入错题](./05-error-vault/) |
 | 🎴 **碎片刷题** | **06-study-notes/** | 记忆间隔复习与移动端随身自测 | 10 科标准 Anki 级高频考点闪卡合集 | [👉 进入闪卡](./06-study-notes/) |
 
 ---
