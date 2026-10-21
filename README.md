@@ -69,33 +69,33 @@
 
 ```mermaid
 flowchart TD
-    classDef root fill:#4F46E5,stroke:#312E81,stroke-width:2px,color:#fff;
-    classDef hub fill:#0D9488,stroke:#115E59,stroke-width:2px,color:#fff;
-    classDef base fill:#EEF2FF,stroke:#4F46E5,stroke-width:1.5px,color:#312E81;
-    classDef exam fill:#FEF3C7,stroke:#D97706,stroke-width:1.5px,color:#92400E;
-    classDef vault fill:#FEE2E2,stroke:#DC2626,stroke-width:1.5px,color:#991B1B;
+    classDef root fill:#4F46E5,stroke:#312E81,stroke-width:2px,color:#fff
+    classDef hub fill:#0D9488,stroke:#115E59,stroke-width:2px,color:#fff
+    classDef base fill:#EEF2FF,stroke:#4F46E5,stroke-width:1.5px,color:#312E81
+    classDef exam fill:#FEF3C7,stroke:#D97706,stroke-width:1.5px,color:#92400E
+    classDef vault fill:#FEE2E2,stroke:#DC2626,stroke-width:1.5px,color:#991B1B
 
-    Root["<b>⚡ 软件设计师数字化备考引擎</b><br>(全套通关体系)"]:::root
-    Map["<b>🗺️ 00-全局知识检索地图.md</b><br>全库中央路由索引 · Ctrl+F 秒级直达各考点"]:::hub
+    Root["🚀 软件设计师数字化备考引擎<br>(全套通关体系)"]:::root
+    Map["🗺️ 00-全局知识检索地图.md<br>全库中央路由索引 · Ctrl+F 秒级直达各考点"]:::hub
 
     Root --> Map
 
-    subgraph G1 ["<b>📚 第一兵团：体系建构与底层原理</b>"]
-        M1["<b>01-fast-pass/</b><br>全科 15 讲教材速记 (80/20 剪枝)"]:::base
-        M2["<b>02-visual-diagrams/</b><br>空间视觉图谱 (算法/UML/设计模式)"]:::base
-        M7["<b>07-topic-mastery/</b><br>底层机制专著 (23 篇深度解剖)"]:::base
+    subgraph G1["📚 第一兵团：体系建构与底层原理"]
+        M1["01-fast-pass/<br>全科 15 讲教材速记 (80/20 剪枝)"]:::base
+        M2["02-visual-diagrams/<br>空间视觉图谱 (算法/UML/设计模式)"]:::base
+        M7["07-topic-mastery/<br>底层机制专著 (23 篇深度解剖)"]:::base
         M1 --> M2 --> M7
     end
 
-    subgraph G2 ["<b>⚔️ 第二兵团：真题实战与冲刺绝杀</b>"]
-        M3["<b>03-case-studies/</b><br>下午大题流水线与真题估分复盘"]:::exam
-        M4["<b>04-cheatsheets/</b><br>考前冲刺绝杀武器库 (双璧+口诀+闪卡)"]:::exam
+    subgraph G2["⚔️ 第二兵团：真题实战与冲刺绝杀"]
+        M3["03-case-studies/<br>下午大题流水线与真题估分复盘"]:::exam
+        M4["04-cheatsheets/<br>考前冲刺绝杀武器库 (双璧+口诀+闪卡)"]:::exam
         M3 --> M4
     end
 
-    subgraph G3 ["<b>🎯 第三兵团：弱点歼灭与碎片记忆</b>"]
-        M5["<b>05-error-vault/</b><br>错题透析全景库 (212 道翻车题)"]:::vault
-        M6["<b>06-study-notes/</b><br>全科考点闪卡库 (Anki 随身秒杀)"]:::vault
+    subgraph G3["🎯 第三兵团：弱点歼灭与碎片记忆"]
+        M5["05-error-vault/<br>错题透析全景库 (212 道翻车题)"]:::vault
+        M6["06-study-notes/<br>全科考点闪卡库 (Anki 随身秒杀)"]:::vault
         M5 --> M6
     end
 
