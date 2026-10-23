@@ -11,6 +11,7 @@
 import json
 import re
 import sys
+import unicodedata
 from collections import Counter, defaultdict
 from pathlib import Path
 
@@ -72,6 +73,27 @@ def short(text: str, n: int) -> str:
     return text if len(text) <= n else text[: n - 1] + "…"
 
 
+def slugify_heading(raw_heading: str) -> str:
+    """与 VS Code 内置 Markdown 扩展 1:1 严格对齐的标题 Slug 转换算法。
+    
+    规则：
+      1. 小写化、去除首尾空格；
+      2. 剔除 Emoji、标点符号、全角符号、带圈数字（\u2460-\u24ff）；
+      3. 保留字母、数字、中文、下划线与连字符；
+      4. 将空白字符映射为连字符 '-'。
+    """
+    s = raw_heading.strip().lower()
+    res = []
+    for ch in s:
+        if "\u2460" <= ch <= "\u24ff":
+            continue
+        cat = unicodedata.category(ch)
+        if ch in ("-", "_") or ch.isalnum() or ch.isspace() or (not cat.startswith("P") and not cat.startswith("S") and not cat.startswith("C")):
+            res.append(ch)
+    cleaned = "".join(res)
+    return re.sub(r"\s", "-", cleaned)
+
+
 def load_cards():
     cards = []
     for ln, line in enumerate(CARDS.read_text(encoding="utf-8").splitlines(), 1):
@@ -79,6 +101,7 @@ def load_cards():
         if not m:
             continue
         title = m.group("title").strip()
+        heading_text = line.replace("### ", "").strip()
         cards.append({
             "id": int(m.group("id")),
             "line": ln,
@@ -86,6 +109,8 @@ def load_cards():
             "round": parse_round(title),
             "title": clean_title(title),
             "raw_title": title,
+            "heading": heading_text,
+            "slug": slugify_heading(heading_text),
             "module": classify(title),
         })
     return cards
@@ -113,7 +138,7 @@ def star_status(c, confirmed):
 
 
 def link(c):
-    return f"[👉 #{c['id']} 原题]({CARD_FILE_NAME}#card-{c['id']})"
+    return f"[👉 #{c['id']} 原题]({CARD_FILE_NAME}#{c['slug']})"
 
 
 def health(rate):
@@ -134,7 +159,7 @@ def build_dashboard(cards, confirmed):
         rep = [c for c in cs if c["round"] >= 2]
         rate = len(rep) / len(cs) if cs else 0
         top = sorted(rep, key=lambda c: (-c["round"], c["id"]))[:3]
-        top_txt = "；".join(f"[#{c['id']}]({CARD_FILE_NAME}#card-{c['id']}) {short(re.split(r'[（(]', c['title'].split('：')[-1])[0] or c['title'], 14)}" for c in top) or "—"
+        top_txt = "；".join(f"[#{c['id']}]({CARD_FILE_NAME}#{c['slug']}) {short(re.split(r'[（(]', c['title'].split('：')[-1])[0] or c['title'], 14)}" for c in top) or "—"
         rows.append((rate, code, name, pts, len(cs), sum(1 for c in cs if c["star"]), len(rep), top_txt))
     total = len(cards)
     rep_total = sum(1 for c in cards if c["round"] >= 2)
