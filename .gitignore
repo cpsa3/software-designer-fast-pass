@@ -3,3 +3,6 @@
 thumbs.db
 /.idea/
 *.pdf
+!/08-reference-materials/
+!/08-reference-materials/README.md
+/08-reference-materials/*.pdf
