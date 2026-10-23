@@ -113,7 +113,7 @@ def star_status(c, confirmed):
 
 
 def link(c):
-    return f"[L{c['line']}]({CARD_FILE_NAME}#L{c['line']})"
+    return f"[👉 #{c['id']} 原题]({CARD_FILE_NAME}#card-{c['id']})"
 
 
 def health(rate):
@@ -134,7 +134,7 @@ def build_dashboard(cards, confirmed):
         rep = [c for c in cs if c["round"] >= 2]
         rate = len(rep) / len(cs) if cs else 0
         top = sorted(rep, key=lambda c: (-c["round"], c["id"]))[:3]
-        top_txt = "；".join(f"#{c['id']} {short(re.split(r'[（(]', c['title'].split('：')[-1])[0] or c['title'], 14)}" for c in top) or "—"
+        top_txt = "；".join(f"[#{c['id']}]({CARD_FILE_NAME}#card-{c['id']}) {short(re.split(r'[（(]', c['title'].split('：')[-1])[0] or c['title'], 14)}" for c in top) or "—"
         rows.append((rate, code, name, pts, len(cs), sum(1 for c in cs if c["star"]), len(rep), top_txt))
     total = len(cards)
     rep_total = sum(1 for c in cards if c["round"] >= 2)
