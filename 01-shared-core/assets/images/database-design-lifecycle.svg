@@ -1,0 +1,216 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 620" width="100%" height="100%" style="background:#ffffff; border-radius:12px; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#f8fafc"/>
+    </linearGradient>
+    <linearGradient id="headerGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#1e293b"/>
+      <stop offset="100%" stop-color="#334155"/>
+    </linearGradient>
+    
+    <!-- 4个阶段的主题色渐变 -->
+    <linearGradient id="stage1Grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0284c7"/>
+      <stop offset="100%" stop-color="#0369a1"/>
+    </linearGradient>
+    <linearGradient id="stage2Grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#8b5cf6"/>
+      <stop offset="100%" stop-color="#7c3aed"/>
+    </linearGradient>
+    <linearGradient id="stage3Grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#10b981"/>
+      <stop offset="100%" stop-color="#059669"/>
+    </linearGradient>
+    <linearGradient id="stage4Grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#f59e0b"/>
+      <stop offset="100%" stop-color="#d97706"/>
+    </linearGradient>
+    
+    <filter id="cardShadow" x="-5%" y="-5%" width="110%" height="115%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#0f172a" flood-opacity="0.07"/>
+    </filter>
+    <marker id="stageArrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#64748b"/>
+    </marker>
+  </defs>
+
+  <!-- 背景底板 -->
+  <rect x="2" y="2" width="996" height="616" rx="12" fill="url(#bgGrad)" stroke="#e2e8f0" stroke-width="2"/>
+
+  <!-- 顶部标题区 -->
+  <g transform="translate(35, 24)">
+    <rect x="0" y="0" width="5" height="34" rx="2.5" fill="#4f46e5"/>
+    <text x="18" y="22" font-size="20" font-weight="700" fill="#0f172a" letter-spacing="0.5">数据库设计全生命周期与阶段产出硬核映射全景图</text>
+    <text x="18" y="44" font-size="13" fill="#64748b">从业务混沌现实到磁盘物理介质落地的四大核心跃迁（软考第 6 章核心必考考点）</text>
+  </g>
+
+  <!-- 4 个阶段纵向卡片 (并排 4 列，每列宽 215px，间距 16px) -->
+  <!-- 列 1：需求分析 -->
+  <g transform="translate(35, 85)" filter="url(#cardShadow)">
+    <rect width="215" height="385" rx="8" fill="#ffffff" stroke="#bae6fd" stroke-width="1.5"/>
+    <rect width="215" height="32" rx="8" fill="url(#stage1Grad)"/>
+    <path d="M 0 24 Q 0 32 8 32 L 207 32 Q 215 32 215 24 L 215 32 L 0 32 Z" fill="#0284c7"/>
+    <text x="12" y="21" font-size="13" font-weight="700" fill="#ffffff">阶段 1：需求分析</text>
+    <text x="150" y="21" font-size="11" fill="#e0f2fe">现实世界</text>
+
+    <!-- 核心定位 -->
+    <rect x="10" y="42" width="195" height="48" rx="5" fill="#f0f9ff" stroke="#e0f2fe"/>
+    <text x="18" y="60" font-size="11" font-weight="700" fill="#0369a1">🎯 核心使命：搞清做什么</text>
+    <text x="18" y="78" font-size="10" fill="#0c4a6e">调查用户业务需求，理清数据流</text>
+
+    <!-- 关键活动 -->
+    <text x="12" y="110" font-size="11" font-weight="700" fill="#334155">🛠️ 核心活动：</text>
+    <text x="12" y="128" font-size="10.5" fill="#475569">• 自顶向下梳理业务流水账</text>
+    <text x="12" y="146" font-size="10.5" fill="#475569">• 明确数据输入/处理/输出</text>
+    <text x="12" y="164" font-size="10.5" fill="#475569">• 编写数据字典条目</text>
+
+    <!-- 核心产物 -->
+    <rect x="10" y="180" width="195" height="120" rx="6" fill="#f8fafc" stroke="#cbd5e1" stroke-dasharray="3 3"/>
+    <text x="18" y="200" font-size="11" font-weight="700" fill="#0f172a">📦 考场硬核产出物：</text>
+    <text x="18" y="222" font-size="11" font-weight="700" fill="#0284c7">1. 数据流图 (DFD)</text>
+    <text x="18" y="242" font-size="11" font-weight="700" fill="#0284c7">2. 数据字典 (DD)</text>
+    <text x="18" y="262" font-size="11" font-weight="700" fill="#0284c7">3. 用户需求说明书</text>
+    <text x="18" y="285" font-size="10" fill="#64748b">（包含数据量、处理频率要求）</text>
+
+    <!-- 独立性属性 -->
+    <rect x="10" y="312" width="195" height="60" rx="5" fill="#f1f5f9"/>
+    <text x="18" y="332" font-size="10.5" font-weight="700" fill="#475569">⚖️ 技术绑定性：</text>
+    <text x="18" y="352" font-size="10" fill="#64748b">• 纯业务需求描述</text>
+    <text x="18" y="367" font-size="10" fill="#64748b">• 不涉及任何软硬件模型</text>
+  </g>
+
+  <!-- 阶段 1 -> 阶段 2 箭头 -->
+  <line x1="254" y1="230" x2="267" y2="230" stroke="#94a3b8" stroke-width="2" marker-end="url(#stageArrow)"/>
+
+  <!-- 列 2：概念结构设计 -->
+  <g transform="translate(270, 85)" filter="url(#cardShadow)">
+    <rect width="215" height="385" rx="8" fill="#ffffff" stroke="#ddd6fe" stroke-width="1.5"/>
+    <rect width="215" height="32" rx="8" fill="url(#stage2Grad)"/>
+    <path d="M 0 24 Q 0 32 8 32 L 207 32 Q 215 32 215 24 L 215 32 L 0 32 Z" fill="#8b5cf6"/>
+    <text x="12" y="21" font-size="13" font-weight="700" fill="#ffffff">阶段 2：概念结构设计</text>
+    <text x="150" y="21" font-size="11" fill="#ede9fe">信息世界</text>
+
+    <!-- 核心定位 -->
+    <rect x="10" y="42" width="195" height="48" rx="5" fill="#f5f3ff" stroke="#ede9fe"/>
+    <text x="18" y="60" font-size="11" font-weight="700" fill="#6d28d9">🎯 核心使命：抽象现实模型</text>
+    <text x="18" y="78" font-size="10" fill="#5b21b6">建立全局概念模式，跨越系统边界</text>
+
+    <!-- 关键活动 -->
+    <text x="12" y="110" font-size="11" font-weight="700" fill="#334155">🛠️ 核心活动：</text>
+    <text x="12" y="128" font-size="10.5" fill="#475569">• 识别实体、属性、联系</text>
+    <text x="12" y="146" font-size="10.5" fill="#475569">• 设计局部分 E-R 图</text>
+    <text x="12" y="164" font-size="10.5" fill="#475569">• 视图集成（消解三冲突）</text>
+
+    <!-- 核心产物 -->
+    <rect x="10" y="180" width="195" height="120" rx="6" fill="#f8fafc" stroke="#cbd5e1" stroke-dasharray="3 3"/>
+    <text x="18" y="200" font-size="11" font-weight="700" fill="#0f172a">📦 考场硬核产出物：</text>
+    <text x="18" y="222" font-size="12" font-weight="700" fill="#7c3aed">★ 全局 E-R 图 (概念模型)</text>
+    <text x="18" y="244" font-size="10.5" fill="#475569">• 实体/属性/联系三要素图纸</text>
+    <text x="18" y="262" font-size="10.5" fill="#475569">• 包含 1:1, 1:n, m:n 基数约束</text>
+    <text x="18" y="285" font-size="10" fill="#64748b">（原题 112 第 1 空必杀考点！）</text>
+
+    <!-- 独立性属性 -->
+    <rect x="10" y="312" width="195" height="60" rx="5" fill="#f3e8ff"/>
+    <text x="18" y="332" font-size="10.5" font-weight="700" fill="#6b21a8">⚖️ 技术绑定性（黄金常考）：</text>
+    <text x="18" y="352" font-size="10" font-weight="700" fill="#7e22ce">• 独立于具体计算机软硬件！</text>
+    <text x="18" y="367" font-size="10" font-weight="700" fill="#7e22ce">• 独立于任何具体 DBMS！</text>
+  </g>
+
+  <!-- 阶段 2 -> 阶段 3 箭头 -->
+  <line x1="489" y1="230" x2="502" y2="230" stroke="#94a3b8" stroke-width="2" marker-end="url(#stageArrow)"/>
+
+  <!-- 列 3：逻辑结构设计 -->
+  <g transform="translate(505, 85)" filter="url(#cardShadow)">
+    <rect width="215" height="385" rx="8" fill="#ffffff" stroke="#a7f3d0" stroke-width="1.5"/>
+    <rect width="215" height="32" rx="8" fill="url(#stage3Grad)"/>
+    <path d="M 0 24 Q 0 32 8 32 L 207 32 Q 215 32 215 24 L 215 32 L 0 32 Z" fill="#10b981"/>
+    <text x="12" y="21" font-size="13" font-weight="700" fill="#ffffff">阶段 3：逻辑结构设计</text>
+    <text x="150" y="21" font-size="11" fill="#d1fae5">逻辑世界</text>
+
+    <!-- 核心定位 -->
+    <rect x="10" y="42" width="195" height="48" rx="5" fill="#ecfdf5" stroke="#d1fae5"/>
+    <text x="18" y="60" font-size="11" font-weight="700" fill="#047857">🎯 核心使命：转换为数据模型</text>
+    <text x="18" y="78" font-size="10" fill="#065f46">将概念模型映射到具体模型并规范化</text>
+
+    <!-- 关键活动 -->
+    <text x="12" y="110" font-size="11" font-weight="700" fill="#334155">🛠️ 核心活动：</text>
+    <text x="12" y="128" font-size="10.5" fill="#475569">• E-R 图转关系模式规则</text>
+    <text x="12" y="146" font-size="10.5" fill="#475569">• 规范化理论（脱水至 3NF/BCNF）</text>
+    <text x="12" y="164" font-size="10.5" fill="#475569">• 模式优化（水平/垂直分解）</text>
+
+    <!-- 核心产物 -->
+    <rect x="10" y="180" width="195" height="120" rx="6" fill="#f8fafc" stroke="#cbd5e1" stroke-dasharray="3 3"/>
+    <text x="18" y="200" font-size="11" font-weight="700" fill="#0f172a">📦 考场硬核产出物：</text>
+    <text x="18" y="222" font-size="12" font-weight="700" fill="#059669">★ 关系模式集（关系表模式）</text>
+    <text x="18" y="244" font-size="10.5" fill="#475569">• 属性列表、主键/外键定义</text>
+    <text x="18" y="262" font-size="10.5" fill="#475569">• 用户外模式（视图定义）</text>
+    <text x="18" y="285" font-size="10" fill="#64748b">（原题 112 第 2 空必杀考点！）</text>
+
+    <!-- 独立性属性 -->
+    <rect x="10" y="312" width="195" height="60" rx="5" fill="#ecfdf5"/>
+    <text x="18" y="332" font-size="10.5" font-weight="700" fill="#065f46">⚖️ 技术绑定性（分界水岭）：</text>
+    <text x="18" y="352" font-size="10" font-weight="700" fill="#047857">• 依赖于特定数据模型（关系模型）</text>
+    <text x="18" y="367" font-size="10" fill="#475569">• 但仍独立于底层物理存储与硬件！</text>
+  </g>
+
+  <!-- 阶段 3 -> 阶段 4 箭头 -->
+  <line x1="724" y1="230" x2="737" y2="230" stroke="#94a3b8" stroke-width="2" marker-end="url(#stageArrow)"/>
+
+  <!-- 列 4：物理结构设计 -->
+  <g transform="translate(740, 85)" filter="url(#cardShadow)">
+    <rect width="215" height="385" rx="8" fill="#ffffff" stroke="#fde68a" stroke-width="1.5"/>
+    <rect width="215" height="32" rx="8" fill="url(#stage4Grad)"/>
+    <path d="M 0 24 Q 0 32 8 32 L 207 32 Q 215 32 215 24 L 215 32 L 0 32 Z" fill="#f59e0b"/>
+    <text x="12" y="21" font-size="13" font-weight="700" fill="#ffffff">阶段 4：物理结构设计</text>
+    <text x="150" y="21" font-size="11" fill="#fef3c7">物理世界</text>
+
+    <!-- 核心定位 -->
+    <rect x="10" y="42" width="195" height="48" rx="5" fill="#fffbeb" stroke="#fef3c7"/>
+    <text x="18" y="60" font-size="11" font-weight="700" fill="#b45309">🎯 核心使命：落地磁盘介质</text>
+    <text x="18" y="78" font-size="10" fill="#92400e">确定底层存储结构、索引与存取路径</text>
+
+    <!-- 关键活动 -->
+    <text x="12" y="110" font-size="11" font-weight="700" fill="#334155">🛠️ 核心活动：</text>
+    <text x="12" y="128" font-size="10.5" fill="#475569">• 确定存储结构（聚簇/行存）</text>
+    <text x="12" y="146" font-size="10.5" fill="#475569">• 建立存取路径（B+树/Hash索引）</text>
+    <text x="12" y="164" font-size="10.5" fill="#475569">• 评估物理 I/O 与存储空间分配</text>
+
+    <!-- 核心产物 -->
+    <rect x="10" y="180" width="195" height="120" rx="6" fill="#f8fafc" stroke="#cbd5e1" stroke-dasharray="3 3"/>
+    <text x="18" y="200" font-size="11" font-weight="700" fill="#0f172a">📦 考场硬核产出物：</text>
+    <text x="18" y="222" font-size="12" font-weight="700" fill="#d97706">★ 物理存储模式与存取方法</text>
+    <text x="18" y="244" font-size="10.5" fill="#475569">• 索引结构（B+树/位图/Hash）</text>
+    <text x="18" y="262" font-size="10.5" fill="#475569">• 数据存放位置、块大小、分区</text>
+    <text x="18" y="285" font-size="10" fill="#64748b">（原题 112 第 3 空必杀考点！）</text>
+
+    <!-- 独立性属性 -->
+    <rect x="10" y="312" width="195" height="60" rx="5" fill="#fef9c3"/>
+    <text x="18" y="332" font-size="10.5" font-weight="700" fill="#854d0e">⚖️ 技术绑定性（强耦合）：</text>
+    <text x="18" y="352" font-size="10" font-weight="700" fill="#a16207">• 强依赖于特定计算机硬件！</text>
+    <text x="18" y="367" font-size="10" font-weight="700" fill="#a16207">• 强依赖于具体 DBMS 引擎特性！</text>
+  </g>
+
+  <!-- 底部横贯底板：考场避坑心法与三级模式映像对照 -->
+  <g transform="translate(35, 485)" filter="url(#cardShadow)">
+    <rect width="920" height="110" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+    <rect width="920" height="26" rx="8" fill="url(#headerGrad)"/>
+    <path d="M 0 18 Q 0 26 8 26 L 912 26 Q 920 26 920 18 L 920 26 L 0 26 Z" fill="#1e293b"/>
+    <text x="16" y="18" font-size="12" font-weight="700" fill="#ffffff">🔥 软考高频连环钓鱼陷阱防御墙（三大辨析与秒杀法则）</text>
+
+    <g transform="translate(20, 38)">
+      <!-- 陷阱 1 -->
+      <g transform="translate(0, 0)">
+        <text x="0" y="14" font-size="11" font-weight="700" fill="#dc2626">陷阱 1：产出物错位穿凿</text>
+        <text x="0" y="32" font-size="10.5" fill="#334155">出题人常把“E-R图”说成逻辑设计产出，或把“索引设计”归入概念设计。</text>
+        <text x="0" y="48" font-size="10.5" font-weight="700" fill="#0284c7">破局：E-R图是画概念蓝图，关系模式是建逻辑表，索引是物理磁盘路径！</text>
+      </g>
+      <!-- 陷阱 2 -->
+      <g transform="translate(460, 0)">
+        <text x="0" y="14" font-size="11" font-weight="700" fill="#dc2626">陷阱 2：DBMS 软硬件绑定边界</text>
+        <text x="0" y="32" font-size="10.5" fill="#334155">考题常问“哪个阶段与计算机硬件和具体 DBMS 完全无关”？</text>
+        <text x="0" y="48" font-size="10.5" font-weight="700" fill="#7c3aed">破局：概念结构设计完全无关！逻辑设计绑定数据模型，物理设计强绑硬件！</text>
+      </g>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,246 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1020 670" width="100%" height="100%" style="background:#ffffff; border-radius:12px; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'PingFang SC', 'Microsoft YaHei', sans-serif;">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#f8fafc"/>
+    </linearGradient>
+    <linearGradient id="primaryGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#3b82f6"/>
+      <stop offset="100%" stop-color="#1d4ed8"/>
+    </linearGradient>
+    <linearGradient id="case1Grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#8b5cf6"/>
+      <stop offset="100%" stop-color="#6d28d9"/>
+    </linearGradient>
+    <linearGradient id="case2Grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#059669"/>
+      <stop offset="100%" stop-color="#047857"/>
+    </linearGradient>
+    <linearGradient id="case3Grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#d97706"/>
+      <stop offset="100%" stop-color="#b45309"/>
+    </linearGradient>
+    <linearGradient id="footerGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#1e293b"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+    
+    <filter id="shadowSm" x="-5%" y="-5%" width="110%" height="115%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="1.5" stdDeviation="2.5" flood-color="#0f172a" flood-opacity="0.06"/>
+    </filter>
+    <filter id="shadowMd" x="-5%" y="-5%" width="110%" height="115%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#0f172a" flood-opacity="0.08"/>
+    </filter>
+
+    <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#64748b"/>
+    </marker>
+    <marker id="arrowBlue" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#2563eb"/>
+    </marker>
+  </defs>
+
+  <!-- 背景画布底板 -->
+  <rect x="2" y="2" width="1016" height="666" rx="12" fill="url(#bgGrad)" stroke="#e2e8f0" stroke-width="2"/>
+
+  <!-- 顶部标题区 -->
+  <g transform="translate(35, 20)">
+    <rect x="0" y="0" width="6" height="38" rx="3" fill="#2563eb"/>
+    <text x="18" y="24" font-size="20" font-weight="800" fill="#0f172a" letter-spacing="0.5">递归式分治模型与主定理（Master Theorem）底层透析图谱</text>
+    <text x="18" y="44" font-size="13" fill="#64748b">递归树空间展开结构、叶子与非叶子代价拔河模型及 Case 2 对数因子扩展</text>
+  </g>
+
+  <!-- 左侧大卡片：递归树宏观展开与层级代价累加模型 -->
+  <g transform="translate(35, 75)" filter="url(#shadowMd)">
+    <!-- 卡片边框 -->
+    <rect width="590" height="495" rx="10" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+    <rect width="590" height="34" rx="10" fill="#f1f5f9"/>
+    <path d="M 0 24 Q 0 34 10 34 L 580 34 Q 590 34 590 24 L 590 34 L 0 34 Z" fill="#f1f5f9"/>
+    <text x="16" y="22" font-size="13" font-weight="700" fill="#1e293b">🌲 递归树展开拓扑模型：T(n) = a·T(n/b) + f(n)</text>
+    <text x="440" y="22" font-size="11" font-weight="600" fill="#64748b">单层代价汇总</text>
+
+    <!-- 树深度标尺（左侧） -->
+    <line x1="30" y1="65" x2="30" y2="390" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arrow)"/>
+    <text x="24" y="220" font-size="11" font-weight="700" fill="#475569" transform="rotate(-90, 24, 220)" text-anchor="middle">树深度 h = log_b(n)</text>
+
+    <!-- 分隔线与层代价区域底色 -->
+    <line x1="430" y1="34" x2="430" y2="425" stroke="#f1f5f9" stroke-width="2"/>
+
+    <!-- 树节点区连线 -->
+    <!-- Level 0 to Level 1 -->
+    <line x1="230" y1="78" x2="110" y2="140" stroke="#94a3b8" stroke-width="1.5"/>
+    <line x1="230" y1="78" x2="230" y2="140" stroke="#94a3b8" stroke-width="1.5"/>
+    <line x1="230" y1="78" x2="350" y2="140" stroke="#94a3b8" stroke-width="1.5"/>
+
+    <!-- Level 1 to Level 2 -->
+    <line x1="110" y1="165" x2="70" y2="225" stroke="#cbd5e1" stroke-width="1.2"/>
+    <line x1="110" y1="165" x2="140" y2="225" stroke="#cbd5e1" stroke-width="1.2"/>
+    <line x1="230" y1="165" x2="210" y2="225" stroke="#cbd5e1" stroke-width="1.2"/>
+    <line x1="230" y1="165" x2="250" y2="225" stroke="#cbd5e1" stroke-width="1.2"/>
+    <line x1="350" y1="165" x2="320" y2="225" stroke="#cbd5e1" stroke-width="1.2"/>
+    <line x1="350" y1="165" x2="385" y2="225" stroke="#cbd5e1" stroke-width="1.2"/>
+
+    <!-- Level 0 根节点 -->
+    <g transform="translate(185, 52)">
+      <rect width="90" height="32" rx="16" fill="#eff6ff" stroke="#3b82f6" stroke-width="2"/>
+      <text x="45" y="20" font-size="12" font-weight="700" fill="#1d4ed8" text-anchor="middle">f(n) [规模 n]</text>
+    </g>
+    <!-- Level 0 右侧代价 -->
+    <g transform="translate(445, 54)">
+      <rect width="130" height="28" rx="6" fill="#f8fafc" stroke="#e2e8f0"/>
+      <text x="65" y="18" font-size="12" font-weight="700" fill="#0f172a" text-anchor="middle">L0: f(n)</text>
+    </g>
+
+    <!-- Level 1 节点 (a个) -->
+    <g transform="translate(65, 140)">
+      <rect width="85" height="28" rx="14" fill="#f8fafc" stroke="#60a5fa" stroke-width="1.5"/>
+      <text x="42.5" y="18" font-size="11" font-weight="600" fill="#1e40af" text-anchor="middle">f(n/b)</text>
+    </g>
+    <g transform="translate(185, 140)">
+      <rect width="85" height="28" rx="14" fill="#f8fafc" stroke="#60a5fa" stroke-width="1.5"/>
+      <text x="42.5" y="18" font-size="11" font-weight="600" fill="#1e40af" text-anchor="middle">f(n/b)</text>
+    </g>
+    <text x="290" y="157" font-size="14" font-weight="700" fill="#94a3b8">···</text>
+    <g transform="translate(310, 140)">
+      <rect width="85" height="28" rx="14" fill="#f8fafc" stroke="#60a5fa" stroke-width="1.5"/>
+      <text x="42.5" y="18" font-size="11" font-weight="600" fill="#1e40af" text-anchor="middle">f(n/b)</text>
+    </g>
+    <!-- Level 1 说明文字与右侧代价 -->
+    <text x="230" y="183" font-size="10" fill="#64748b" text-anchor="middle">共 a 个分支子问题</text>
+    <g transform="translate(445, 140)">
+      <rect width="130" height="28" rx="6" fill="#f8fafc" stroke="#e2e8f0"/>
+      <text x="65" y="18" font-size="12" font-weight="700" fill="#0f172a" text-anchor="middle">L1: a · f(n/b)</text>
+    </g>
+
+    <!-- Level 2 节点 (a^2 个) -->
+    <g transform="translate(45, 225)"><circle cx="12" cy="12" r="12" fill="#eff6ff" stroke="#93c5fd"/><text x="12" y="16" font-size="9" fill="#1e40af" text-anchor="middle">f(n/b²)</text></g>
+    <g transform="translate(85, 225)"><circle cx="12" cy="12" r="12" fill="#eff6ff" stroke="#93c5fd"/><text x="12" y="16" font-size="9" fill="#1e40af" text-anchor="middle">f(n/b²)</text></g>
+    <g transform="translate(190, 225)"><circle cx="12" cy="12" r="12" fill="#eff6ff" stroke="#93c5fd"/><text x="12" y="16" font-size="9" fill="#1e40af" text-anchor="middle">f(n/b²)</text></g>
+    <g transform="translate(240, 225)"><circle cx="12" cy="12" r="12" fill="#eff6ff" stroke="#93c5fd"/><text x="12" y="16" font-size="9" fill="#1e40af" text-anchor="middle">f(n/b²)</text></g>
+    <g transform="translate(305, 225)"><circle cx="12" cy="12" r="12" fill="#eff6ff" stroke="#93c5fd"/><text x="12" y="16" font-size="9" fill="#1e40af" text-anchor="middle">f(n/b²)</text></g>
+    <g transform="translate(370, 225)"><circle cx="12" cy="12" r="12" fill="#eff6ff" stroke="#93c5fd"/><text x="12" y="16" font-size="9" fill="#1e40af" text-anchor="middle">f(n/b²)</text></g>
+    <!-- Level 2 右侧代价 -->
+    <g transform="translate(445, 223)">
+      <rect width="130" height="28" rx="6" fill="#f8fafc" stroke="#e2e8f0"/>
+      <text x="65" y="18" font-size="12" font-weight="700" fill="#0f172a" text-anchor="middle">L2: a² · f(n/b²)</text>
+    </g>
+
+    <!-- 中间省略流转指示 -->
+    <g transform="translate(230, 275)" fill="#94a3b8">
+      <circle cx="0" cy="0" r="2.5"/>
+      <circle cx="0" cy="8" r="2.5"/>
+      <circle cx="0" cy="16" r="2.5"/>
+    </g>
+    <g transform="translate(510, 275)" fill="#94a3b8">
+      <circle cx="0" cy="0" r="2.5"/>
+      <circle cx="0" cy="8" r="2.5"/>
+      <circle cx="0" cy="16" r="2.5"/>
+    </g>
+
+    <!-- 通用层 Level i -->
+    <text x="230" y="325" font-size="11" font-weight="600" fill="#475569" text-anchor="middle">··· 第 i 层节点总数：a^i 个，每个子规模 n/(b^i) ···</text>
+    <g transform="translate(445, 308)">
+      <rect width="130" height="26" rx="6" fill="#f8fafc" stroke="#e2e8f0"/>
+      <text x="65" y="17" font-size="11" font-weight="600" fill="#475569" text-anchor="middle">Li: a^i · f(n/b^i)</text>
+    </g>
+
+    <line x1="50" y1="345" x2="410" y2="345" stroke="#e2e8f0" stroke-width="1.5" stroke-dasharray="3,3"/>
+
+    <!-- 底层叶子层 (Base Case: 规模降至 1) -->
+    <g transform="translate(50, 360)">
+      <rect width="360" height="38" rx="8" fill="#f5f3ff" stroke="#8b5cf6" stroke-width="1.5"/>
+      <text x="180" y="18" font-size="12" font-weight="800" fill="#6d28d9" text-anchor="middle">🍃 最底层叶子节点（规模减至 1，代价为 Θ(1)）</text>
+      <text x="180" y="32" font-size="10.5" font-weight="700" fill="#7c3aed" text-anchor="middle">总叶子数 = a^(log_b n) = n^(log_b a) 个！</text>
+    </g>
+    <!-- 叶子层右侧代价 -->
+    <g transform="translate(445, 360)">
+      <rect width="130" height="38" rx="6" fill="#f5f3ff" stroke="#8b5cf6" stroke-width="1.5"/>
+      <text x="65" y="17" font-size="11" font-weight="700" fill="#6d28d9" text-anchor="middle">叶子总代价：</text>
+      <text x="65" y="31" font-size="12" font-weight="800" fill="#4c1d95" text-anchor="middle">Θ(n^(log_b a))</text>
+    </g>
+
+    <!-- 递归树底部全局总求和底框 -->
+    <g transform="translate(15, 415)">
+      <rect width="560" height="65" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1"/>
+      <text x="15" y="24" font-size="12" font-weight="800" fill="#0f172a">📐 全局总复杂度由两大部分的累加求和决定：</text>
+      <text x="15" y="48" font-size="13" font-weight="800" fill="#2563eb">T(n) = <tspan fill="#6d28d9">Θ(n^(log_b a)) [叶子工作量]</tspan> + <tspan fill="#059669">∑</tspan><tspan font-size="10" dy="5">i=0</tspan><tspan font-size="10" dy="-10">h-1</tspan><tspan font-size="13" dy="5"> a^i·f(n/b^i) [各层分裂合并代价]</tspan></text>
+    </g>
+  </g>
+
+  <!-- 右侧区域：主定理三大 Case 拔河博弈决策矩阵 -->
+  <g transform="translate(640, 75)">
+    <!-- 卡片总标题 -->
+    <text x="5" y="18" font-size="14" font-weight="800" fill="#0f172a">⚖️ 主定理三大 Case 的本质：拔河博弈 (Tug-of-War)</text>
+    <text x="5" y="36" font-size="11" fill="#64748b">将外层工作量 f(n) 与叶子基准代价 n^(log_b a) 进行阶数较量</text>
+
+    <!-- Case 1: 叶子主导 -->
+    <g transform="translate(0, 48)" filter="url(#shadowSm)">
+      <rect width="345" height="98" rx="8" fill="#ffffff" stroke="#ddd6fe" stroke-width="1.5"/>
+      <rect width="345" height="24" rx="8" fill="url(#case1Grad)"/>
+      <path d="M 0 16 Q 0 24 8 24 L 337 24 Q 345 24 345 16 L 345 24 L 0 24 Z" fill="#6d28d9"/>
+      <text x="12" y="16" font-size="11.5" font-weight="700" fill="#ffffff">Case 1：叶子主导（Bottom-Heavy）</text>
+      
+      <text x="12" y="43" font-size="11" font-weight="700" fill="#4c1d95">条件：f(n) &lt; n^(log_b a)（外层多项式级别小于叶子）</text>
+      <text x="12" y="61" font-size="10.5" fill="#334155">机制：自顶向下每层几何级数暴增，叶子占绝对压倒优势</text>
+      <rect x="12" y="71" width="321" height="20" rx="4" fill="#f5f3ff"/>
+      <text x="20" y="85" font-size="11" font-weight="800" fill="#6d28d9">🎯 结果：T(n) = Θ(n^(log_b a))</text>
+      <text x="210" y="85" font-size="10" fill="#7c3aed">例: 4T(n/2)+n ⇒ Θ(n²)</text>
+    </g>
+
+    <!-- Case 2: 均势主导 + 对数因子扩展 (重点标星) -->
+    <g transform="translate(0, 158)" filter="url(#shadowSm)">
+      <rect width="345" height="154" rx="8" fill="#ffffff" stroke="#a7f3d0" stroke-width="1.5"/>
+      <rect width="345" height="24" rx="8" fill="url(#case2Grad)"/>
+      <path d="M 0 16 Q 0 24 8 24 L 337 24 Q 345 24 345 16 L 345 24 L 0 24 Z" fill="#047857"/>
+      <text x="12" y="16" font-size="11.5" font-weight="700" fill="#ffffff">Case 2：均势主导（Balanced）&amp; 对数扩展</text>
+      
+      <text x="12" y="42" font-size="11" font-weight="700" fill="#065f46">经典条件：f(n) = Θ(n^(log_b a))（外层与叶子同阶）</text>
+      <text x="12" y="58" font-size="10.5" fill="#334155">机制：每层工作量完全相同！总代价 = 单层代价 × 树高</text>
+      <rect x="12" y="65" width="321" height="20" rx="4" fill="#ecfdf5"/>
+      <text x="20" y="79" font-size="11" font-weight="800" fill="#047857">🎯 经典结果：T(n) = Θ(n^(log_b a) · log n)</text>
+      <text x="225" y="79" font-size="10" fill="#059669">如归并: Θ(n log n)</text>
+
+      <!-- Case 2 扩展杀招高亮框 -->
+      <g transform="translate(10, 93)">
+        <rect width="325" height="52" rx="6" fill="#fffbeb" stroke="#fcd34d" stroke-width="1.5"/>
+        <text x="10" y="18" font-size="11" font-weight="800" fill="#b45309">🔥 软考重难点：Case 2 扩展定理（多带 log^k n）</text>
+        <text x="10" y="33" font-size="10.5" fill="#78350f">当 f(n) = Θ(n^(log_b a) · <tspan font-weight="700" fill="#b45309">log^k n</tspan>) 时（k ≥ 0）：</text>
+        <text x="10" y="46" font-size="11" font-weight="800" fill="#b45309">👉 对数直接加 1：T(n) = Θ(n^(log_b a) · <tspan font-weight="800" fill="#dc2626">log^(k+1) n</tspan>)</text>
+      </g>
+    </g>
+
+    <!-- Case 3: 根部主导 -->
+    <g transform="translate(0, 324)" filter="url(#shadowSm)">
+      <rect width="345" height="98" rx="8" fill="#ffffff" stroke="#fed7aa" stroke-width="1.5"/>
+      <rect width="345" height="24" rx="8" fill="url(#case3Grad)"/>
+      <path d="M 0 16 Q 0 24 8 24 L 337 24 Q 345 24 345 16 L 345 24 L 0 24 Z" fill="#b45309"/>
+      <text x="12" y="16" font-size="11.5" font-weight="700" fill="#ffffff">Case 3：根节点主导（Top-Heavy）</text>
+      
+      <text x="12" y="43" font-size="11" font-weight="700" fill="#9a3412">条件：f(n) &gt; n^(log_b a)（外层多项式级别大于叶子）</text>
+      <text x="12" y="61" font-size="10.5" fill="#334155">机制：顶层根工作量占绝对压倒，后续层级几何衰减</text>
+      <rect x="12" y="71" width="321" height="20" rx="4" fill="#fff7ed"/>
+      <text x="20" y="85" font-size="11" font-weight="800" fill="#c2410c">🎯 结果：T(n) = Θ(f(n))</text>
+      <text x="195" y="85" font-size="10" fill="#ea580c">例: 2T(n/2)+n² ⇒ Θ(n²)</text>
+    </g>
+
+    <!-- 底部状态指示 -->
+    <g transform="translate(0, 432)">
+      <rect width="345" height="58" rx="6" fill="#f8fafc" stroke="#e2e8f0"/>
+      <text x="12" y="20" font-size="11" font-weight="700" fill="#334155">💡 极速判断核心基准（临界指数）：</text>
+      <text x="12" y="38" font-size="12" font-weight="800" fill="#0f172a">临界基准 = n^(log_b a) ；算 a 与 b 先求叶子！</text>
+      <text x="12" y="51" font-size="10" fill="#64748b">谁大跟谁走；平局乘 log；平局若带 log，指数加 1！</text>
+    </g>
+  </g>
+
+  <!-- 底部全屏通栏：考场极速秒杀心法与错题 128 映射 -->
+  <g transform="translate(35, 580)">
+    <rect width="950" height="70" rx="8" fill="url(#footerGrad)"/>
+    <g transform="translate(20, 16)">
+      <rect width="70" height="20" rx="4" fill="#f59e0b"/>
+      <text x="35" y="14" font-size="10.5" font-weight="800" fill="#ffffff" text-anchor="middle">考场速杀令</text>
+      <text x="85" y="15" font-size="12" font-weight="700" fill="#f8fafc">一算叶子 n^(log_b a)，二比外层 f(n)：多项式大取大者，平局各层均摊乘 log；</text>
+      <text x="85" y="36" font-size="12" font-weight="700" fill="#fcd34d">🔥 遇上 f(n) = n·log n（平手且带对数）：对数指数直接加 1，瞬间升天变 Θ(n log² n)！</text>
+      <text x="730" y="36" font-size="11" font-weight="600" fill="#94a3b8">【错题 128 题眼 15 秒秒杀】</text>
+    </g>
+  </g>
+</svg>
