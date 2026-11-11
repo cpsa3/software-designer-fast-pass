@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """
 Quiz Studio Generator for Ruankao Error Vault
-Generates a 100% self-contained, offline single-file HTML quiz practice app.
+Generates a 100% self-contained, offline single-file HTML quiz practice app
+with beautiful Markdown & LaTeX Math rendering, table support, and callout styling.
 """
 
 import json
@@ -57,6 +58,18 @@ def classify(title: str) -> tuple[str, str]:
             name = next(n for c, n in MODULES if c == code)
             return code, name
     return "07", "数据结构与算法基础"
+
+
+def clean_section_text(s: str) -> str:
+    # 1. Strip residual leading colon or header remnants like "**：\n", "：\n", "* **：\n"
+    s = re.sub(r"^\s*[*_]*[：:]\s*", "", s)
+    # 2. Remove trailing 【关联母本】 and the bullet marker before it
+    s = re.sub(r"\n?\s*[*_\-]*\s*【关联母本】.*", "", s, flags=re.DOTALL)
+    # 3. Strip trailing divider lines like \n---
+    s = re.sub(r"\n---\s*$", "", s)
+    # 4. Strip trailing dangling bullet marker lines like '\n* **' or '\n- ' or '\n*'
+    s = re.sub(r"\n\s*[*_\-]+\s*[*_]*\s*$", "", s)
+    return s.strip()
 
 
 def extract_questions():
@@ -138,12 +151,8 @@ def extract_questions():
             if k not in options:
                 options[k] = f"选项 {k}（参见解析）"
                 
-        # Clean diagnosis and analysis
-        diag_clean = re.sub(r"^[>* ]+", "", diag_chunk, flags=re.MULTILINE).strip()
-        diag_clean = re.sub(r"\n{2,}", "\n", diag_clean)
-        
-        analysis_clean = re.sub(r"^[>* ]+", "", analysis_chunk, flags=re.MULTILINE).strip()
-        analysis_clean = re.sub(r"\n---\s*$", "", analysis_clean).strip()
+        diag_clean = clean_section_text(diag_chunk)
+        analysis_clean = clean_section_text(analysis_chunk)
         
         questions.append({
             "id": cid,
@@ -191,6 +200,9 @@ def generate_html(questions):
       --border: #e2e8f0;
       --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
       --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+      --table-header-bg: #f1f5f9;
+      --table-zebra: #f8fafc;
+      --math-font: "Cambria Math", "Latin Modern Math", "STIX Two Math", "KaTeX_Math", Georgia, serif;
     }}
 
     [data-theme="dark"] {{
@@ -205,6 +217,8 @@ def generate_html(questions):
       --warning-light: #78350f;
       --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.3);
       --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.5);
+      --table-header-bg: #1e293b;
+      --table-zebra: #0f172a;
     }}
 
     * {{ box-sizing: border-box; margin: 0; padding: 0; }}
@@ -489,7 +503,6 @@ def generate_html(questions):
       font-size: 0.95rem;
       line-height: 1.7;
       margin-bottom: 1.5rem;
-      white-space: pre-wrap;
       word-break: break-word;
     }}
 
@@ -554,46 +567,206 @@ def generate_html(questions):
       color: white;
       border-color: var(--danger);
     }}
-    .option-item.show-correct {{
-      border-color: var(--success);
-      background-color: var(--success-light);
-    }}
-    .option-item.show-correct .option-key {{
-      background-color: var(--success);
-      color: white;
-      border-color: var(--success);
-    }}
 
-    /* Explanation Drawer */
+    /* Rich Explanation Drawer */
     .explanation-card {{
-      background-color: var(--bg);
-      border: 1px dashed var(--border);
-      border-radius: 8px;
-      padding: 1rem 1.25rem;
-      margin-top: 1rem;
+      background-color: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.25rem;
+      margin-top: 1.25rem;
       display: none;
+      box-shadow: inset 0 2px 4px 0 rgb(0 0 0 / 0.02);
     }}
     .explanation-card.show {{
       display: block;
       animation: fadeIn 0.2s ease-in;
     }}
-    .exp-section {{
-      margin-bottom: 0.85rem;
-      font-size: 0.9rem;
-      line-height: 1.6;
+
+    /* Diagnosis Dashboard */
+    .diag-dashboard {{
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+      margin-bottom: 1.25rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px dashed var(--border);
     }}
-    .exp-title {{
+    .diag-row {{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }}
+    .diag-badge {{
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.4rem 0.75rem;
+      border-radius: 6px;
+      font-size: 0.875rem;
+      font-weight: 600;
+    }}
+    .diag-badge-correct {{
+      background-color: var(--success-light);
+      color: #065f46;
+      border: 1px solid #a7f3d0;
+    }}
+    .diag-badge-wrong {{
+      background-color: var(--danger-light);
+      color: #991b1b;
+      border: 1px solid #fecaca;
+    }}
+    .diag-rootcause {{
+      background-color: var(--warning-light);
+      border: 1px solid #fde68a;
+      border-left: 4px solid var(--warning);
+      border-radius: 6px;
+      padding: 0.65rem 0.85rem;
+      font-size: 0.875rem;
+      line-height: 1.6;
+      color: var(--text);
+    }}
+    .diag-rootcause-title {{
       font-weight: 700;
-      color: var(--primary);
-      margin-bottom: 0.25rem;
+      color: #92400e;
+      margin-bottom: 0.2rem;
       display: flex;
       align-items: center;
       gap: 0.35rem;
     }}
-    .exp-content {{
-      white-space: pre-wrap;
-      word-break: break-word;
+
+    /* Rich Analysis Content */
+    .analysis-body {{
+      font-size: 0.925rem;
+      line-height: 1.7;
       color: var(--text);
+    }}
+    .analysis-body p {{
+      margin-bottom: 0.75rem;
+    }}
+
+    /* Math Rendering */
+    .math-inline {{
+      font-family: var(--math-font);
+      font-size: 1.05em;
+      padding: 0 0.15rem;
+      color: var(--text);
+      letter-spacing: 0.2px;
+    }}
+    .math-block {{
+      font-family: var(--math-font);
+      font-size: 1.1em;
+      text-align: center;
+      margin: 0.75rem 0;
+      padding: 0.65rem;
+      background-color: var(--bg);
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      overflow-x: auto;
+    }}
+    .frac {{
+      display: inline-flex;
+      flex-direction: column;
+      vertical-align: middle;
+      text-align: center;
+      font-size: 0.9em;
+      padding: 0 0.15rem;
+    }}
+    .frac-num {{ border-bottom: 1px solid currentColor; line-height: 1; padding-bottom: 1px; }}
+    .frac-den {{ line-height: 1; padding-top: 1px; }}
+
+    /* Tables */
+    .table-wrap {{
+      width: 100%;
+      overflow-x: auto;
+      margin: 1rem 0;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+    }}
+    .quiz-table {{
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.875rem;
+      text-align: left;
+    }}
+    .quiz-table th {{
+      background-color: var(--table-header-bg);
+      padding: 0.65rem 0.85rem;
+      font-weight: 700;
+      border-bottom: 2px solid var(--border);
+      color: var(--text);
+      white-space: nowrap;
+    }}
+    .quiz-table td {{
+      padding: 0.6rem 0.85rem;
+      border-bottom: 1px solid var(--border);
+      line-height: 1.5;
+    }}
+    .quiz-table tr:nth-child(even) {{
+      background-color: var(--table-zebra);
+    }}
+    .quiz-table tr:last-child td {{
+      border-bottom: none;
+    }}
+
+    /* Callout Alert Boxes */
+    .callout {{
+      border-radius: 8px;
+      padding: 0.75rem 1rem;
+      margin: 0.85rem 0;
+      font-size: 0.875rem;
+      line-height: 1.6;
+    }}
+    .callout-header {{
+      font-weight: 700;
+      margin-bottom: 0.35rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }}
+    .callout-gold {{
+      background-color: var(--warning-light);
+      border: 1px solid #fde68a;
+      border-left: 4px solid var(--warning);
+      color: var(--text);
+    }}
+    .callout-gold .callout-header {{
+      color: #b45309;
+    }}
+    .callout-rose {{
+      background-color: var(--danger-light);
+      border: 1px solid #fecaca;
+      border-left: 4px solid var(--danger);
+      color: var(--text);
+    }}
+    .callout-rose .callout-header {{
+      color: #b91c1c;
+    }}
+    .callout-indigo {{
+      background-color: var(--primary-light);
+      border: 1px solid #c7d2fe;
+      border-left: 4px solid var(--primary);
+      color: var(--text);
+    }}
+    .callout-indigo .callout-header {{
+      color: #3730a3;
+    }}
+
+    .quiz-ul {{
+      padding-left: 1.35rem;
+      margin-bottom: 0.75rem;
+    }}
+    .quiz-li {{
+      margin-bottom: 0.35rem;
+      line-height: 1.6;
+    }}
+    .kbd-inline {{
+      padding: 0.15rem 0.35rem;
+      border-radius: 4px;
+      background-color: var(--bg);
+      border: 1px solid var(--border);
+      font-size: 0.85em;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
     }}
 
     /* Bottom Bar */
@@ -716,6 +889,7 @@ def generate_html(questions):
       .search-box {{ max-width: 100%; }}
       .nav-bar {{ flex-direction: column; align-items: stretch; }}
       .nav-actions {{ justify-content: space-between; }}
+      .diag-row {{ flex-direction: column; }}
     }}
   </style>
 </head>
@@ -790,16 +964,10 @@ def generate_html(questions):
         <!-- Rendered by JS -->
       </div>
 
-      <!-- Analysis Drawer -->
+      <!-- Rich Explanation Drawer -->
       <div class="explanation-card" id="exp-drawer">
-        <div class="exp-section">
-          <div class="exp-title">🎯 权威标准答案与作答诊断</div>
-          <div class="exp-content" id="exp-diag"></div>
-        </div>
-        <div class="exp-section">
-          <div class="exp-title">⚡ 15秒秒杀与底层推导</div>
-          <div class="exp-content" id="exp-analysis"></div>
-        </div>
+        <div class="diag-dashboard" id="exp-diag-box"></div>
+        <div class="analysis-body" id="exp-analysis-box"></div>
       </div>
 
       <!-- Nav Bar -->
@@ -808,7 +976,7 @@ def generate_html(questions):
           按 <span class="kbd">A</span> <span class="kbd">B</span> <span class="kbd">C</span> <span class="kbd">D</span> 作答，<span class="kbd">←</span> <span class="kbd">→</span> 切题，<span class="kbd">Space</span> 展开解析
         </div>
         <div class="nav-actions">
-          <button class="btn" id="btn-toggle-exp">💡 解析</button>
+          <button class="btn" id="btn-toggle-exp">💡 查看解析</button>
           <button class="btn" id="btn-prev">⬅ 上一题</button>
           <button class="btn btn-primary" id="btn-next">下一题 ➡</button>
         </div>
@@ -839,6 +1007,196 @@ def generate_html(questions):
     const ALL_QUESTIONS = {questions_json};
   </script>
 
+  <!-- Rich Markdown & Formula Rendering Engine -->
+  <script>
+    const RichRenderer = {{
+      formatMath(mathStr) {{
+        let s = mathStr;
+        const syms = [
+          [/\\\\Theta/g, 'Θ'], [/\\\\alpha/g, 'α'], [/\\\\beta/g, 'β'], [/\\\\gamma/g, 'γ'],
+          [/\\\\delta/g, 'δ'], [/\\\\lambda/g, 'λ'], [/\\\\mu/g, 'μ'], [/\\\\sigma/g, 'σ'],
+          [/\\\\omega/g, 'ω'], [/\\\\pi/g, 'π'],
+          [/\\\\implies/g, ' ⇒ '], [/\\\\to/g, ' → '], [/\\\\times/g, ' × '], [/\\\\div/g, ' ÷ '],
+          [/\\\\le/g, ' ≤ '], [/\\\\ge/g, ' ≥ '], [/\\\\ne/g, ' ≠ '], [/\\\\approx/g, ' ≈ '],
+          [/\\\\in/g, ' ∈ '], [/\\\\notin/g, ' ∉ '], [/\\\\cup/g, ' ∪ '], [/\\\\cap/g, ' ∩ '],
+          [/\\\\cdot/g, ' · '], [/\\\\pm/g, ' ± '], [/\\\\mid/g, ' | ']
+        ];
+        syms.forEach(([re, rep]) => {{ s = s.replace(re, rep); }});
+
+        s = s.replace(/\\\\mathbf\{{([^}}]+)\}}/g, '<strong>$1</strong>');
+        s = s.replace(/\\\\mathit\{{([^}}]+)\}}/g, '<em>$1</em>');
+        s = s.replace(/\\\\text\{{([^}}]+)\}}/g, '$1');
+
+        // Fractions
+        s = s.replace(/\\\\frac\{{([^}}]+)\}}\{{([^}}]+)\}}/g, '<span class="frac"><span class="frac-num">$1</span><span class="frac-den">$2</span></span>');
+
+        // Logarithms
+        s = s.replace(/\\\\log_([a-zA-Z0-9]+)/g, 'log<sub>$1</sub>');
+        s = s.replace(/\\\\log_\{{([^}}]+)\}}/g, 'log<sub>$1</sub>');
+        s = s.replace(/\\\\log/g, 'log');
+
+        // Subscripts & Superscripts
+        s = s.replace(/_\{{([^}}]+)\}}/g, '<sub>$1</sub>');
+        s = s.replace(/_([a-zA-Z0-9])/g, '<sub>$1</sub>');
+        s = s.replace(/\\^\{{([^}}]+)\}}/g, '<sup>$1</sup>');
+        s = s.replace(/\\^([a-zA-Z0-9])/g, '<sup>$1</sup>');
+
+        return '<span class="math-inline">' + s + '</span>';
+      }},
+
+      renderText(raw) {{
+        if (!raw) return '';
+        let text = raw;
+
+        // Block math $$...$$
+        text = text.replace(/\\$\\$([\\s\\S]*?)\\$\\$/g, (m, c) => {{
+          return '<div class="math-block">' + this.formatMath(c.trim()) + '</div>';
+        }});
+
+        // Inline math $...$
+        text = text.replace(/\\$([^$\\n]+?)\\$/g, (m, c) => {{
+          return this.formatMath(c.trim());
+        }});
+
+        // Bold & Code
+        text = text.replace(/\\*\\*([^\\*\\n]+?)\\*\\*/g, '<strong>$1</strong>');
+        text = text.replace(/`([^`\\n]+?)`/g, '<code class="kbd-inline">$1</code>');
+
+        return text;
+      }},
+
+      renderTable(lines) {{
+        if (lines.length < 2) return '';
+        const headerRow = lines[0].split('|').map(c => c.trim()).filter((c, i, a) => i > 0 && i < a.length - 1);
+        const bodyRows = lines.slice(2).map(line => {{
+          return line.split('|').map(c => c.trim()).filter((c, i, a) => i > 0 && i < a.length - 1);
+        }});
+
+        let html = '<div class="table-wrap"><table class="quiz-table"><thead><tr>';
+        headerRow.forEach(h => {{ html += '<th>' + this.renderText(h) + '</th>'; }});
+        html += '</tr></thead><tbody>';
+
+        bodyRows.forEach(row => {{
+          if (row.length === 0) return;
+          html += '<tr>';
+          row.forEach(cell => {{ html += '<td>' + this.renderText(cell) + '</td>'; }});
+          html += '</tr>';
+        }});
+        html += '</tbody></table></div>';
+        return html;
+      }},
+
+      renderMarkdown(md) {{
+        if (!md) return '';
+        const rawLines = md.split('\\n');
+        let out = [];
+        let inTable = false;
+        let tableLines = [];
+        let inList = false;
+
+        const closeList = () => {{
+          if (inList) {{ out.push('</ul>'); inList = false; }}
+        }};
+        const closeTable = () => {{
+          if (inTable) {{ out.push(this.renderTable(tableLines)); inTable = false; tableLines = []; }}
+        }};
+
+        for (let i = 0; i < rawLines.length; i++) {{
+          const line = rawLines[i].trim();
+
+          // Table line
+          if (line.startsWith('|') && line.endsWith('|')) {{
+            closeList();
+            inTable = true;
+            tableLines.push(line);
+            continue;
+          }} else {{
+            closeTable();
+          }}
+
+          if (!line) {{
+            closeList();
+            continue;
+          }}
+
+          // Callout Banners
+          if (line.includes('【考场避坑口诀】') || line.includes('【避坑口诀】')) {{
+            closeList();
+            const content = line.replace(/^.*?【(?:考场)?避坑口诀】[*_\\s]*[：:]\\s*/, '').trim();
+            out.push('<div class="callout callout-gold"><div class="callout-header">🛡️ 考场避坑口诀</div><div class="callout-body">' + this.renderText(content) + '</div></div>');
+            continue;
+          }}
+
+          if (line.includes('【考场避坑决斗速记表】') || line.includes('【决斗速记表】') || line.includes('【速记对比表】')) {{
+            closeList();
+            out.push('<div style="font-weight:700; margin-top:1.25rem; margin-bottom:0.4rem; color:var(--primary); font-size: 0.95rem;">📊 考场决斗速记表：</div>');
+            continue;
+          }}
+
+          // Bullet list items
+          const listMatch = line.match(/^[-*]\\s+(.*)$/);
+          if (listMatch) {{
+            let content = listMatch[1].trim();
+            if (!content || content === '**' || content === '*') continue;
+            if (!inList) {{ out.push('<ul class="quiz-ul">'); inList = true; }}
+            out.push('<li class="quiz-li">' + this.renderText(content) + '</li>');
+            continue;
+          }} else {{
+            closeList();
+          }}
+
+          // Standard paragraph or block math
+          if (line.startsWith('$$') && line.endsWith('$$')) {{
+            out.push('<div class="math-block">' + this.formatMath(line.slice(2, -2).trim()) + '</div>');
+          }} else {{
+            out.push('<p class="quiz-p">' + this.renderText(line) + '</p>');
+          }}
+        }}
+
+        closeList();
+        closeTable();
+        return out.join('');
+      }},
+
+      renderDiagnosis(diagStr) {{
+        if (!diagStr) return '';
+        const parts = diagStr.split(/\\s*[｜|]\\s*/);
+        let correctText = '';
+        let wrongText = '';
+        let rootCause = '';
+
+        parts.forEach(p => {{
+          const clean = p.trim();
+          if (clean.includes('正解')) {{
+            correctText = clean.replace(/^.*?[🎯]?\\s*正解\\s*[*_]*[：:]\\s*/, '').trim();
+          }} else if (clean.includes('错选') || clean.includes('作答')) {{
+            wrongText = clean.replace(/^.*?[❌]?\\s*(?:错选|作答)\\s*[*_]*[：:]\\s*/, '').trim();
+          }} else if (clean.includes('根因')) {{
+            rootCause = clean.replace(/^.*?[💥]?\\s*根因\\s*[*_]*[：:]\\s*/, '').trim();
+          }} else if (!correctText) {{
+            correctText = clean;
+          }}
+        }});
+
+        let html = '<div class="diag-dashboard">';
+        html += '<div class="diag-row">';
+        if (correctText) {{
+          html += '<div class="diag-badge diag-badge-correct"><span>🎯 标准正解:</span> <span>' + this.renderText(correctText) + '</span></div>';
+        }}
+        if (wrongText) {{
+          html += '<div class="diag-badge diag-badge-wrong"><span>❌ 常见错因/错选:</span> <span>' + this.renderText(wrongText) + '</span></div>';
+        }}
+        html += '</div>';
+
+        if (rootCause) {{
+          html += '<div class="diag-rootcause"><div class="diag-rootcause-title">💥 失分根因深度剖析</div><div class="diag-rootcause-body">' + this.renderText(rootCause) + '</div></div>';
+        }}
+        html += '</div>';
+        return html;
+      }}
+    }};
+  </script>
+
   <!-- Main Quiz Engine Script -->
   <script>
     (function() {{
@@ -851,19 +1209,14 @@ def generate_html(questions):
       // LocalStorage Key
       const STORAGE_KEY = 'ruankao_quiz_app_v1';
       let userState = {{
-        answered: {{}},     // id -> {{ choice: 'A', correct: true/false }}
-        customStars: {{}}   // id -> true/false
+        answered: {{}},
+        customStars: {{}}
       }};
 
-      // Load State from LocalStorage
       try {{
         const saved = localStorage.getItem(STORAGE_KEY);
-        if (saved) {{
-          userState = JSON.parse(saved);
-        }}
-      }} catch(e) {{
-        console.error('Failed to load quiz state', e);
-      }}
+        if (saved) userState = JSON.parse(saved);
+      }} catch(e) {{}}
 
       function saveState() {{
         try {{
@@ -876,8 +1229,8 @@ def generate_html(questions):
       const qBody = document.getElementById('q-body');
       const optContainer = document.getElementById('options-container');
       const expDrawer = document.getElementById('exp-drawer');
-      const expDiag = document.getElementById('exp-diag');
-      const expAnalysis = document.getElementById('exp-analysis');
+      const expDiagBox = document.getElementById('exp-diag-box');
+      const expAnalysisBox = document.getElementById('exp-analysis-box');
       const metaId = document.getElementById('meta-id');
       const metaModule = document.getElementById('meta-module');
       const metaStar = document.getElementById('meta-star');
@@ -951,7 +1304,7 @@ def generate_html(questions):
       function renderQuestion() {{
         if (filteredList.length === 0) {{
           qTitle.textContent = '暂无符合筛选条件的题目';
-          qBody.textContent = '可尝试切换上方分类或清除搜索关键词。';
+          qBody.innerHTML = '<p style="color:var(--text-muted);">可尝试切换上方分类标签或清空搜索关键词。</p>';
           optContainer.innerHTML = '';
           expDrawer.classList.remove('show');
           metaId.textContent = '#--';
@@ -977,9 +1330,9 @@ def generate_html(questions):
 
         btnStar.classList.toggle('active', isStarred);
 
-        // Title and body
-        qTitle.textContent = q.title;
-        qBody.textContent = q.question;
+        // Render Title & Body with Rich Text & Math
+        qTitle.innerHTML = RichRenderer.renderText(q.title);
+        qBody.innerHTML = RichRenderer.renderMarkdown(q.question);
 
         // Render Options
         optContainer.innerHTML = '';
@@ -1003,21 +1356,23 @@ def generate_html(questions):
 
           optDiv.innerHTML = `
             <div class="option-key">${{letter}}</div>
-            <div class="option-text">${{optText}}</div>
+            <div class="option-text">${{RichRenderer.renderText(optText)}}</div>
           `;
 
           optDiv.addEventListener('click', () => handleChoice(letter));
           optContainer.appendChild(optDiv);
         }});
 
-        // Explanation Drawer
-        expDiag.textContent = q.diagnosis || '（无额外作答诊断）';
-        expAnalysis.textContent = q.analysis || '（暂无详细推导）';
+        // Render Rich Explanation Drawer
+        expDiagBox.innerHTML = RichRenderer.renderDiagnosis(q.diagnosis);
+        expAnalysisBox.innerHTML = RichRenderer.renderMarkdown(q.analysis);
 
         if (ansInfo) {{
           expDrawer.classList.add('show');
+          btnToggleExp.textContent = '🙈 折叠解析';
         }} else {{
           expDrawer.classList.remove('show');
+          btnToggleExp.textContent = '💡 查看解析';
         }}
 
         // Button states
@@ -1052,7 +1407,7 @@ def generate_html(questions):
         const wrongCount = answeredCount - correctCount;
         const rate = answeredCount > 0 ? Math.round((correctCount / answeredCount) * 100) : 0;
 
-        statProgress.textContent = `${{currentIndex + 1}}/${{filteredList.length}} (全库已答:${{answeredCount}}/${{total}})`;
+        statProgress.textContent = `${{currentIndex + 1}}/${{filteredList.length}} (已答:${{answeredCount}}/${{total}})`;
         statRate.textContent = `${{rate}}%`;
         statCorrect.textContent = correctCount;
         statWrong.textContent = wrongCount;
@@ -1117,7 +1472,8 @@ def generate_html(questions):
       }});
 
       btnToggleExp.addEventListener('click', () => {{
-        expDrawer.classList.toggle('show');
+        const isShow = expDrawer.classList.toggle('show');
+        btnToggleExp.textContent = isShow ? '🙈 折叠解析' : '💡 查看解析';
       }});
 
       btnSheet.addEventListener('click', openSheet);
@@ -1188,7 +1544,7 @@ def main():
     
     html_content = generate_html(questions)
     OUTPUT_HTML.write_text(html_content, encoding="utf-8")
-    print(f"Generated single-file offline quiz app: {OUTPUT_HTML}")
+    print(f"Regenerated rich single-file offline quiz app: {OUTPUT_HTML}")
     print(f"File size: {len(html_content.encode('utf-8')) / 1024:.1f} KB")
 
 
