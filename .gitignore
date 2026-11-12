@@ -2,8 +2,17 @@
 *.tmp
 thumbs.db
 /.idea/
-*.pdf
-!/08-reference-materials/
-!/08-reference-materials/README.md
-/08-reference-materials/*.pdf
 /考前冲刺截图/
+
+# Materials binary files (keep directory skeleton tracked via README.md and .gitkeep)
+/materials/**/*.pdf
+/materials/**/*.epub
+/materials/**/*.mobi
+/materials/**/*.zip
+/materials/**/*.7z
+/materials/**/*.rar
+/materials/**/*.doc
+/materials/**/*.docx
+/materials/**/*.ppt
+/materials/**/*.pptx
+*.pdf
